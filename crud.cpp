@@ -1,19 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 void insert_client_legal_entire(char nome[],char data_de_nascimento[],char CNPJ[],float saldo,float credito){
 
 
     
     
-    
+    int f=mkdir("./PJ",S_IRWXU);
+    if (f==0){
+        system("mkdir PJ");
+        system("clear");
+    }
     char path[100]="./PJ/userPJ";
     strcat(path,CNPJ);
     char ext[15]={".txt"};
     strcat(path,ext);
     FILE *file;
-    file=fopen(path,"a");
+    file=fopen(path,"w");
     
     fprintf(file,"nome=%s\n",nome);
     fprintf(file,"CNPJ=%s\n",CNPJ);
