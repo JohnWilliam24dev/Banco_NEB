@@ -1,0 +1,9 @@
+nome=João
+senha=herobrine45
+pin=1234
+CNPJ=39278382000155
+credito=30000.000000
+Telefone=75 99882-4924
+endereco=rua skywalker
+saldo=11234.000000
+data=01/02/1990

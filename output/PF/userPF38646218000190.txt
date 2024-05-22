@@ -1,0 +1,9 @@
+nome=Daniel
+senha=herobrine45
+pin=1234
+CNPJ=38646218000190
+credito=30000.000000
+Telefone=75 99882-4924
+endereco=rua skywalker
+saldo=11234.000000
+data=11/11/2001
