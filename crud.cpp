@@ -24,10 +24,10 @@ void insert_client_legal_entire(char nome[],char senha[],int pin,char data_de_na
     fprintf(file,"senha=%s\n",senha);
     fprintf(file,"pin=%d\n",pin);
     fprintf(file,"CNPJ=%s\n",CNPJ);
-    fprintf(file,"credito=%f\n",credito);
+    fprintf(file,"credito=%2.f\n",credito);
     fprintf(file,"Telefone=%s\n",telefone);
     fprintf(file,"endereco=%s\n",endereco);
-    fprintf(file,"saldo=%f\n",saldo);
+    fprintf(file,"saldo=%2.f\n",saldo);
     fprintf(file,"data=%s\n",data_de_nascimento);
 
 }
@@ -50,16 +50,33 @@ int f=mkdir("./PF",S_IRWXU);
     fprintf(file,"senha=%s\n",senha);
     fprintf(file,"pin=%d\n",pin);
     fprintf(file,"CNPJ=%s\n",CPF);
-    fprintf(file,"credito=%f\n",credito);
+    fprintf(file,"credito=%2.f\n",credito);
     fprintf(file,"Telefone=%s\n",telefone);
     fprintf(file,"endereco=%s\n",endereco);
-    fprintf(file,"saldo=%f\n",saldo);
+    fprintf(file,"saldo=%2.f\n",saldo);
     fprintf(file,"data=%s\n",data_de_nascimento);
 }
 
-int main(){
-    insert_client_legal_entire("João","herobrine45",1234,"01/02/1990","39278382000155","75 99882-4924","rua skywalker",11234,30000);
-    insert_client_natural_person("Pedro","herobrine45",1234,"30/03/2004","46792439000103","75 99882-4924","rua skywalker",11234,30000);
-    insert_client_natural_person("Daniel","herobrine45",1234,"11/11/2001","38646218000190","75 99882-4924","rua skywalker",11234,30000);
+void request_salePF(char CPF[]){
+    char path[100]="./PF/userPF";
+    strcat(path,CPF);
+    char ext[15]={".txt"};
+    strcat(path,ext);
+
+    char ch[30][30];
+
+    FILE *file;
+    file =fopen(path,"r");
+    int i=0;
+    while (fgets(ch[i],40,file))
+    {
+        i++;
+    }
     
+    printf("%s",ch[7]);
+
+}
+
+int main(){
+  request_salePF("38646218000190");
 }
