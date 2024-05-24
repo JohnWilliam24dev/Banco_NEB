@@ -80,6 +80,29 @@ char* request_PF(char CPF[],int option){
     
     char *str=ch[option];
     return str;
+}
+
+char* request_PJ(char CNPJ[],int option){
+  
+    char path[100]="./PF/userPJ";
+    strcat(path,CNPJ);
+    char ext[15]={".txt"};
+    strcat(path,ext);
+
+    char ch[30][30];
+
+
+    FILE *file;
+    file =fopen(path,"r");
+    int i=0;
+    while (fgets(ch[i],40,file)!=NULL)
+    {
+        i++;
+    }
+    
+    
+    char *str=ch[option];
+    return str;
 
 }
 
