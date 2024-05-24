@@ -59,7 +59,8 @@ int f=mkdir("./PF",S_IRWXU);
     
 }
 
-char *request_PF(char CPF[],int option){
+char* request_PF(char CPF[],int option){
+  
     char path[100]="./PF/userPF";
     strcat(path,CPF);
     char ext[15]={".txt"};
@@ -67,21 +68,24 @@ char *request_PF(char CPF[],int option){
 
     char ch[30][30];
 
+
     FILE *file;
     file =fopen(path,"r");
     int i=0;
-    while (fgets(ch[i],40,file))
+    while (fgets(ch[i],40,file)!=NULL)
     {
         i++;
     }
     
     
-
-    return ch[option];
+    char *str=ch[option];
+    return str;
 
 }
 
 int main(){
-insert_client_legal_entire("Marcos","327842897",2231,"01/04/1500","12345263464344225","4783785786328","rua Jacinto Pinto",1000,100100);
+    char *teste =request_PF("12345263464344225",7);
+  
+    printf("%s",teste);
 
 }
