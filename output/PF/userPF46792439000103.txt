@@ -1,9 +1,0 @@
-nome=Pedro
-senha=herobrine45
-pin=1234
-CNPJ=46792439000103
-credito=30000
-Telefone=75 99882-4924
-endereco=rua skywalker
-saldo=11234
-data=30/03/2004

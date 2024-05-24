@@ -1,0 +1,9 @@
+nome=Marcos
+senha=327842897
+pin=2231
+data=01/04/1500
+CNPJ=12345263464344225
+Telefone=4783785786328
+endereco=rua Jacinto Pinto
+saldo=1000
+credito=100100
