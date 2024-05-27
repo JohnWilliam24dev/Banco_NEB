@@ -20,7 +20,29 @@ typedef struct {
     char data_de_nascimento[10];
     char profissao[50];
 } Cliente;
+// pra verificar senha... n to consegtuindo comentar ... tive de fazer commit msm 
+/* int verificarSenha(char *senha) {
+    int temMinuscula = 0, temMaiuscula = 0, temNumero = 0;
+    int i = 0;
 
+    // Verifica se a senha possui pelo menos 8 caracteres
+    if (strlen(senha) < 8)
+        return 0;
+
+    // Verifica cada caractere da senha
+    while (senha[i]) {
+        // Verifica se o caractere é uma letra minúscula
+        if (islower(senha[i]))
+            temMinuscula = 1;
+        // Verifica se o caractere é uma letra maiúscula
+        else if (isupper(senha[i]))
+            temMaiuscula = 1;
+        // Verifica se o caractere é um número
+        else if (isdigit(senha[i]))
+            temNumero = 1;
+
+        i++;
+    }*/
 
 // Função para entrada de cliente
 void entradaCliente() {
