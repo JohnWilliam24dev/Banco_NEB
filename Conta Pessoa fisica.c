@@ -4,6 +4,8 @@
 #include <wchar.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <ctype.h>
+#include <stdbool.h>
 
 // Definição da estrutura Cliente
 typedef struct {
@@ -18,6 +20,7 @@ typedef struct {
     char data_de_nascimento[10];
     char profissao[50];
 } Cliente;
+
 
 // Função para entrada de cliente
 void entradaCliente() {
@@ -35,6 +38,8 @@ void entradaCliente() {
     scanf("%s", verifSenha);
     fflush(stdin);
 
+    system("cls");
+
     // Procurar no banco de dados se a senha é compatível com o CPF, caso erre 3 vezes a conta é bloqueada
 
     // Caso o CPF e a senha estejam corretos, mostrar o menu do cliente
@@ -47,6 +52,7 @@ void entradaCliente() {
     wprintf(L"6. Alterar informações pessoais\n");
     wprintf(L"7. Finalizar sessão\n");
     scanf("%d", &opcaoCliente);
+    fflush(stdin);
 
     switch(opcaoCliente) {
         case 1:
@@ -68,7 +74,7 @@ void entradaCliente() {
             // Alterar informações pessoais
             break;
         case 7:
-            wprintf(L"Você escolheu sair do aplicativo.\n");
+            wprintf(L"Obrigado por usar os serviços do Banco NEB!\n");
             exit(0);
             break;
         default:
@@ -77,45 +83,96 @@ void entradaCliente() {
     }
 }
 
+bool vericData(const char *data){
+    
+
+    if (isdigit(data[0]) && 
+        isdigit(data[1]) && 
+        data[2] == '/'   && 
+        isdigit(data[3]) && 
+        isdigit(data[4]) &&
+        data[5] == '/'   && 
+        isdigit(data[6]) && 
+        isdigit(data[7]) &&
+        isdigit(data[8]) && 
+        isdigit(data[9])){
+            return 1;
+        }else{
+            return 0;
+        }
+
+}
 // Função para cadastrar cliente
 void cadastraCliente() {
     Cliente cliente;
     
     setlocale(LC_ALL, "Portuguese");
     
+    do{
     wprintf(L"Vamos começar com seu CPF.\n");
     scanf("%s", cliente.cpf);
+    fflush(stdin);
+    system("cls");
     
-    // Fazer uma forma de contar a quantidade de caracteres do CPF
-    
+        if(strlen(cliente.cpf)!=12){
+            printf("CPF incorreto, por favor digite novamente!");
+            fflush(stdin);
+            getchar();
+      
+         }
+
+        system("cls");
+
+    }while(strlen(cliente.cpf)!=12);
+ 
     system("cls");
     
     wprintf(L"Nos fale um pouco sobre você!\n\n");
     
     wprintf(L"Qual o seu nome?\n");
-    scanf("%s", cliente.nome);
+    fgets(cliente.nome, sizeof(cliente.nome), stdin);
+    fflush(stdin);
     
-    wprintf(L"Qual é a sua data de nascimento?\n");
-    scanf("%s", cliente.data_de_nascimento);
+
+    do{
+        wprintf(L"Qual é a sua data de nascimento?\n");// Fazer uma verificação para a data
+        scanf("%10s", cliente.data_de_nascimento);
+        fflush(stdin);
+        system("cls");
+
+            if(!vericData(cliente.data_de_nascimento)){
+                printf("Formato de data errado, por favor coloque uma data valida seguindo esse modelo 01/12/2024");
+                getchar();
+            }
+    }while(!vericData(cliente.data_de_nascimento));
     
     wprintf(L"Qual é a sua profissão?\n");
-    scanf("%s", cliente.profissao);
+    scanf("%49s", cliente.profissao);
+    fflush(stdin);
     
     system("cls");
     
-    wprintf(L"Qual é seu telefone?\n");
-    scanf("%s", cliente.telefone);
+    wprintf(L"Qual é seu telefone?\n");//Fazer uma verificação para o telefone
+    scanf("%12s", cliente.telefone);
+    fflush(stdin);
     
     wprintf(L"Qual é o seu endereço?\n");
-    scanf("%s", cliente.endereco);
+    scanf("%49s", cliente.endereco);
+    fflush(stdin);
     
     system("cls");
     
     wprintf(L"Agora vamos criar a sua senha!\n");
     wprintf(L"Por favor, crie uma senha com 8 caracteres que contenham números, letras e caracteres.\n");
-    scanf("%s", cliente.senha);
+    scanf("%8s", cliente.senha);
+    fflush(stdin);
     
     system("cls");
+
+    wprintf(L"Conta criada com sucesso! Bem vindo a familia NEB!");
+    wprintf(L"Agora você já pode acessar a sua conta através do login!");
+    getchar();
+
     // Criar uma verificação para descobrir se a senha tem caracteres, números e caracteres especiais.
     // insert_client_natural_person();
 }
@@ -143,7 +200,7 @@ int menu() {
             cadastraCliente();
             break;
         case 3:
-            wprintf(L"Você escolheu sair do aplicativo.\n");
+            wprintf(L"Obrigado por usar os serviços do Banco NEB!\n");
             exit(0);
             break;
         default:
