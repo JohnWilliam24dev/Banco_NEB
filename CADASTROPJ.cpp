@@ -8,6 +8,8 @@ void cadastro1() {
     char nomepropietario[35];
     float idadeempresa;
     float idadepropietario;
+    int telefone;
+    char senha;
 
     printf("Por favor, digite seu nome(propietario): ");
     scanf("%s", nomepropietario);
