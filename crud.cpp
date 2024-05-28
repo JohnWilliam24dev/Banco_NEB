@@ -65,22 +65,21 @@ char* request_PF(char CPF[],int option){
     strcat(path,CPF);
     char ext[15]={".txt"};
     strcat(path,ext);
-    printf("%s", path);
-    char chPF[30][30];
+    
+    char *chPF = (char *) malloc(sizeof(char)*30);
 
 
     FILE *filePF;
     filePF =fopen(path,"r");
     int i=0;
-    while (fgets(chPF[i],40,filePF)!=NULL)
+    while (fgets(chPF,40,filePF)!=NULL)
     {
+    	if(i == option) break;
         i++;
     }
-    
-    
-    char *return_data=chPF[option];
+
     fclose(filePF);
-    return return_data;
+    return chPF;
 }
 
 char* request_PJ(char CNPJ[],int option){
@@ -90,28 +89,28 @@ char* request_PJ(char CNPJ[],int option){
     char ext[15]={".txt"};
     strcat(path,ext);
 
-    char chPJ[30][30];
+    char *chPJ = (char *) malloc(sizeof(char)*30);
 
 
     FILE *filePJ;
     filePJ =fopen(path,"r");
     int i=0;
-    while (fgets(chPJ[i],40,filePJ)!=NULL)
+    while (fgets(chPJ,40,filePJ)!=NULL)
     {
+    	if(i == option) break;
         i++;
     }
     
     fclose(filePJ);
-    char *str=chPJ[option];
-    return str;
+    return chPJ;
 
 }
 
 int main(){
-    char *testePF =request_PF("1234",4);
-    printf("\n%s",testePF);
-    char *testePJ =request_PJ("12345263464344225",4);
-    printf("\n%s",testePJ);
+    char *testePF = request_PF("1234",0);
+    char *testePJ = request_PJ("12345263464344225",0);
+    printf("\n%s", testePF);
+    printf("\n%s", testePJ);
     
 
 }
