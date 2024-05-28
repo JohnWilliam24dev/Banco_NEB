@@ -83,9 +83,31 @@ void entradaCliente() {
     }
 }
 
-bool vericData(const char *data){
-    
+//Adicionar um verificador de telefone, só levantando em conta o numero internacional o 55, o ddd tem muito, eu acho que não precisa
+/*bool vericNumeroTelefone(const char *telefone){
+    if(strlen(telefone)!=13){
+            printf("Numero incorreto, lembre-se que o numero 9 foi adicionado na frente dos numeros depois do DDD");
+            fflush(stdin);
+            getchar();
+            system("cls");
+         }else{
+             if (isdigit(telefone[0]) && 
+                isdigit(telefone[1]) && 
+                isdigit(telefone[3]) && 
+                isdigit(telefone[4]) &&
+                isdigit(telefone[6]) && 
+                isdigit(telefone[7]) &&
+                isdigit(telefone[8]) && 
+                isdigit(telefone[9]) && 
+                isdigit(telefone[10]) && 
+                isdigit(telefone[11]) && 
+                isdigit(telefone[12]) && 
+                isdigit(telefone[13])) {          
+         }
+}*/
 
+bool vericData(const char *data) {
+    
     if (isdigit(data[0]) && 
         isdigit(data[1]) && 
         data[2] == '/'   && 
@@ -95,12 +117,31 @@ bool vericData(const char *data){
         isdigit(data[6]) && 
         isdigit(data[7]) &&
         isdigit(data[8]) && 
-        isdigit(data[9])){
-            return 1;
-        }else{
-            return 0;
-        }
+        isdigit(data[9])) {
+            
+        int ano = (data[6] - '0') * 1000 + (data[7] - '0') * 100 + (data[8] - '0') * 10 + (data[9] - '0');
+        int mes = (data[3] - '0') * 10 + (data[4] - '0');
+        int dia = (data[0] - '0') * 10 + (data[1] - '0');
 
+        if (ano >= 1920 && ano <= 2008) {
+            if (mes >= 1 && mes <= 12) {
+                if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia >= 1 && dia <= 30) {
+                    getchar();
+                    return true;
+                } else if ((mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) && dia >= 1 && dia <= 31) {
+                    getchar();
+                    return true;
+                } else if (mes == 2 && ((ano % 4 == 0 && ano % 100 != 0) || ano % 400 == 0) && dia >= 1 && dia <= 29) {
+                    getchar();
+                    return true;
+                } else if (mes == 2 && dia >= 1 && dia <= 28) {
+                    getchar();
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
 // Função para cadastrar cliente
 void cadastraCliente() {
@@ -118,6 +159,7 @@ void cadastraCliente() {
             printf("CPF incorreto, por favor digite novamente!");
             fflush(stdin);
             getchar();
+            system("cls");
       
          }
 
@@ -155,6 +197,7 @@ void cadastraCliente() {
     wprintf(L"Qual é seu telefone?\n");//Fazer uma verificação para o telefone
     scanf("%12s", cliente.telefone);
     fflush(stdin);
+    vericNumeroTelefone(cliente.telefone);
     
     wprintf(L"Qual é o seu endereço?\n");
     scanf("%49s", cliente.endereco);
