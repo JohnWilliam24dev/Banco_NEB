@@ -20,15 +20,15 @@ void insert_client_legal_entire(char nome[],char senha[],int pin,char data_de_na
     FILE *file;
     file=fopen(path,"w");
     
-    fprintf(file,"nome=%s\n",nome);
-    fprintf(file,"senha=%s\n",senha);
-    fprintf(file,"pin=%d\n",pin);
-    fprintf(file,"data=%s\n",data_de_nascimento);
-    fprintf(file,"CNPJ=%s\n",CNPJ);
-    fprintf(file,"Telefone=%s\n",telefone);
-    fprintf(file,"endereco=%s\n",endereco);
-    fprintf(file,"saldo=%2.f\n",saldo);
-    fprintf(file,"credito=%2.f\n",credito);
+    fprintf(file,"%s\n",nome);
+    fprintf(file,"%s\n",senha);
+    fprintf(file,"%d\n",pin);
+    fprintf(file,"%s\n",data_de_nascimento);
+    fprintf(file,"%s\n",CNPJ);
+    fprintf(file,"%s\n",telefone);
+    fprintf(file,"%s\n",endereco);
+    fprintf(file,"%2.f\n",saldo);
+    fprintf(file,"%2.f\n",credito);
     
 
 }
@@ -47,15 +47,15 @@ int f=mkdir("./PF",S_IRWXU);
     FILE *file;
     file=fopen(path,"w");
     
-    fprintf(file,"nome=%s\n",nome);
-    fprintf(file,"senha=%s\n",senha);
-    fprintf(file,"pin=%d\n",pin);
-    fprintf(file,"data=%s\n",data_de_nascimento);
-    fprintf(file,"CNPJ=%s\n",CPF);
-    fprintf(file,"Telefone=%s\n",telefone);
-    fprintf(file,"endereco=%s\n",endereco);
-    fprintf(file,"saldo=%2.f\n",saldo);
-    fprintf(file,"credito=%2.f\n",credito);
+    fprintf(file,"%s\n",nome);
+    fprintf(file,"%s\n",senha);
+    fprintf(file,"%d\n",pin);
+    fprintf(file,"%s\n",data_de_nascimento);
+    fprintf(file,"%s\n",CPF);
+    fprintf(file,"%s\n",telefone);
+    fprintf(file,"%s\n",endereco);
+    fprintf(file,"%2.f\n",saldo);
+    fprintf(file,"%2.f\n",credito);
     
 }
 
