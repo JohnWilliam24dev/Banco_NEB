@@ -37,6 +37,8 @@ void cadastro1() {
     
     printf("\nPor favor, digite a idade do propietrio: ");
     scanf("%f", &idadepropietario);
+  printf("\n Por favor, crie uma senha:");
+   
 }
 
 int main() {
