@@ -12,6 +12,8 @@ void cadastro1() {
     char senha[20];
     char CPF[12];  
     char telefone[10]; 
+    char cep[9];
+    
 
     printf("Por favor, digite seu nome (proprietario): ");
     scanf("%s", nomepropietario);
@@ -75,6 +77,17 @@ void cadastro1() {
             printf("Senha inválida. Digite novamente.\n");
         }
     } while (1);
+    do {
+        printf("\nPor favor, coloque o cep: ");
+        scanf("%s", cep);
+        if (strlen(cep) == 8) {  
+            printf("Cep validada!!\n");
+            break;
+        } else {
+            printf("Cep inválida. Digite novamente.\n");
+        }
+    } while (1);
+    printf("Cadastro finalizado");
 }
 
 int main() {
