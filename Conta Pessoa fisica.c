@@ -20,29 +20,30 @@ typedef struct {
     char data_de_nascimento[10];
     char profissao[50];
 } Cliente;
-// pra verificar senha... n to consegtuindo comentar ... tive de fazer commit msm 
-/* int verificarSenha(char *senha) {
+
+bool verificarSenha(char *senha) {
+    int cont = 0;
     int temMinuscula = 0, temMaiuscula = 0, temNumero = 0;
-    int i = 0;
-
     // Verifica se a senha possui pelo menos 8 caracteres
-    if (strlen(senha) < 8)
+    if (strlen(senha) < 8 || strlen(senha) > 8){
+        printf("Formato incorreto! Por favor, tente novamente.\n");
+        getchar();
+        system("cls");
         return 0;
+    }
 
-    // Verifica cada caractere da senha
-    while (senha[i]) {
-        // Verifica se o caractere é uma letra minúscula
-        if (islower(senha[i]))
+    for(cont=0;cont<9;cont++){
+        if (islower(senha[cont])){
             temMinuscula = 1;
-        // Verifica se o caractere é uma letra maiúscula
-        else if (isupper(senha[i]))
+        }else if (isupper(senha[cont])){
             temMaiuscula = 1;
-        // Verifica se o caractere é um número
-        else if (isdigit(senha[i]))
+        }else if (isdigit(senha[cont])){
             temNumero = 1;
-
-        i++;
-    }*/
+            return 1;
+        }
+    }
+    return 0;
+}
 
 // Função para entrada de cliente
 void entradaCliente() {
@@ -219,7 +220,8 @@ void cadastraCliente() {
     wprintf(L"Qual é seu telefone?\n");//Fazer uma verificação para o telefone
     scanf("%12s", cliente.telefone);
     fflush(stdin);
-    vericNumeroTelefone(cliente.telefone);
+
+    //vericNumeroTelefone(cliente.telefone); Função para verificar se o telefone é valido
     
     wprintf(L"Qual é o seu endereço?\n");
     scanf("%49s", cliente.endereco);
@@ -227,10 +229,16 @@ void cadastraCliente() {
     
     system("cls");
     
+
+    do{
     wprintf(L"Agora vamos criar a sua senha!\n");
     wprintf(L"Por favor, crie uma senha com 8 caracteres que contenham números, letras e caracteres.\n");
     scanf("%8s", cliente.senha);
     fflush(stdin);
+
+    }while(!verificarSenha(cliente.senha));
+
+
     
     system("cls");
 
