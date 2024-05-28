@@ -1,23 +1,20 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
+#include "crud.c"
 
 void cadastro1() {
     char cnpj[15];
     char nomeempresa[19];
-    char nomepropietario[35];
     float idadeempresa;
-    float idadepropietario;
-    char senha[20];
-    char CPF[12];  
+    char senha[20]; 
+    char pin[5];
     char telefone[10]; 
     char cep[9];
-    
-
-    printf("Por favor, digite seu nome (proprietario): ");
-    scanf("%s", nomepropietario);
-
+    float saldo = 0;
+    float credito = 0;
+ 
     printf("\nPor favor, digite o nome da empresa: ");
     scanf("%s", nomeempresa);
 
@@ -37,23 +34,7 @@ void cadastro1() {
     printf("\nPor favor, digite a idade da empresa: ");
     scanf("%f", &idadeempresa);
 
-    printf("\nPor favor, digite a idade do proprietário: ");
-    scanf("%f", &idadepropietario);
 
-    
-    do {
-        printf("\nPor favor, digite o CPF (11 dígitos): ");
-        scanf("%s", CPF);
-
-        if (strlen(CPF) == 11) {
-            printf("CPF válido.\n");
-            break;
-        } else {
-            printf("CPF inválido. Por favor, digite novamente.\n");
-        }
-    } while (1);
-
-    
     do {
         printf("\nPor favor, digite o telefone (8 dígitos): ");
         scanf("%s", telefone);
@@ -78,6 +59,16 @@ void cadastro1() {
         }
     } while (1);
     do {
+        printf("\nPor favor, coloquei o pin : ");
+        scanf("%s", pin );
+        if (strlen(pin) == 4) {  
+            printf("pin validado!!\n");
+            break;
+        } else {
+            printf("Pin inválido. Digite novamente.\n");
+        }
+    } while (1);
+    do {
         printf("\nPor favor, coloque o cep: ");
         scanf("%s", cep);
         if (strlen(cep) == 8) {  
@@ -87,7 +78,17 @@ void cadastro1() {
             printf("Cep inválida. Digite novamente.\n");
         }
     } while (1);
-    printf("Cadastro finalizado");
+
+    system("cls");
+	
+	printf("Cadastro finalizado");
+	
+	   
+    system("cls");
+    printf("\nO seu saldo é: %.2f\n", saldo);
+    printf("O seu crédito é: %.2f\n", credito);  
+	
+	insert_client_legal_entire(nomeempresa, senha, pin, idadeempresa, cnpj, telefone, cep, saldo, credito); 
 }
 
 int main() {
