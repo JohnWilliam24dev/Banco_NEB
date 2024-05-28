@@ -106,11 +106,3 @@ char* request_PJ(char CNPJ[],int option){
 
 }
 
-int main(){
-    char *testePF = request_PF("1234",0);
-    char *testePJ = request_PJ("12345263464344225",0);
-    printf("\n%s", testePF);
-    printf("\n%s", testePJ);
-    
-
-}
