@@ -21,29 +21,40 @@ typedef struct {
     char profissao[50];
 } Cliente;
 
+
 bool verificarSenha(char *senha) {
-    int cont = 0;
     int temMinuscula = 0, temMaiuscula = 0, temNumero = 0;
+
     // Verifica se a senha possui pelo menos 8 caracteres
-    if (strlen(senha) < 8 || strlen(senha) > 8){
-        printf("Formato incorreto! Por favor, tente novamente.\n");
-        getchar();
-        system("cls");
-        return 0;
+    if (strlen(senha) < 8){
+        printf("Formato incorreto! A senha deve ter pelo menos 8 caracteres. Por favor, tente novamente.\n");
+        return false;
     }
 
-    for(cont=0;cont<9;cont++){
+    // Percorre os caracteres da senha
+    for(int cont = 0; cont < strlen(senha); cont++){
         if (islower(senha[cont])){
             temMinuscula = 1;
-        }else if (isupper(senha[cont])){
+        } 
+        if (isupper(senha[cont])){
             temMaiuscula = 1;
-        }else if (isdigit(senha[cont])){
+        }
+        if (isdigit(senha[cont])){
             temNumero = 1;
-            return 1;
         }
     }
-    return 0;
+
+    // Verifica se possui pelo menos um de cada tipo de caractere
+    if(temMinuscula && temMaiuscula && temNumero){
+        return true;
+    } else {
+        printf("A senha deve conter pelo menos uma letra minúscula, uma letra maiúscula e um número.\n");
+        getchar();
+        system("cls");
+        return false;
+    }
 }
+
 
 // Função para entrada de cliente
 void entradaCliente() {
@@ -235,6 +246,8 @@ void cadastraCliente() {
     wprintf(L"Por favor, crie uma senha com 8 caracteres que contenham números, letras e caracteres.\n");
     scanf("%8s", cliente.senha);
     fflush(stdin);
+
+    system("cls");
 
     }while(!verificarSenha(cliente.senha));
 
