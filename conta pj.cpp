@@ -2,9 +2,25 @@
 #include <stdlib.h>
 #include <string.h>
 
-void conta(char *CNPJ){
-	float *saldo = requet(cnpj,7);
-	char *nome = request(cnpj,0);
+void transferir(){
+	char tipo[4], cnpj[16];
+	float quantia;
+	
+	printf("\t\t\tBancoNeb\n");
+	printf("\t{Bem vindo à area de tranferencias }\n\n" ,);
+	printf("\t\t\tDados do destinatario\n\n");
+	printf("Numero da conta: ");
+	scanf("%s", cnpj);
+	printf("Quantia a ser enviada");
+	scanf("%f", &quantia);
+	printf("Tipo da conta PJ/PF");
+	scanf("%s", tipo);
+}
+
+void conta(char *cnpj){
+	float *saldo = request(*cnpj,7);
+	char *nome = request(*cnpj,0);
+	int opt;
 
 	system("cls");
 	
@@ -13,6 +29,22 @@ void conta(char *CNPJ){
 	printf("\t\t\t\SALDO : %d\n\n", saldo);
 	printf("--|PIX|------|TRANSFERENCIAS|-----|EXTRATO|\n");
 	printf("  | 1 |______|      2       |_____|   3   |\n");
+	
+	scanf("%d", &opt);
+	switch(opt){
+		case 1:
+			transferir();
+			break:
+		case 2:
+			tranferir();
+			break;
+		case 3:
+			extrato();
+			break;
+		default
+			printf("Opção invalida");
+			break;
+	}
 }
 
 void entrar(){
@@ -51,7 +83,7 @@ void inicio(){
 			printf("\\sair");
 			break;
 		default:
-			printf("Op��o invalida");
+			printf("Opção invalida");
 			break;
 	}
 }
