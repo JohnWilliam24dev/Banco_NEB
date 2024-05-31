@@ -2,32 +2,32 @@
 #include <stdlib.h>
 #include <string.h>
 
-void conta(int da){
-	int saldo;
-	
-	fflush(stdin);
-	scanf("%d", &saldo);
+void conta(char *CNPJ){
+	float *saldo = requet(cnpj,7);
+	char *nome = request(cnpj,0);
+
 	system("cls");
 	
 	printf("\t\t\tBancoNeb\n");
 	printf("\t{Bem vindo %d }\n\n" ,da);
 	printf("\t\t\t\SALDO : %d\n\n", saldo);
-	printf("--|PIX|------|TRANSFERENCIAS|-----|EXTRATO|------|INVESTIMENTOS|-\n");
-	printf("  | 1 |______|      2       |_____|   3   |______|     4       |\n");
+	printf("--|PIX|------|TRANSFERENCIAS|-----|EXTRATO|\n");
+	printf("  | 1 |______|      2       |_____|   3   |\n");
 }
 
 void entrar(){
-   char cnpj[15], senha[15];
+   char cnpj[15], senha[15], *CNPJ;
    int da = 1;
+   *CNPJ = &cnpj
 	do{
 		printf("Coloque seu CNPJ abaixo !\n");
 		scanf("%s", cnpj);
 		fflush(stdin);
 		printf("\nDigite a senha !\n");
 		scanf("%s", senha);
-	}while(strlen(cnpj) >14 && strlen(senha) > 8);
+	}while(strlen(cnpj) !=14 && strlen(senha) < 8);
 	
-	conta(da);
+	conta(CNPJ);
 }
 
 void inicio(){
