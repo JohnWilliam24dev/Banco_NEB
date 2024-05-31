@@ -5,18 +5,35 @@
 void transferir(){
 	char tipo[4], cnpj[16];
 	float quantia;
+	float *qtd_conta = request(cnpj, 7);
+	int opt;
 	
-	printf("\t\t\tBancoNeb\n");
-	printf("\t{Bem vindo à area de tranferencias }\n\n" ,);
-	printf("\t\t\tDados do destinatario\n\n");
-	printf("Numero da conta: ");
-	scanf("%s", cnpj);
-	printf("Quantia a ser enviada");
-	scanf("%f", &quantia);
-	printf("Tipo da conta PJ/PF");
-	scanf("%s", tipo);
+	do{	 
+	system("cls");
+		printf("\t\t\tBancoNeb\n");
+		printf("\t{Bem vindo à area de tranferencias }\n\n" ,);
+		printf("\t\t\tV Dados do destinatario V\n\n");
+		printf("Cnpj da conta : ");
+		scanf("%s", cnpj);
+		printf("Quantia a ser enviada");
+		scanf("%f", &quantia);
+		printf("Tipo da conta PJ/PF");
+		scanf("%s", tipo);
+		
+		if(qtd_conta < quantia){
+			printf("Valor invalido\nTente Novamente\n");
+		}
+		printf("Deseja Sair 1\n Tentar Novamente outro");
+		scanf("%d", &opt);
+		if(opt==1)
+			conta();
+			
+	} while(qtd_conta < quantia)
+	
+	printf("Transferencia concluida\n");
+	conta();
 }
-
+           
 void conta(char *cnpj){
 	float *saldo = request(*cnpj,7);
 	char *nome = request(*cnpj,0);
