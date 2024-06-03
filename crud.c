@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <sys/stat.h>
 
@@ -106,3 +107,10 @@ char* request_PJ(char CNPJ[],int option){
 
 }
 
+
+int main(){
+    insert_client_legal_entire("Felipe","annythn123",4567,"24/03/2005","8765431232321","73998824924","rua Baker numero 3",0,0);
+
+    char *teste=request_PJ("8765431232321",0);
+    printf("debug %s",*teste);
+}
