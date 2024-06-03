@@ -2,46 +2,158 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Estrutura para Cliente PF
 typedef struct {
-    int id;
-    char name[50];
-    int age;
-} Record;
+    char nome[50];
+    char senha[20];
+    char pin[10];
+    char data_nascimento[11];
+    char CPF[15];
+    char telefone[15];
+    char endereco[100];
+    float saldo;
+    float credito;
+} ClientePF;
 
-void edit(const char *filename, int id, const char *new_name, int new_age) {
+// Estrutura para Cliente PJ
+typedef struct {
+    char nome[50];
+    char senha[20];
+    char pin[10];
+    char data_nascimento[11];
+    char CNPJ[20];
+    char telefone[15];
+    char endereco[100];
+    float saldo;
+    float credito;
+} ClientePJ;
+
+// Função para converter string para float
+float stringToFloat(char* str) {
+    return atof(str);
+}
+
+// Função para puxar dados de Cliente PF
+const char* RequestPF(ClientePF cliente, int opcao) {
+    switch(opcao) {
+        case 0: return cliente.nome;
+        case 1: return cliente.senha;
+        case 2: return cliente.pin;
+        case 3: return cliente.data_nascimento;
+        case 4: return cliente.CPF;
+        case 5: return cliente.telefone;
+        case 6: return cliente.endereco;
+        case 7: return &cliente.saldo;
+        case 8: return &cliente.credito;
+        default: return "Opção inválida";
+    }
+}
+
+// Função para puxar dados de Cliente PJ
+const char* RequestPJ(ClientePJ cliente, int opcao) {
+    switch(opcao) {
+        case 0: return cliente.nome;
+        case 1: return cliente.senha;
+        case 2: return cliente.pin;
+        case 3: return cliente.data_nascimento;
+        case 4: return cliente.CNPJ;
+        case 5: return cliente.telefone;
+        case 6: return cliente.endereco;
+        case 7: return &cliente.saldo;
+        case 8: return &cliente.credito;
+        default: return "Opção inválida";
+    }
+}
+
+// Função para editar registro de Cliente PF
+void editPF(const char *filename, const char *CPF, const char *new_name) {
     FILE *file = fopen(filename, "r+b");
     if (file == NULL) {
         perror("Erro ao abrir o arquivo");
         return;
     }
 
-    Record record;
+    ClientePF cliente;
     int found = 0;
 
     // Procura pelo registro
-    while (fread(&record, sizeof(Record), 1, file)) {
-        if (record.id == id) {
+    while (fread(&cliente, sizeof(ClientePF), 1, file)) {
+        if (strcmp(cliente.CPF, CPF) == 0) {
             found = 1;
             break;
         }
     }
 
     if (!found) {
-        printf("Registro com ID %d não encontrado.\n", id);
+        printf("Registro com CPF %s não encontrado.\n", CPF);
         fclose(file);
         return;
     }
 
     // Atualiza o registro
-    strncpy(record.name, new_name, sizeof(record.name) - 1);
-    record.name[sizeof(record.name) - 1] = '\0'; // Garantir a terminação da string
-    record.age = new_age;
+    strncpy(cliente.nome, new_name, sizeof(cliente.nome) - 1);
+    cliente.nome[sizeof(cliente.nome) - 1] = '\0'; // Garantir a terminação da string
 
     // Volta para a posição do registro encontrado e escreve as alterações
-    fseek(file, -sizeof(Record), SEEK_CUR);
-    fwrite(&record, sizeof(Record), 1, file);
+    fseek(file, -sizeof(ClientePF), SEEK_CUR);
+    fwrite(&cliente, sizeof(ClientePF), 1, file);
 
-    printf("Registro com ID %d atualizado.\n", id);
+    printf("Registro com CPF %s atualizado.\n", CPF);
 
     fclose(file);
+}
+
+// Função para editar registro de Cliente PJ
+void editPJ(const char *filename, const char *CNPJ, const char *new_name) {
+    FILE *file = fopen(filename, "r+b");
+    if (file == NULL) {
+        perror("Erro ao abrir o arquivo");
+        return;
+    }
+
+    ClientePJ cliente;
+    int found = 0;
+
+    // Procura pelo registro
+    while (fread(&cliente, sizeof(ClientePJ), 1, file)) {
+        if (strcmp(cliente.CNPJ, CNPJ) == 0) {
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Registro com CNPJ %s não encontrado.\n", CNPJ);
+        fclose(file);
+        return;
+    }
+
+    // Atualiza o registro
+    strncpy(cliente.nome, new_name, sizeof(cliente.nome) - 1);
+    cliente.nome[sizeof(cliente.nome) - 1] = '\0'; // Garantir a terminação da string
+
+    // Volta para a posição do registro encontrado e escreve as alterações
+    fseek(file, -sizeof(ClientePJ), SEEK_CUR);
+    fwrite(&cliente, sizeof(ClientePJ), 1, file);
+
+    printf("Registro com CNPJ %s atualizado.\n", CNPJ);
+
+    fclose(file);
+}
+
+// Função principal de exemplo
+int main() {
+    // Exemplo de uso das funções
+    // Os arquivos e dados reais deveriam ser configurados aqui
+    ClientePF clientePF = {"Felipe", "annythn123", "4567", "24/03/2005", "8765431232321", "73998824924", "rua Baker numero 3", 0, 0};
+    ClientePJ clientePJ = {"Empresa XYZ", "empresa123", "7890", "01/01/2000", "12345678000195", "1134567890", "avenida central, 100", 0, 0};
+
+    printf("Nome PF: %s\n", RequestPF(clientePF, 0));
+    printf("Nome PJ: %s\n", RequestPJ(clientePJ, 0));
+
+    // Edição de exemplo
+    editPF("clientes_pf.dat", "8765431232321", "Novo Nome PF");
+    editPJ("clientes_pj.dat", "12345678000195", "Novo Nome PJ");
+
+    return 0;
 }
