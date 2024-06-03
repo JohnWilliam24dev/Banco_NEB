@@ -35,6 +35,7 @@ float stringToFloat(char* str) {
 
 // Função para puxar dados de Cliente PF
 const char* RequestPF(ClientePF cliente, int opcao) {
+    static char buffer[100];  // Buffer estático para armazenar strings temporárias
     switch(opcao) {
         case 0: return cliente.nome;
         case 1: return cliente.senha;
@@ -43,14 +44,19 @@ const char* RequestPF(ClientePF cliente, int opcao) {
         case 4: return cliente.CPF;
         case 5: return cliente.telefone;
         case 6: return cliente.endereco;
-        case 7: return &cliente.saldo;
-        case 8: return &cliente.credito;
+        case 7:
+            snprintf(buffer, sizeof(buffer), "%.2f", cliente.saldo);
+            return buffer;
+        case 8:
+            snprintf(buffer, sizeof(buffer), "%.2f", cliente.credito);
+            return buffer;
         default: return "Opção inválida";
     }
 }
 
 // Função para puxar dados de Cliente PJ
 const char* RequestPJ(ClientePJ cliente, int opcao) {
+    static char buffer[100];  // Buffer estático para armazenar strings temporárias
     switch(opcao) {
         case 0: return cliente.nome;
         case 1: return cliente.senha;
@@ -59,8 +65,12 @@ const char* RequestPJ(ClientePJ cliente, int opcao) {
         case 4: return cliente.CNPJ;
         case 5: return cliente.telefone;
         case 6: return cliente.endereco;
-        case 7: return &cliente.saldo;
-        case 8: return &cliente.credito;
+        case 7:
+            snprintf(buffer, sizeof(buffer), "%.2f", cliente.saldo);
+            return buffer;
+        case 8:
+            snprintf(buffer, sizeof(buffer), "%.2f", cliente.credito);
+            return buffer;
         default: return "Opção inválida";
     }
 }
