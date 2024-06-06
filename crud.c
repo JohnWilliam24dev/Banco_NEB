@@ -51,7 +51,7 @@ void insert_client_legal_entire(char nome[],char senha[],int pin,char data_de_na
 
     
     
-    int f=mkdir("./PJ",S_IRWXU);
+    int f=mkdir("./PJ");
     if (f==0){
         system("mkdir PJ");
         system("clear");
@@ -78,7 +78,7 @@ void insert_client_legal_entire(char nome[],char senha[],int pin,char data_de_na
 
 void insert_client_natural_person(char nome[],char senha[],int pin,char data_de_nascimento[],char CPF[],char telefone[],char endereco[],float saldo,float credito){
 
-int f=mkdir("./PF",S_IRWXU);
+int f=mkdir("./PF");
     if (f==0){
         system("mkdir PF");
         system("clear");
@@ -148,11 +148,113 @@ char* request_PJ(char CNPJ[],int option){
     return chPJ;
 
 }
+void edit_PF(char CPF[],int option,char mod[]){
+  
+    char path[100]="./PF/userPF";
+    strcat(path,CPF);
+    char ext[15]={".txt"};
+    strcat(path,ext);
+    char chPF[100][50];
+
+
+    FILE *filePF;
+    filePF =fopen(path,"r");
+    int tamanho=0;
+    int i=0;
+    while (fgets(chPF[i],40,filePF)!=NULL)
+    {
+    	
+    
+        i++;
+    }
+    tamanho=i-1;
+    fclose(filePF);
+    i=0;
+    filePF =fopen(path,"w+");
+    fprintf(filePF," ");
+    
+    fclose(filePF);
+    
+    
+    strcpy(chPF[option],mod);
+    
+    
+    filePF =fopen(path,"w+");
+     while (i<=tamanho){
+    	
+    	
+    	if(strcmp(chPF[i],chPF[option])==0){
+    		fprintf(filePF,"%s\n",chPF[i]);
+		}else{
+			fprintf(filePF,chPF[i]);
+		}
+    
+	
+		
+        i++;
+        
+    }
+
+    fclose(filePF);
+    
+}
+
+void edit_PJ(char CNPJ[],int option,char mod[]){
+  
+    char path[100]="./PJ/userPJ";
+    strcat(path,CNPJ);
+    char ext[15]={".txt"};
+    strcat(path,ext);
+    char chPJ[100][51];
+
+
+    FILE *filePJ;
+    filePJ =fopen(path,"r");
+    int tamanho=0;
+    int i=0;
+    while (fgets(chPJ[i],40,filePJ)!=NULL)
+    {
+    	
+    
+        i++;
+    }
+    tamanho=i-1;
+    fclose(filePJ);
+    i=0;
+    filePJ =fopen(path,"w+");
+    fprintf(filePJ," ");
+    
+    fclose(filePJ);
+    
+    
+    strcpy(chPJ[option],mod);
+    
+    
+    filePJ =fopen(path,"w+");
+     while (i<=tamanho){
+    	
+    	
+    	if(strcmp(chPJ[i],chPJ[option])==0){
+    		fprintf(filePJ,"%s\n",chPJ[i]);
+		}else{
+			fprintf(filePJ,chPJ[i]);
+		}
+    
+	
+		
+        i++;
+        
+    }
+
+    fclose(filePJ);
+    
+}
+
 
 
 int main(){
-    insert_client_legal_entire("Felipe","annythn123",4567,"24/03/2005","8765431232321","73998824924","rua Baker numero 3",0,0);
-
-    char *teste=request_PJ("8765431232321",0);
-    printf("debug %s",*teste);
+    edit_PJ("12345678910",0,"Henrique Cardoso");
+    edit_PJ("12345678910",7,"40000");
+    
+    
 }
