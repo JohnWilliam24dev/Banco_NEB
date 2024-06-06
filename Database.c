@@ -3,49 +3,6 @@
 #include <stdbool.h>
 #include <string.h>
 #include <sys/stat.h>
-/*typedef struct {
-    int id;
-    char name[50];
-    int age;
-} Record;
-
-void edit(const char *filename, int id, const char *new_name, int new_age) {
-    FILE *file = fopen(filename, "r+b");
-    if (file == NULL) {
-        perror("Erro ao abrir o arquivo");
-        return;
-    }
-
-    Record record;
-    int found = 0;
-
-    // Procura pelo registro
-    while (fread(&record, sizeof(Record), 1, file)) {
-        if (record.id == id) {
-            found = 1;
-            break;
-        }
-    }
-
-    if (!found) {
-        printf("Registro com ID %d não encontrado.\n", id);
-        fclose(file);
-        return;
-    }
-
-    // Atualiza o registro
-    strncpy(record.name, new_name, sizeof(record.name) - 1);
-    record.name[sizeof(record.name) - 1] = '\0'; // Garantir a terminação da string
-    record.age = new_age;
-
-    // Volta para a posição do registro encontrado e escreve as alterações
-    fseek(file, -sizeof(Record), SEEK_CUR);
-    fwrite(&record, sizeof(Record), 1, file);
-
-    printf("Registro com ID %d atualizado.\n", id);
-
-    fclose(file);
-}*/
 void insert_client_legal_entire(char nome[],char senha[],int pin,char data_de_nascimento[],char CNPJ[],char telefone[],char endereco[],float saldo,float credito){
 
 
@@ -54,7 +11,7 @@ void insert_client_legal_entire(char nome[],char senha[],int pin,char data_de_na
     int f=mkdir("./PJ");
     if (f==0){
         system("mkdir PJ");
-        system("clear");
+        system("cls");
     }
     char path[100]="./PJ/userPJ";
     strcat(path,CNPJ);
@@ -81,7 +38,7 @@ void insert_client_natural_person(char nome[],char senha[],int pin,char data_de_
 int f=mkdir("./PF");
     if (f==0){
         system("mkdir PF");
-        system("clear");
+        system("cls");
     }
     char path[100]="./PF/userPF";
     strcat(path,CPF);
@@ -247,14 +204,5 @@ void edit_PJ(char CNPJ[],int option,char mod[]){
     }
 
     fclose(filePJ);
-    
-}
-
-
-
-int main(){
-    edit_PJ("12345678910",0,"Henrique Cardoso");
-    edit_PJ("12345678910",7,"40000");
-    
     
 }
