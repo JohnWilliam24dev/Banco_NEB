@@ -3,7 +3,55 @@
 #include <stdbool.h>
 #include <string.h>
 #include <sys/stat.h>
-void insert_client_legal_entire(char nome[],char senha[],int pin,char data_de_nascimento[],char CNPJ[],char telefone[],char endereco[],float saldo,float credito){
+void keep_safePF(char CPF[]){
+	char authenticator[20][100];
+	int index=0;
+	bool verific=false;
+	
+	int f=mkdir("./ADMIN");
+    if (f==0){
+        system("mkdir ADMIN");
+        system("cls");
+        
+		}
+	FILE *fileADM=fopen("./ADMIN/CPF.txt","a+");
+	fprintf(fileADM,".");
+	while(fgets(authenticator[index],10,fileADM)!=NULL){
+		if(strcmp(authenticator[index],CPF)==0){
+			break;
+		}else{
+			fprintf(fileADM,"\n%s",CPF);break;
+		}
+		
+		index++;
+	}
+	  fclose(fileADM);
+}
+void keep_safePJ(char CNPJ[]){
+	char authenticator[20][100];
+	int index=0;
+	bool verific=false;
+	
+	int f=mkdir("./ADMIN");
+    if (f==0){
+        system("mkdir ADMIN");
+        system("cls");
+        
+		}
+	FILE *fileADM=fopen("./ADMIN/CNPJ.txt","a+");
+	fprintf(fileADM,".");
+	while(fgets(authenticator[index],20,fileADM)!=NULL){
+		if(strcmp(authenticator[index],CNPJ)==0){
+			break;
+		}else{
+			fprintf(fileADM,"\n%s",CNPJ);break;
+		}
+		
+		index++;
+	}
+	  fclose(fileADM);
+}
+void insert_client_legal_entire(char nome[],char senha[],char pin[],char data_de_nascimento[],char CNPJ[],char telefone[],char endereco[],float saldo,float credito){
 
 
     
@@ -19,7 +67,6 @@ void insert_client_legal_entire(char nome[],char senha[],int pin,char data_de_na
     strcat(path,ext);
     FILE *file;
     file=fopen(path,"w");
-    
     fprintf(file,"%s\n",nome);
     fprintf(file,"%s\n",senha);
     fprintf(file,"%d\n",pin);
@@ -29,11 +76,12 @@ void insert_client_legal_entire(char nome[],char senha[],int pin,char data_de_na
     fprintf(file,"%s\n",endereco);
     fprintf(file,"%2.f\n",saldo);
     fprintf(file,"%2.f\n",credito);
-    
+    keep_safePJ(CNPJ);
+    fclose(file);
 
 }
 
-void insert_client_natural_person(char nome[],char senha[],int pin,char data_de_nascimento[],char CPF[],char telefone[],char endereco[],float saldo,float credito){
+void insert_client_natural_person(char nome[],char senha[],char pin[],char data_de_nascimento[],char CPF[],char telefone[],char endereco[],float saldo,float credito){
 
 int f=mkdir("./PF");
     if (f==0){
@@ -56,7 +104,8 @@ int f=mkdir("./PF");
     fprintf(file,"%s\n",endereco);
     fprintf(file,"%2.f\n",saldo);
     fprintf(file,"%2.f\n",credito);
-    
+    keep_safePF(CPF);
+    fclose(file);
 }
 
 char* request_PF(char CPF[],int option){
@@ -205,4 +254,11 @@ void edit_PJ(char CNPJ[],int option,char mod[]){
 
     fclose(filePJ);
     
+}
+
+int main(){
+	
+	insert_client_natural_person("Rick","annythn5434","5476","02/04/2004","34445689045","67 97894-4961","rua Paula Tejando Leite",1500,500);
+	insert_client_legal_entire("Distribuidora de leite","leitinhoquentinho234","6969","06/09/1969","123456789101112","82 99446-2523","Rua Thommy Lee Leite",33000,2000);
+	
 }

@@ -29,7 +29,7 @@ int main(){
         
     }
 
-    system("clear");
+    system("cls");
     printf("\tDashboard:\n");
     printf("\t(1)Listar clientes PF\n");
     printf("\t(2)Listar clientes PJ\n");
