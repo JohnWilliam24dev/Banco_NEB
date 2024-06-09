@@ -4,52 +4,86 @@
 #include <string.h>
 #include <sys/stat.h>
 void keep_safePF(char CPF[]){
-	char authenticator[20][100];
-	int index=0;
+	char authenticator[30][100];
+	char setCPF[50];
+	char ext[15]={"\n"};
+	int index=0,sizes=0;
 	bool verific=false;
-	
+	strcat(setCPF,CPF);
+	strcat(setCPF,ext);
 	int f=mkdir("./ADMIN");
     if (f==0){
         system("mkdir ADMIN");
         system("cls");
         
 		}
-	FILE *fileADM=fopen("./ADMIN/CPF.txt","a+");
+	FILE *fileADM=fopen("./ADMIN/CPF.txt","r");
 	fprintf(fileADM,".");
-	while(fgets(authenticator[index],10,fileADM)!=NULL){
-		if(strcmp(authenticator[index],CPF)==0){
-			break;
-		}else{
-			fprintf(fileADM,"\n%s",CPF);break;
-		}
+	while(fgets(authenticator[index],30,fileADM)!=NULL){	
 		
 		index++;
 	}
-	  fclose(fileADM);
+	sizes=index;
+	index=0;
+	fclose(fileADM);
+	FILE *fileADMup=fopen("./ADMIN/CPF.txt","a");
+    do{
+		if(strcmp(authenticator[index],setCPF)==0 ){
+			
+			verific=false;
+			break;
+		}else{
+			verific=true;
+			index++;
+			
+		}
+	}while(index<=sizes);
+	if (verific==true){
+		fprintf(fileADMup,"%s\n",CPF);
+	}
+	  fclose(fileADMup);
 }
+
+
 void keep_safePJ(char CNPJ[]){
-	char authenticator[20][100];
-	int index=0;
+	char authenticator[40][100];
+	char setCNPJ[50];
+	char ext[15]={"\n"};
+	int index=0,sizes=0;
 	bool verific=false;
-	
+	strcat(setCNPJ,CNPJ);
+	strcat(setCNPJ,ext);
 	int f=mkdir("./ADMIN");
     if (f==0){
         system("mkdir ADMIN");
         system("cls");
         
 		}
-	FILE *fileADM=fopen("./ADMIN/CNPJ.txt","a+");
+	FILE *fileADM=fopen("./ADMIN/CNPJ.txt","r");
 	fprintf(fileADM,".");
-	while(fgets(authenticator[index],20,fileADM)!=NULL){
-		if(strcmp(authenticator[index],CNPJ)==0){
-			break;
-		}else{
-			fprintf(fileADM,"\n%s",CNPJ);break;
-		}
-		
+	while(fgets(authenticator[index],30,fileADM)!=NULL){	
+		printf("debug 1\n");
 		index++;
 	}
-	  fclose(fileADM);
+	sizes=index;
+	index=0;
+	fclose(fileADM);
+	FILE *fileADMup=fopen("./ADMIN/CNPJ.txt","a");
+    do{
+		if(strcmp(authenticator[index],CNPJ)==0 ){
+			printf("debug 2\n");
+			verific=false;
+			break;
+		}else{
+			verific=true;
+			index++;
+			printf("debug 3\n");
+		}
+	}while(index<=sizes);
+	if (verific==true){
+		fprintf(fileADMup,"%s\n",CNPJ);
+	}
+	  fclose(fileADMup);
 }
 void insert_client_legal_entire(char nome[],char senha[],char pin[],char data_de_nascimento[],char CNPJ[],char telefone[],char endereco[],float saldo,float credito){
 
@@ -256,9 +290,3 @@ void edit_PJ(char CNPJ[],int option,char mod[]){
     
 }
 
-int main(){
-	
-	insert_client_natural_person("Rick","annythn5434","5476","02/04/2004","34445689045","67 97894-4961","rua Paula Tejando Leite",1500,500);
-	insert_client_legal_entire("Distribuidora de leite","leitinhoquentinho234","6969","06/09/1969","123456789101112","82 99446-2523","Rua Thommy Lee Leite",33000,2000);
-	
-}
