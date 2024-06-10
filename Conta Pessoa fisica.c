@@ -115,23 +115,33 @@ bool verifData(const char *data) {
     return false;
 }
 
+bool vericSenha(const char *usuarioSenha, const char *usuarioCpf){
+	if(request_PF(usuarioCpf,1)==usuarioSenha){
+		return 1;
+	}else{
+	 return 0;
+	}
+}
+
 void entradaCliente() {
-    char verifCpf[13];
-    char verifSenha[9];
+    char usuarioCpf[12];
+    char usuarioSenha[9];
     int opcaoCliente;
 
     printf("Por favor insira seu CPF: \n");
-    scanf("%12s", verifCpf);
+    scanf("%12s",usuarioCpf);
     fflush(stdin);
 
     // Procurar no banco de dados se há um CPF compatível, caso não exista, mostrar uma mensagem e retornar
-
+	
+	do{
     printf("Senha: \n");
-    scanf("%8s", verifSenha);
+    scanf("%8s", usuarioSenha);
+    vericSenha(usuarioSenha,usuarioCpf);
     fflush(stdin);
 
     system("cls");
-
+    }while(!vericSenha);
     // Procurar no banco de dados se a senha é compatível com o CPF, caso erre 3 vezes a conta é bloqueada
 
     // Caso o CPF e a senha estejam corretos, mostrar o menu do cliente
@@ -186,7 +196,7 @@ void cadastraCliente() {
         fflush(stdin);
         system("cls");
 
-        if (strlen(cliente.cpf) != 12) {
+        if (strlen(cliente.cpf) != 11) {
             printf("CPF incorreto, por favor digite novamente!\n");
             fflush(stdin);
             getchar();
@@ -194,7 +204,7 @@ void cadastraCliente() {
         }
 
         system("cls");
-    } while (strlen(cliente.cpf) != 12);
+    } while (strlen(cliente.cpf) != 11);
 
     system("cls");
 
@@ -250,7 +260,7 @@ void cadastraCliente() {
     getchar();
     system("cls");
 
-    cliente.pin=0;
+    cliente.pin=0; //adicionar o pin
     cliente.saldo=0;
     cliente.credito=0;
 
