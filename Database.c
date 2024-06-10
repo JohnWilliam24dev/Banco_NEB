@@ -46,8 +46,8 @@ void keep_safePF(char CPF[]){
 
 
 void keep_safePJ(char CNPJ[]){
-	char authenticator[40][90];
-	char setCNPJ[60];
+	char authenticator[30][100];
+	char setCNPJ[50];
 	char ext[15]={"\n"};
 	int index=0,sizes=0;
 	bool verific=false;
@@ -62,7 +62,6 @@ void keep_safePJ(char CNPJ[]){
 	FILE *fileADM=fopen("./ADMIN/CNPJ.txt","r");
 	fprintf(fileADM,".");
 	while(fgets(authenticator[index],30,fileADM)!=NULL){	
-		printf("debug 1\n");
 		
 		index++;
 	}
@@ -71,18 +70,14 @@ void keep_safePJ(char CNPJ[]){
 	fclose(fileADM);
 	FILE *fileADMup=fopen("./ADMIN/CNPJ.txt","a");
     do{
-    	printf("authenticator: %s\n",authenticator[index]);
-    	printf("setCNPJ: %s\n",setCNPJ);
-    	printf("%i\n",strcmp(authenticator[index],CNPJ));
 		if(strcmp(authenticator[index],setCNPJ)==0 ){
-			
-			printf("debug 2\n");
+			printf("debug 3\n");
 			verific=false;
 			break;
 		}else{
 			verific=true;
 			index++;
-			printf("debug 3\n");
+			
 		}
 	}while(index<=sizes);
 	if (verific==true){
