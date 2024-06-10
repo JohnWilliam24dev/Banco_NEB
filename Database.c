@@ -75,6 +75,7 @@ void keep_safePJ(char CNPJ[]){
 			verific=false;
 			break;
 		}else{
+			printf("debug 4");
 			verific=true;
 			index++;
 			
@@ -84,6 +85,8 @@ void keep_safePJ(char CNPJ[]){
 		fprintf(fileADMup,"%s\n",CNPJ);
 	}
 	  fclose(fileADMup);
+	  
+	  
 }
 void insert_client_legal_entire(char nome[],char senha[],char pin[],char data_de_nascimento[],char CNPJ[],char telefone[],char endereco[],float saldo,float credito){
 
