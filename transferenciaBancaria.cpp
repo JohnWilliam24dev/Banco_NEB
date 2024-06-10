@@ -98,7 +98,7 @@ int buscarCPF(char * CPF, float saldoBeneficiario) {
 	fclose(arquivo);
 	
 	double saldo; 
-	saldo = atof(request_PF(cpfBuscado, 7));
+	saldo = atof(request_PF(&cpfBuscado[0], 7));
 	
 	saldoBeneficiario = (float) saldo;
 	
@@ -107,8 +107,8 @@ int buscarCPF(char * CPF, float saldoBeneficiario) {
 
 int verificaPIN(char *PIN_fornecido, char *CPF_usuario) {
 	char pin_user[5];
-	strcpy(pin_user, request_PF(CPF_usuario, 2));
-	if(strcmp(pin_user, pin_fornecido)==0)
+	strcpy(pin_user, request_PF(&CPF_usuario[0], 2));
+	if(strcmp(pin_user, PIN_fornecido)==0)
 	{
 		return 1;
 	}
@@ -118,7 +118,7 @@ int verificaPIN(char *PIN_fornecido, char *CPF_usuario) {
 int verificaSaldo(char *CPF_usuario, float valorTransferido) {
 	float saldo;
 	double saldo_double;
-	saldo_double = atof(request_PF(CPF_usuario, 7));
+	saldo_double = atof(request_PF(&CPF_usuario[0], 7));
 	saldo = (float) saldo_double;
 	
 	if(valorTransferido > 0 && valorTransferido <= saldo)
@@ -151,7 +151,34 @@ int transferenciaPF() {
 			int saldoValido = verificaSaldo(&CPF_usuario[0], valor);
 			if(saldoValido)
 			{
-				//realizar operações aritméticas;
+				//Modificações no saldo do USUÁRIO;
+				double saldo_usuario_double;
+				float saldo_usuario;
+				
+				saldo_usuario_double = atof(request_PF(&CPF_usuario[0], 7));
+				saldo_usuario = (float) saldo_usuario_double;
+				saldo_usuario -= valor;
+				
+				char novo_saldo_usuario[20];
+				sprintf(novo_saldo_usuario, "%.2f", saldo_usuario); //converter float saldo_usuario para string;
+				
+				edit_PF(&CPF_usuario[0], 7, &novo_saldo_usuario[0]);
+				
+				
+				//Modificações no saldo do BENEFICIÁRIO;
+				double saldo_beneficiario_double;
+				float saldo_beneficiario;
+				
+				saldo_beneficiario_double = atof(request_PF(&cpf[0], 7));
+				saldo_beneficiario = (float) saldo_beneficiario_double;
+				saldo_beneficiario += valor;
+				
+				char novo_saldo_beneficiario[20];
+				sprintf(novo_saldo_beneficiario, "%.2f", saldo_beneficiario); //converter float saldo_beneficiario para string;
+				
+				edit_PF(&cpf[0], 7, &novo_saldo_usuario[0]);
+				
+				return 1;
 			}
 			
 			else
@@ -172,8 +199,8 @@ int transferenciaPF() {
 	
 	else
 	{
-		//printf("CONTA INEXISTENTE!\n");
-		//pausarExecucao();
+		printf("CONTA INEXISTENTE!\n");
+		pausarExecucao();
 		return 0;
 	}
 }
