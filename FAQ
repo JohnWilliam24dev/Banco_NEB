@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_FAQ_ENTRADA 100
+#define MAX_PERGUNTA_TAM 100
+#define MAX_RESPOSTA_TAM 500
+
+typedef struct {
+    char pergunta[MAX_PERGUNTA_TAM];
+    char resposta[MAX_RESPOSTA_TAM];
+} FAQEntrada;
+
+FAQEntrada faq[MAX_FAQ_ENTRADA];
+int faqContador = 0;
+
+void adcFAQ(char *pergunta, char *resposta) { //Função para adicionar faqs
+    if (faqContador < MAX_FAQ_ENTRADA) {
+        strncpy(faq[faqContador].pergunta, pergunta, MAX_PERGUNTA_TAM - 1);
+        faq[faqContador].pergunta[MAX_PERGUNTA_TAM - 1] = '\0';
+        strncpy(faq[faqContador].resposta, resposta, MAX_RESPOSTA_TAM - 1);
+        faq[faqContador].resposta[MAX_RESPOSTA_TAM - 1] = '\0';
+        faqContador++;
+    } else {
+        printf("Armazenamento FAQ está cheio!\n");
+    }
+}
+
+void listFAQs() { //função para listar faqs 
+    for (int i = 0; i < faqContador; i++) {
+        printf("FAQ #%d\n", i + 1);
+        printf("Pergunta: %s\n", faq[i].pergunta);
+        printf("Resposta: %s\n\n", faq[i].resposta);
+    }
+}
