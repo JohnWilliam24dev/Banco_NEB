@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <database.c>
 #include <windows.h>
+#include <string.h>
 void pausarExecucao() {
 	printf("PRESSIONE <ENTER> PARA CONTINUAR");
 	getchar();
@@ -104,20 +105,75 @@ int buscarCPF(char * CPF, float saldoBeneficiario) {
 	return 1;
 }
 
-void transferenciaPF() {
+int verificaPIN(char *PIN_fornecido, char *CPF_usuario) {
+	char pin_user[5];
+	strcpy(pin_user, request_PF(CPF_usuario, 2));
+	if(strcmp(pin_user, pin_fornecido)==0)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+int verificaSaldo(char *CPF_usuario, float valorTransferido) {
+	float saldo;
+	double saldo_double;
+	saldo_double = atof(request_PF(CPF_usuario, 7));
+	saldo = (float) saldo_double;
+	
+	if(valorTransferido > 0 && valorTransferido <= saldo)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+int transferenciaPF() {
 	char cpf[13];
 	float saldoBeneficiario;
+	float valor;
+	char PIN_usuario[5];
+	
 	printf("CPF CONTA BENEFICIARIA: ");
 	gets(cpf);
-	int contaExiste = buscarCPF(cpf, saldoBeneficiario);
+	int contaExiste = buscarCPF(&cpf[0], saldoBeneficiario);
 	
 	if(contaExiste)
 	{
-		//valor a ser transferido e demais procedimentos;
+		printf("VALOR A SER TRANSFERIDO: R$ ");
+		scanf("%f", &valor);
+		printf("PIN DA CONTA: ");
+		gets(PIN_usuario);
+		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provém de funções anteriores;
+		
+		if(pinCorreto) 
+		{
+			int saldoValido = verificaSaldo(&CPF_usuario[0], valor);
+			if(saldoValido)
+			{
+				//realizar operações aritméticas;
+			}
+			
+			else
+			{
+				printf("ERRO OU SALDO INSUFICIENTE!\n");
+				pausarExecucao();
+				return 0;
+			}
+		}
+		
+		else
+		{
+			printf("PIN INCORRETO!\n");
+			pausarExecucao();
+			return 0;
+		}
 	}
+	
 	else
 	{
 		//printf("CONTA INEXISTENTE!\n");
 		//pausarExecucao();
+		return 0;
 	}
 }
