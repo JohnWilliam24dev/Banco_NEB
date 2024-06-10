@@ -46,8 +46,8 @@ void keep_safePF(char CPF[]){
 
 
 void keep_safePJ(char CNPJ[]){
-	char authenticator[40][100];
-	char setCNPJ[50];
+	char authenticator[40][90];
+	char setCNPJ[60];
 	char ext[15]={"\n"};
 	int index=0,sizes=0;
 	bool verific=false;
@@ -63,6 +63,7 @@ void keep_safePJ(char CNPJ[]){
 	fprintf(fileADM,".");
 	while(fgets(authenticator[index],30,fileADM)!=NULL){	
 		printf("debug 1\n");
+		
 		index++;
 	}
 	sizes=index;
@@ -70,7 +71,11 @@ void keep_safePJ(char CNPJ[]){
 	fclose(fileADM);
 	FILE *fileADMup=fopen("./ADMIN/CNPJ.txt","a");
     do{
-		if(strcmp(authenticator[index],CNPJ)==0 ){
+    	printf("authenticator: %s\n",authenticator[index]);
+    	printf("setCNPJ: %s\n",setCNPJ);
+    	printf("%i\n",strcmp(authenticator[index],CNPJ));
+		if(strcmp(authenticator[index],setCNPJ)==0 ){
+			
 			printf("debug 2\n");
 			verific=false;
 			break;
@@ -103,7 +108,7 @@ void insert_client_legal_entire(char nome[],char senha[],char pin[],char data_de
     file=fopen(path,"w");
     fprintf(file,"%s\n",nome);
     fprintf(file,"%s\n",senha);
-    fprintf(file,"%d\n",pin);
+    fprintf(file,"%s\n",pin);
     fprintf(file,"%s\n",data_de_nascimento);
     fprintf(file,"%s\n",CNPJ);
     fprintf(file,"%s\n",telefone);
@@ -131,7 +136,7 @@ int f=mkdir("./PF");
     
     fprintf(file,"%s\n",nome);
     fprintf(file,"%s\n",senha);
-    fprintf(file,"%d\n",pin);
+    fprintf(file,"%s\n",pin);
     fprintf(file,"%s\n",data_de_nascimento);
     fprintf(file,"%s\n",CPF);
     fprintf(file,"%s\n",telefone);
