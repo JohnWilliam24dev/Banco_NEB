@@ -1,6 +1,7 @@
 #include "Database.c"
+#include <string.h>
 
-void conta();
+void conta(char cnpj[16]);
 
 void transferir(char cnpj[16]){
 	char tipo[4], cnpj_destino[16];
@@ -27,13 +28,14 @@ void transferir(char cnpj[16]){
 		}
 		printf("Deseja Sair 1\n Tentar Novamente outro");
 		scanf("%d", &opt);
-		if(opt==1)
-			conta();
-			
+		if(opt==1){
+		
+			conta(cnpj);
+	}
 	} while(saldo < quantia);
 	
 	printf("Transferencia concluida\n");
-	conta();
+	conta(cnpj);
 }
            
 void conta(char cnpj[16]){
@@ -42,12 +44,12 @@ void conta(char cnpj[16]){
 	int opt;
 	float saldo;
 	saldo = atof(saldo_c);
-
+	printf("debug %f ",saldo);
 	system("cls");
 	
 	printf("\t\t\tBancoNeb\n");
-	printf("\t{Bem vindo %d }\n\n" ,nome);
-	printf("\t\t\t\SALDO : %d\n\n", saldo);
+	printf("\t{Bem vindo %s }\n\n" ,nome);
+	printf("\t\t\t\SALDO : %f \n\n", saldo);
 	printf("--|PIX|------|TRANSFERENCIAS|-----|EXTRATO|\n");
 	printf("  | 1 |______|      2       |_____|   3   |\n");
 	
@@ -68,112 +70,148 @@ void conta(char cnpj[16]){
 	}
 }
 
+void pausarExecucao() {
+	printf("pressione <ENTER> para continuar");
+	getchar();
+	fflush(stdin);
+	system("cls");
+}
+
 void cadastro1() {
-    char cnpj[15];
-    char nomeempresa[19];
-    float idadeempresa;
+    char CNPJ[15];
+    char nomeEmpresa[19];
+    char idadeEmpresa[5];
     char senha[20]; 
     char pin[5];
     char telefone[10]; 
-    char cep[9];
+    char CEP[9];
     float saldo = 0;
     float credito = 0;
  
     printf("\nPor favor, digite o nome da empresa: ");
-    scanf("%s", nomeempresa);
+    gets(nomeEmpresa);
 
     
     do {
-        printf("\nPor favor, digite o CNPJ (14 d�gitos): ");
-        scanf("%s", cnpj);
+        printf("\nPor favor, digite o CNPJ (14 dÃ­gitos): ");
+        scanf("%s", CNPJ);
+        gets(CNPJ);
 
-        if (strlen(cnpj) == 14) {
-            printf("CNPJ v�lido.\n");
+        if (strlen(CNPJ) == 14) {
+            printf("CNPJ vÃ¡lido.\n");
+            pausarExecucao();
             break;
         } else {
-            printf("CNPJ inv�lido. Por favor, digite novamente.\n");
+            printf("CNPJ invÃ¡lido. Por favor, digite novamente.\n");
+            pausarExecucao();
         }
     } while (1);
 
     printf("\nPor favor, digite a idade da empresa: ");
-    scanf("%f", &idadeempresa);
+    gets(idadeEmpresa);
 
 
     do {
-        printf("\nPor favor, digite o telefone (8 d�gitos): ");
-        scanf("%s", telefone);
+        printf("\nPor favor, digite o telefone (8 dÃ­gitos): ");
+        gets(telefone);
 
         if (strlen(telefone) == 8) {
-            printf("Telefone v�lido.\n");
+            printf("Telefone vÃ¡lido.\n");
+            pausarExecucao();
             break;
         } else {
-            printf("Telefone inv�lido. Por favor, digite novamente.\n");
+            printf("Telefone invÃ¡lido. Por favor, digite novamente.\n");
+            pausarExecucao();
         }
     } while (1);
 
     
     do {
-        printf("\nPor favor, crie uma senha (m�nimo 8 caracteres): ");
-        scanf("%s", senha);
+        printf("\nPor favor, crie uma senha (mÃ­nimo 8 caracteres): ");
+        gets(senha);
         if (strlen(senha) >= 8) {  
             printf("Senha validada!!\n");
+            pausarExecucao();
             break;
         } else {
-            printf("Senha inv�lida. Digite novamente.\n");
+            printf("Senha invÃ¡lida. Digite novamente.\n");
+            pausarExecucao();
         }
     } while (1);
     do {
         printf("\nPor favor, coloquei o pin : ");
-        scanf("%s", pin );
+        gets(pin);
         if (strlen(pin) == 4) {  
             printf("pin validado!!\n");
+            pausarExecucao();
             break;
         } else {
-            printf("Pin inv�lido. Digite novamente.\n");
+            printf("Pin invÃ¡lido. Digite novamente.\n");
+            pausarExecucao();
         }
     } while (1);
     do {
         printf("\nPor favor, coloque o cep: ");
-        scanf("%s", cep);
-        if (strlen(cep) == 8) {  
+        gets(CEP);
+        if (strlen(CEP) == 8) {  
             printf("Cep validada!!\n");
+            pausarExecucao();
             break;
         } else {
-            printf("Cep inv�lida. Digite novamente.\n");
+            printf("Cep invÃ¡lida. Digite novamente.\n");
+            pausarExecucao();
         }
     } while (1);
 
     system("cls");
 	
 	printf("Cadastro finalizado");
+	pausarExecucao();
 	
 	   
     system("cls");
-    printf("\nO seu saldo �: %.2f\n", saldo);
-    printf("O seu cr�dito �: %.2f\n", credito);  
+    printf("\nO seu saldo Ã©: %.2f\n", saldo);
+    printf("O seu crÃ©dito Ã©: %.2f\n", credito);  
+    pausarExecucao();
 	
-	insert_client_legal_entire(nomeempresa, senha, pin, idadeempresa, cnpj, telefone, cep, saldo, credito); 
+	insert_client_legal_entire(nomeEmpresa, senha, pin, idadeEmpresa, CNPJ, telefone, CEP, saldo, credito); 
 }
 
 void entrar(){
-   char cnpj[15], senha[15], *CNPJ,*senha_c[15];
-   int da = 1;
-   *CNPJ = &cnpj;
+   char cnpj[15], senha[20],*senha_c, senha_digit;
+   int debug_one;
+   bool verific=false;
+   
+   
 	do{
 		printf("Coloque seu CNPJ abaixo !\n");
 		scanf("%s", cnpj);
-		senha_c = request_PJ(cnpj, 1)
+		
+		senha_c = request_PJ(cnpj, 1);
+		printf(" debug 1 %s",senha_c);
+		
 		fflush(stdin);
 		printf("\nDigite a senha !\n");
 		scanf("%s", senha);
 		
-		if(senha != senha_c){
-			printf("senha incorreta !");
+		if(senha != request_PJ(cnpj, 1)) {
+			printf("senha incorreta !\n\n");
 		}
-	}while(strlen(cnpj) !=14 && senha != senha_c);
+	}while(senha != senha_c);
 	
 	conta(cnpj);
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+/*strlen(cnpj) !=14 and
 
 void inicio(){
 	int opt;
@@ -187,7 +225,7 @@ void inicio(){
 	
 	switch (opt){
 		case 1:
-			cadastro();
+			cadastro1();
 			break;
 		case 2:
 			entrar();
@@ -199,12 +237,35 @@ void inicio(){
 			printf("Opção invalida");
 			break;
 	}
-}
+}*/
 
 
 
 
 
 int main (){
-	inicio();
+	int opt;
+	
+	printf("\t\t\t MMMMMMMMMMMMMMMMMMMMMMMM\n");
+	printf("\t\t\t{  Bem vindo ao BancoNeb }\n");
+	printf("\t\t\t WWWWWWWWWWWWWWWWWWWWWWWW\n\n");
+	
+	printf("\t\t\t\t  Deseja! \n\n\t\t\t\tCriar Conta 1 \n\t\t\tEntrar em conta existente 2\n");
+	scanf("%d", &opt);
+	
+	switch (opt){
+		case 1:
+			cadastro1();
+			break;
+		case 2:
+			entrar();
+			break;
+		case 3:
+			printf("saindo");
+			abort();
+		default:
+			printf("Opção invalida");
+			break;
+	}
+
 }
