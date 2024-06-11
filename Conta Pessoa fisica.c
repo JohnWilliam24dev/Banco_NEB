@@ -22,6 +22,108 @@ typedef struct {
     char profissao[50];
 } Cliente;
 
+bool vericSenha(const char *usuarioSenha, const char *usuarioCpf){
+	if(request_PF(usuarioCpf,1)==usuarioSenha){
+		return 1;
+	}else{
+	 return 0;
+	}
+}
+
+/*void vericSaldo(const char *usuarioCpf){
+	float saldoAtual;
+	
+	system("cls");
+	
+	saldoAtual=atoi(request_PF(usuarioCpf,7));
+	
+	wprintf(L"O seu saldo atual é de %f R$", (usuarioCpf,7));
+	wprintf(L"O seu saldo atual é de %f R$", saldoAtual);
+	getchar();
+	
+}*/
+
+/*void deposito(const char *usuarioCpf){
+	float adicionarSaldo,atualSaldo;
+	
+	system("cls");
+	
+	wprintf(L"Quanto você deseja adicionar? \n");
+	scanf("%f", &adicionarSaldo);
+	getchar();
+	
+	atualSaldo=atoi(request_PF(usuarioCpf,7));
+	
+	atualSaldo+=adicionarSaldo;
+	
+	wprintf("Seu saldo atual é de %f R$", atualSaldo);
+	
+}*/
+
+void entradaCliente() {
+    char usuarioCpf[12];
+    char usuarioSenha[9];
+    int opcaoCliente;
+
+    printf("Por favor insira seu CPF: \n");
+    scanf("%12s",usuarioCpf);
+    fflush(stdin);
+
+    // Procurar no banco de dados se há um CPF compatível, caso não exista, mostrar uma mensagem e retornar
+	
+	do{
+    printf("Senha: \n");
+    scanf("%8s", usuarioSenha);
+    vericSenha(usuarioSenha,usuarioCpf);
+    fflush(stdin);
+
+    system("cls");
+    }while(!vericSenha);
+    // Procurar no banco de dados se a senha é compatível com o CPF, caso erre 3 vezes a conta é bloqueada
+
+    // Caso o CPF e a senha estejam corretos, mostrar o menu do cliente
+    //fazer um DO WHILE para volta para o menu de conta
+    wprintf(L"Bem-vindo(a)! Como podemos ajudar-lo?\n");
+    wprintf(L"1. Verificar saldo\n");
+    wprintf(L"2. Transferência\n");
+    wprintf(L"3. Verificar extrato\n");
+    wprintf(L"4. Solicitar empréstimo\n");
+    wprintf(L"5. Fazer um depósito\n");
+    wprintf(L"6. Alterar informações pessoais\n");
+    wprintf(L"7. Finalizar sessão\n");
+    scanf("%d", &opcaoCliente);
+    fflush(stdin);
+
+    switch (opcaoCliente) {
+        case 1:
+            //vericSaldo(usuarioCpf); Não está atualizando o saldo
+            break;
+        case 2:
+            // Transferência
+            break;
+        case 3:
+            // Verificar extrato
+            break;
+        case 4:
+            // Solicitar empréstimo
+            break;
+        case 5:
+            //deposito(usuarioCpf);Não está atualizando o saldo
+            break;
+        case 6:
+            // Alterar informações pessoais
+            break;
+        case 7:
+            wprintf(L"Obrigado por usar os serviços do Banco NEB!\n");
+            exit(0);
+            break;
+        default:
+            wprintf(L"Opção incorreta, por favor tente novamente!\n");
+            break;
+    }
+}
+
+
 bool verificarSenha(const char *senha) {
     bool temMinuscula = false, temMaiuscula = false, temNumero = false;
 
@@ -115,76 +217,6 @@ bool verifData(const char *data) {
     return false;
 }
 
-bool vericSenha(const char *usuarioSenha, const char *usuarioCpf){
-	if(request_PF(usuarioCpf,1)==usuarioSenha){
-		return 1;
-	}else{
-	 return 0;
-	}
-}
-
-void entradaCliente() {
-    char usuarioCpf[12];
-    char usuarioSenha[9];
-    int opcaoCliente;
-
-    printf("Por favor insira seu CPF: \n");
-    scanf("%12s",usuarioCpf);
-    fflush(stdin);
-
-    // Procurar no banco de dados se há um CPF compatível, caso não exista, mostrar uma mensagem e retornar
-	
-	do{
-    printf("Senha: \n");
-    scanf("%8s", usuarioSenha);
-    vericSenha(usuarioSenha,usuarioCpf);
-    fflush(stdin);
-
-    system("cls");
-    }while(!vericSenha);
-    // Procurar no banco de dados se a senha é compatível com o CPF, caso erre 3 vezes a conta é bloqueada
-
-    // Caso o CPF e a senha estejam corretos, mostrar o menu do cliente
-    wprintf(L"Bem-vindo(a)! Como podemos ajudar-lo?\n");
-    wprintf(L"1. Verificar saldo\n");
-    wprintf(L"2. Transferência\n");
-    wprintf(L"3. Verificar extrato\n");
-    wprintf(L"4. Solicitar empréstimo\n");
-    wprintf(L"5. Fazer um depósito\n");
-    wprintf(L"6. Alterar informações pessoais\n");
-    wprintf(L"7. Finalizar sessão\n");
-    scanf("%d", &opcaoCliente);
-    fflush(stdin);
-
-    switch (opcaoCliente) {
-        case 1:
-            // Verificar saldo
-            break;
-        case 2:
-            // Transferência
-            break;
-        case 3:
-            // Verificar extrato
-            break;
-        case 4:
-            // Solicitar empréstimo
-            break;
-        case 5:
-            // Fazer um depósito
-            break;
-        case 6:
-            // Alterar informações pessoais
-            break;
-        case 7:
-            wprintf(L"Obrigado por usar os serviços do Banco NEB!\n");
-            exit(0);
-            break;
-        default:
-            wprintf(L"Opção incorreta, por favor tente novamente!\n");
-            break;
-    }
-}
-
 void cadastraCliente() {
     Cliente cliente;
 
@@ -260,7 +292,7 @@ void cadastraCliente() {
     getchar();
     system("cls");
 
-    cliente.pin=0; //adicionar o pin
+    cliente.pin=0; 
     cliente.saldo=0;
     cliente.credito=0;
 
