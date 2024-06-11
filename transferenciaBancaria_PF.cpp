@@ -132,7 +132,7 @@ int buscarCPF(char * CPF, float saldoBeneficiario) {
 	return 1;
 }
 
-int verificaPIN(char *PIN_fornecido, char *CPF_usuario) {
+int verificaPIN(char *PIN_fornecido, char *CPF_user) {
 	char pin_user[5];
 	strcpy(pin_user, request_PF(&CPF_usuario[0], 2));
 	if(strcmp(pin_user, PIN_fornecido)==0)
@@ -142,7 +142,7 @@ int verificaPIN(char *PIN_fornecido, char *CPF_usuario) {
 	return 0;
 }
 
-int verificaSaldo(char *CPF_usuario, float valorTransferido) {
+int verificaSaldo(char *CPF_user, float valorTransferido) {
 	float saldo;
 	double saldo_double;
 	saldo_double = atof(request_PF(&CPF_usuario[0], 7));
