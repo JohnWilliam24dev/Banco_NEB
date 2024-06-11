@@ -3,12 +3,27 @@
 #include <database.c>
 #include <windows.h>
 #include <string.h>
+void pausarExecucao();
+int tipoTransferencia();
+void processarTransferencia(int tipo);
+void transferencia(char *CPF_usuarioPF);
+int buscarCPF(char * CPF, float saldoBeneficiario);
+int verificaPIN(char *PIN_fornecido, char *CPF_user);
+int verificaSaldo(char *CPF_user, float valorTransferido);
+int transferenciaPF();
+int buscarCNPJ(char *CNPJ, float saldoBeneficiario);
+int transferenciaPJ();
+
+char CPF_usuario[13]; //STRING global;
+
+
 void pausarExecucao() {
 	printf("PRESSIONE <ENTER> PARA CONTINUAR");
 	getchar();
 	fflush(stdin);
 	system("cls");
 }
+/* AS FUNÇÕES COMENTADAS ABAIXO POSSIVELMENTE SERÃO APAGADAS;
 
 int menuTransferencia() {
 	char digitoOperacao;
@@ -20,7 +35,7 @@ int menuTransferencia() {
 	return digitoOperacao;
 }
 
-void processarOperacao(int digito) { //"digito" é uma variável retorno obtida por menuTransferencia;
+void processarOperacao(int digito) { //"digito" Ã© uma variÃ¡vel retorno obtida por menuTransferencia;
 	switch(digito)
 	{
 		case 0:
@@ -37,6 +52,7 @@ void processarOperacao(int digito) { //"digito" é uma variável retorno obtida 
 			//pausarExecucao();
 	}
 }
+*/
 
 int tipoTransferencia() {
 	int digitoTransf;
@@ -53,26 +69,37 @@ void processarTransferencia(int tipo) { //tipo == 'PF' ou 'PJ'
 	switch(tipo)
 	{
 		case 1:
-			//transferenciaPF();
+			transferenciaPF();
 		case 2:
-			//transferenciaPJ();
+			transferenciaPJ();
 		default:
-			//printf("DIGITO INVALIDO!\n");
-			//pausarExecucao();		
+			printf("DIGITO INVALIDO!\n");
+			pausarExecucao();		
 	}
 }
 
-void transferencia() {
+void transferencia(char *CPF_usuarioPF) {
+	int i = 0;
+	char *ptr = CPF_usuarioPF;
+	
+	while(*ptr != '\0')
+	{
+		CPF_usuario[i] = *ptr; //CPF_usuario STRING global;
+		ptr++;
+		i++;
+	}
+	
 	int tipoConta = tipoTransferencia();
+	fflush(stdin);
 	system("cls");
 	processarTransferencia(tipoConta);
 }
 
 
-/*OBS 1: A função buscarCPF retorna 1 se o CPF existir;
-retorna 0 se o CPF é inexistente;
-OBS 2: A função "retorna" como parâmetro o saldo
-da Conta Beneficiária;*/
+/*OBS 1: A funÃ§Ã£o buscarCPF retorna 1 se o CPF existir;
+retorna 0 se o CPF Ã© inexistente;
+OBS 2: A funÃ§Ã£o "retorna" como parÃ¢metro o saldo
+da Conta BeneficiÃ¡ria;*/
 
 int buscarCPF(char * CPF, float saldoBeneficiario) {
 	char cpfBuscado[13];
@@ -144,14 +171,14 @@ int transferenciaPF() {
 		scanf("%f", &valor);
 		printf("PIN DA CONTA: ");
 		gets(PIN_usuario);
-		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provém de funções anteriores;
+		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provÃ©m de funÃ§Ãµes anteriores;
 		
 		if(pinCorreto) 
 		{
 			int saldoValido = verificaSaldo(&CPF_usuario[0], valor);
 			if(saldoValido)
 			{
-				//Modificações no saldo do USUÁRIO;
+				//ModificaÃ§Ãµes no saldo do USUÃRIO;
 				double saldo_usuario_double;
 				float saldo_usuario;
 				
@@ -165,7 +192,7 @@ int transferenciaPF() {
 				edit_PF(&CPF_usuario[0], 7, &novo_saldo_usuario[0]);
 				
 				
-				//Modificações no saldo do BENEFICIÁRIO;
+				//ModificaÃ§Ãµes no saldo do BENEFICIÃRIO;
 				double saldo_beneficiario_double;
 				float saldo_beneficiario;
 				
@@ -237,7 +264,7 @@ int buscarCNPJ(char * CNPJ, float saldoBeneficiario) {
 	return 1;
 }
 
-int transferenciaCNPJ() {
+int transferenciaPJ() {
 	char cnpj[15];
 	float saldoBeneficiario;
 	float valor;
@@ -253,14 +280,14 @@ int transferenciaCNPJ() {
 		scanf("%f", &valor);
 		printf("PIN DA CONTA: ");
 		gets(PIN_usuario);
-		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provÃ©m de funÃ§Ãµes anteriores;
+		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provÃƒÂ©m de funÃƒÂ§ÃƒÂµes anteriores;
 		
 		if(pinCorreto) 
 		{
 			int saldoValido = verificaSaldo(&CPF_usuario[0], valor);
 			if(saldoValido)
 			{
-				//ModificaÃ§Ãµes no saldo do USUÃRIO;
+				//ModificaÃƒÂ§ÃƒÂµes no saldo do USUÃƒÂRIO;
 				double saldo_usuario_double;
 				float saldo_usuario;
 				
@@ -274,7 +301,7 @@ int transferenciaCNPJ() {
 				edit_PF(&CPF_usuario[0], 7, &novo_saldo_usuario[0]);
 				
 				
-				//ModificaÃ§Ãµes no saldo do BENEFICIÃRIO;
+				//ModificaÃƒÂ§ÃƒÂµes no saldo do BENEFICIÃƒÂRIO;
 				double saldo_beneficiario_double;
 				float saldo_beneficiario;
 				
@@ -313,4 +340,3 @@ int transferenciaCNPJ() {
 		return 0;
 	}
 }
-
