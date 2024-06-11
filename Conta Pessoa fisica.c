@@ -104,7 +104,7 @@ void entradaCliente() {
             // Transferência
             
 			//COMENTÁRIO SAYD 2:
-            //transferencia(); --> FUNÇÃO PERTENCE À "transferenciaBancaria_PF.cpp"
+            //transferencia(&usuarioCpf[0]); --> FUNÇÃO PERTENCE À "transferenciaBancaria_PF.cpp"
             break;
         case 3:
             // Verificar extrato
