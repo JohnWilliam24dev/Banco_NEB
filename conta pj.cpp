@@ -178,9 +178,8 @@ void cadastro1() {
 }
 
 void entrar(){
-   char cnpj[15], senha[20],*senha_c, senha_digit;
-   int debug_one;
-   bool verific=false;
+   char cnpj[15], senha[20],*senha_c, senha_tt, aa[20];
+
    
    
 	do{
@@ -188,16 +187,19 @@ void entrar(){
 		scanf("%s", cnpj);
 		
 		senha_c = request_PJ(cnpj, 1);
-		printf(" debug 1 %s",senha_c);
+		printf("  %s",senha_c);
 		
 		fflush(stdin);
 		printf("\nDigite a senha !\n");
 		scanf("%s", senha);
+		fflush(stdin);
+		aa= strcmp(senha,senha_c);
+		printf("%s",aa);
 		
-		if(senha != request_PJ(cnpj, 1)) {
+		if(strcmp(senha,senha_c) != 0) {
 			printf("senha incorreta !\n\n");
 		}
-	}while(senha != senha_c);
+ }while(strcmp(senha,senha_c) != 0);
 	
 	conta(cnpj);
 	
