@@ -7,6 +7,8 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include "Database.c"
+//COMENTÁRIO SAYD 1:
+//#include "transferenciaBancaria_PF.cpp"
 
 // Definição da estrutura Cliente
 typedef struct {
@@ -100,6 +102,9 @@ void entradaCliente() {
             break;
         case 2:
             // Transferência
+            
+			//COMENTÁRIO SAYD 2:
+            //transferencia(); --> FUNÇÃO PERTENCE À "transferenciaBancaria_PF.cpp"
             break;
         case 3:
             // Verificar extrato
