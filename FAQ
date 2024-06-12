@@ -33,3 +33,18 @@ void listFAQs() { //função para listar faqs
         printf("Resposta: %s\n\n", faq[i].resposta);
     }
 }
+
+void procuraFAQ(char *palavraChave) {
+    int achado = 0;
+    for (int i = 0; i < faqContador; i++) {
+        if (strstr(faq[i].pergunta, palavraChave) || strstr(faq[i].resposta, palavraChave)) {
+            printf("FAQ #%d\n", i + 1);
+            printf("Question: %s\n", faq[i].pergunta);
+            printf("Answer: %s\n\n", faq[i].resposta);
+            achado = 1;
+        }
+    }
+    if (!achado) {
+        printf("Nenhuma FAQ encontrada contendo a palavra-chave! '%s'.\n", palavraChave);
+    }
+}
