@@ -183,6 +183,11 @@ void entrar(){
    
    
 	do{
+		system("cls");
+		printf("\t\t\t MMMMMMMMMMMMMMMMMMMMMMMM\n");
+		printf("\t\t\t{  Bem vindo ao BancoNeb }\n");
+		printf("\t\t\t WWWWWWWWWWWWWWWWWWWWWWWW\n\n");
+	
 		printf("Coloque seu CNPJ abaixo !\n");
 		scanf("%s", cnpj);
 		
