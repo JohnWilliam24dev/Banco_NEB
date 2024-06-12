@@ -2,6 +2,5 @@
 #include <stdlib.h>
 #include "Database.c"
 int main(){
-	char nome[30]={"lusca"};
-	edit_PF("32165498701",0,nome);
+	
 }
