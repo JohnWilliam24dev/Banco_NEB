@@ -23,7 +23,7 @@ void pausarExecucao() {
 	fflush(stdin);
 	system("cls");
 }
-/* AS FUNÇÕES COMENTADAS ABAIXO POSSIVELMENTE SERÃO APAGADAS;
+/* AS FUNÃ‡Ã•ES COMENTADAS ABAIXO POSSIVELMENTE SERÃƒO APAGADAS;
 
 int menuTransferencia() {
 	char digitoOperacao;
@@ -35,7 +35,7 @@ int menuTransferencia() {
 	return digitoOperacao;
 }
 
-void processarOperacao(int digito) { //"digito" Ã© uma variÃ¡vel retorno obtida por menuTransferencia;
+void processarOperacao(int digito) { //"digito" ÃƒÂ© uma variÃƒÂ¡vel retorno obtida por menuTransferencia;
 	switch(digito)
 	{
 		case 0:
@@ -70,8 +70,10 @@ void processarTransferencia(int tipo) { //tipo == 'PF' ou 'PJ'
 	{
 		case 1:
 			transferenciaPF();
+			break;
 		case 2:
 			transferenciaPJ();
+			break;
 		default:
 			printf("DIGITO INVALIDO!\n");
 			pausarExecucao();		
@@ -96,10 +98,10 @@ void transferencia(char *CPF_usuarioPF) {
 }
 
 
-/*OBS 1: A funÃ§Ã£o buscarCPF retorna 1 se o CPF existir;
-retorna 0 se o CPF Ã© inexistente;
-OBS 2: A funÃ§Ã£o "retorna" como parÃ¢metro o saldo
-da Conta BeneficiÃ¡ria;*/
+/*OBS 1: A funÃƒÂ§ÃƒÂ£o buscarCPF retorna 1 se o CPF existir;
+retorna 0 se o CPF ÃƒÂ© inexistente;
+OBS 2: A funÃƒÂ§ÃƒÂ£o "retorna" como parÃƒÂ¢metro o saldo
+da Conta BeneficiÃƒÂ¡ria;*/
 
 int buscarCPF(char * CPF, float saldoBeneficiario) {
 	char cpfBuscado[13];
@@ -163,22 +165,25 @@ int transferenciaPF() {
 	
 	printf("CPF CONTA BENEFICIARIA: ");
 	gets(cpf);
+	fflush(stdin);
 	int contaExiste = buscarCPF(&cpf[0], saldoBeneficiario);
 	
 	if(contaExiste)
 	{
 		printf("VALOR A SER TRANSFERIDO: R$ ");
 		scanf("%f", &valor);
+		fflush(stdin);
 		printf("PIN DA CONTA: ");
 		gets(PIN_usuario);
-		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provÃ©m de funÃ§Ãµes anteriores;
+		fflush(stdin);
+		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provÃƒÂ©m de funÃƒÂ§ÃƒÂµes anteriores;
 		
 		if(pinCorreto) 
 		{
 			int saldoValido = verificaSaldo(&CPF_usuario[0], valor);
 			if(saldoValido)
 			{
-				//ModificaÃ§Ãµes no saldo do USUÃRIO;
+				//ModificaÃƒÂ§ÃƒÂµes no saldo do USUÃƒÂRIO;
 				double saldo_usuario_double;
 				float saldo_usuario;
 				
@@ -192,7 +197,7 @@ int transferenciaPF() {
 				edit_PF(&CPF_usuario[0], 7, &novo_saldo_usuario[0]);
 				
 				
-				//ModificaÃ§Ãµes no saldo do BENEFICIÃRIO;
+				//ModificaÃƒÂ§ÃƒÂµes no saldo do BENEFICIÃƒÂRIO;
 				double saldo_beneficiario_double;
 				float saldo_beneficiario;
 				
@@ -204,6 +209,11 @@ int transferenciaPF() {
 				sprintf(novo_saldo_beneficiario, "%.2f", saldo_beneficiario); //converter float saldo_beneficiario para string;
 				
 				edit_PF(&cpf[0], 7, &novo_saldo_usuario[0]);
+				
+				printf("TRANSFERENCIA REALIZADA COM SUCESSO!\n");
+				pausarExecucao();
+				fflush(stdin);
+				system("cls");
 				
 				return 1;
 			}
@@ -272,22 +282,25 @@ int transferenciaPJ() {
 	
 	printf("CNPJ CONTA BENEFICIARIA: ");
 	gets(cnpj);
+	fflush(stdin);
 	int contaExiste = buscarCNPJ(&cnpj[0], saldoBeneficiario);
 	
 	if(contaExiste)
 	{
 		printf("VALOR A SER TRANSFERIDO: R$ ");
 		scanf("%f", &valor);
+		fflush(stdin);
 		printf("PIN DA CONTA: ");
 		gets(PIN_usuario);
-		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provÃƒÂ©m de funÃƒÂ§ÃƒÂµes anteriores;
+		fflush(stdin);
+		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provÃƒÆ’Ã‚Â©m de funÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes anteriores;
 		
 		if(pinCorreto) 
 		{
 			int saldoValido = verificaSaldo(&CPF_usuario[0], valor);
 			if(saldoValido)
 			{
-				//ModificaÃƒÂ§ÃƒÂµes no saldo do USUÃƒÂRIO;
+				//ModificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes no saldo do USUÃƒÆ’Ã‚ÂRIO;
 				double saldo_usuario_double;
 				float saldo_usuario;
 				
@@ -301,7 +314,7 @@ int transferenciaPJ() {
 				edit_PF(&CPF_usuario[0], 7, &novo_saldo_usuario[0]);
 				
 				
-				//ModificaÃƒÂ§ÃƒÂµes no saldo do BENEFICIÃƒÂRIO;
+				//ModificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes no saldo do BENEFICIÃƒÆ’Ã‚ÂRIO;
 				double saldo_beneficiario_double;
 				float saldo_beneficiario;
 				
@@ -314,6 +327,11 @@ int transferenciaPJ() {
 				
 				edit_PJ(&cnpj[0], 7, &novo_saldo_usuario[0]);
 				
+				printf("TRANSFERENCIA REALIZADA COM SUCESSO!\n");
+				pausarExecucao();
+				fflush(stdin);
+				system("cls");
+				
 				return 1;
 			}
 			
@@ -321,6 +339,7 @@ int transferenciaPJ() {
 			{
 				printf("ERRO OU SALDO INSUFICIENTE!\n");
 				pausarExecucao();
+				fflush(stdin);
 				return 0;
 			}
 		}
@@ -329,6 +348,7 @@ int transferenciaPJ() {
 		{
 			printf("PIN INCORRETO!\n");
 			pausarExecucao();
+			fflush(stdin);
 			return 0;
 		}
 	}
@@ -337,6 +357,7 @@ int transferenciaPJ() {
 	{
 		printf("CONTA INEXISTENTE!\n");
 		pausarExecucao();
+		fflush(stdin);
 		return 0;
 	}
 }
