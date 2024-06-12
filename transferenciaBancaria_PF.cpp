@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <database.c>
+#include "Database.c"
 #include <windows.h>
 #include <string.h>
 void pausarExecucao();
