@@ -178,7 +178,7 @@ void cadastro1() {
 }
 
 void entrar(){
-   char cnpj[15], senha[20],*senha_c, senha_tt, aa[20];
+   char cnpj[15], senha[20],*senha_c, senha_tt;
 
    
    
@@ -193,8 +193,8 @@ void entrar(){
 		printf("\nDigite a senha !\n");
 		scanf("%s", senha);
 		fflush(stdin);
-		aa= strcmp(senha,senha_c);
-		printf("%s",aa);
+		
+		
 		
 		if(strcmp(senha,senha_c) != 0) {
 			printf("senha incorreta !\n\n");
