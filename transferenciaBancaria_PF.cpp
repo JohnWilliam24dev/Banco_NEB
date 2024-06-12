@@ -325,7 +325,7 @@ int transferenciaPJ() {
 				char novo_saldo_beneficiario[20];
 				sprintf(novo_saldo_beneficiario, "%.2f", saldo_beneficiario); //converter float saldo_beneficiario para string;
 				
-				edit_PJ(&cnpj[0], 7, &novo_saldo_usuario[0]);
+				edit_PJ(&cnpj[0], 7, &novo_saldo_beneficiario[0]);
 				
 				printf("TRANSFERENCIA REALIZADA COM SUCESSO!\n");
 				pausarExecucao();
