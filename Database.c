@@ -8,13 +8,13 @@ void clearchar(char *str) {
     char *dest = str; // Ponteiro para a string de destino
 
     while (*str) { // Enquanto não atingir o caractere nulo
-        if (!isspace((unsigned char)*str)) { // Verifica se o caractere não é invisível
-            *dest++ = *str; // Copia o caractere para a string de destino
+        if (!isspace((unsigned char)*str)) { 
+            *dest++ = *str; 
         }
-        str++; // Move para o próximo caractere na string de origem
+        str++; 
     }
 
-    *dest = '\0'; // Adiciona o caractere nulo no final da string de destino
+    *dest = '\0'; 
 }
 void keep_safePF(char CPF[]){
 	char authenticator[30][100];

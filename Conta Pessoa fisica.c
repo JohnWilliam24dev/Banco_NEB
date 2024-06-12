@@ -7,8 +7,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include "Database.c"
-//COMENTÁRIO SAYD 1:
-//#include "transferenciaBancaria_PF.cpp"
+#include "transferenciaBancaria_PF.cpp"
 
 // Definição da estrutura Cliente
 typedef struct {
@@ -101,10 +100,7 @@ void entradaCliente() {
             //vericSaldo(usuarioCpf); Não está atualizando o saldo
             break;
         case 2:
-            // Transferência
-            
-			//COMENTÁRIO SAYD 2:
-            //transferencia(&usuarioCpf[0]); --> FUNÇÃO PERTENCE À "transferenciaBancaria_PF.cpp"
+            transferencia(&usuarioCpf[0]);
             break;
         case 3:
             // Verificar extrato
