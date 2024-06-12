@@ -3,6 +3,18 @@
 #include <stdbool.h>
 #include <string.h>
 #include <sys/stat.h>
+void clearchar(char *str) {
+    char *dest = str; // Ponteiro para a string de destino
+
+    while (*str) { // Enquanto não atingir o caractere nulo
+        if (!isspace((unsigned char)*str)) { // Verifica se o caractere não é invisível
+            *dest++ = *str; // Copia o caractere para a string de destino
+        }
+        str++; // Move para o próximo caractere na string de origem
+    }
+
+    *dest = '\0'; // Adiciona o caractere nulo no final da string de destino
+}
 void keep_safePF(char CPF[]){
 	char authenticator[30][100];
 	char setCPF[50];
@@ -165,6 +177,7 @@ char* request_PF(char CPF[],int option){
     }
 
     fclose(filePF);
+    clearchar(chPF);
     return chPF;
 }
 
@@ -188,6 +201,7 @@ char* request_PJ(char CNPJ[],int option){
     }
     
     fclose(filePJ);
+    clearchar(chPJ);
     return chPJ;
 
 }
