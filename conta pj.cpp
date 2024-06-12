@@ -49,7 +49,7 @@ void conta(char cnpj[16]){
 	
 	printf("\t\t\tBancoNeb\n");
 	printf("\t{Bem vindo %s }\n\n" ,nome);
-	printf("\t\t\t\SALDO : %f \n\n", saldo);
+	printf("\t\tSALDO : %.2f \n\n", saldo);
 	printf("--|PIX|------|TRANSFERENCIAS|-----|EXTRATO|\n");
 	printf("  | 1 |______|      2       |_____|   3   |\n");
 	
@@ -247,27 +247,30 @@ void inicio(){
 
 int main (){
 	int opt;
+	do{
 	
-	printf("\t\t\t MMMMMMMMMMMMMMMMMMMMMMMM\n");
-	printf("\t\t\t{  Bem vindo ao BancoNeb }\n");
-	printf("\t\t\t WWWWWWWWWWWWWWWWWWWWWWWW\n\n");
+		printf("\t\t\t MMMMMMMMMMMMMMMMMMMMMMMM\n");
+		printf("\t\t\t{  Bem vindo ao BancoNeb }\n");
+		printf("\t\t\t WWWWWWWWWWWWWWWWWWWWWWWW\n\n");
+		
+		printf("\t\t\t\t  Deseja! \n\n\t\t\t\tCriar Conta 1 \n\t\t\tEntrar em conta existente 2\n");
+		scanf("%d", &opt);
 	
-	printf("\t\t\t\t  Deseja! \n\n\t\t\t\tCriar Conta 1 \n\t\t\tEntrar em conta existente 2\n");
-	scanf("%d", &opt);
-	
-	switch (opt){
-		case 1:
-			cadastro1();
-			break;
-		case 2:
-			entrar();
-			break;
-		case 3:
-			printf("saindo");
-			abort();
-		default:
-			printf("Opção invalida");
-			break;
-	}
-
+		switch (opt){
+			case 1:
+				cadastro1();
+				break;
+			case 2:
+				entrar();
+				break;
+			case 3:
+				printf("saindo");
+				abort();
+			default:
+				printf("Opção invalida\n\n");
+				system("pause");
+				system("cls");
+				break;
+		}
+	}while(opt!=1 or opt!=2 or opt!=3);
 }

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 #include <sys/stat.h>
 void clearchar(char *str) {
     char *dest = str; // Ponteiro para a string de destino
