@@ -6,7 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
-#include "Database.c"
+#include "Database.h"
 #include "transferenciaBancaria_PF.cpp"
 
 // Definição da estrutura Cliente
