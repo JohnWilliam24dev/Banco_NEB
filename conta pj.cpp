@@ -1,5 +1,6 @@
 #include "Database.h"
 #include <string.h>
+#include <locale.h>
 
 void conta(char cnpj[16]), menu();
 
@@ -14,7 +15,7 @@ void transferir(char cnpj[16]){
 	do{	 
 	system("cls");
 		printf("\t\t\tBancoNeb\n");
-		printf("\t{Bem vindo Ã  area de tranferencias }\n\n" );
+		printf("\t{Bem vindo à area de tranferencias }\n\n" );
 		printf("\t\t\tV Dados do destinatario V\n\n");
 		
 		fflush(stdin);
@@ -84,7 +85,7 @@ void conta(char cnpj[16]){
 				system("cls");
 				break;
 			default:
-				printf("OpÃ§Ã£o invalida\n");
+				printf("Opção invalida\n");
 				system("pause");
 				system("cls");
 				break;
@@ -261,7 +262,7 @@ void menu(){
 				printf("saindo");
 				abort();
 			default:
-				printf("OpÃ§Ã£o invalida\n\n");
+				printf("Opção invalida\n\n");
 				system("pause");
 				system("cls");
 				break;
@@ -271,6 +272,7 @@ void menu(){
 
 int main (){
 	int opt;
+	setlocale(LC_ALL, "Portuguese");
 	menu();
 
 }
