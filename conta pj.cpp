@@ -7,10 +7,10 @@ void conta(char cnpj[16]), menu();
 void transferir(char cnpj[16]){
 	char tipo[4], cnpj_destino[16];
 	float quantia;
-	char *saldo_c = request_PJ(cnpj, 7);
+	char *p_saldo_c = request_PJ(cnpj, 7), saldo_c;
 	char opt;
 	float saldo;
-	saldo = atof(saldo_c);
+	saldo = atof(p_saldo_c);
 	
 	do{	 
 	system("cls");
@@ -43,7 +43,11 @@ void transferir(char cnpj[16]){
 	}
 	} while(saldo < quantia);
 	
-		fflush(stdin);
+	fflush(stdin);
+	
+	sprintf(saldo_c,"%f.2",saldo);
+	edit_PJ(cnpj,7 ,saldo_c);
+	
 	printf("Transferencia concluida\n");
 	system("pause");
 	conta(cnpj);
