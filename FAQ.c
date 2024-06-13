@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <locale.h>
 #define MAX_FAQ_ENTRADA 100
 #define MAX_PERGUNTA_TAM 100
 #define MAX_RESPOSTA_TAM 500
@@ -50,6 +50,7 @@ void procuraFAQ(char *palavraChave) {
 }
 
 int main() {
+	setlocale(LC_ALL, "Portuguese");
     adcFAQ("Não consigo criar a conta. E agora?", "Confira se a sua senha está dentro dos padrões exigidos.");
     adcFAQ("Não consigo transferir. E agora? ", "Confira se o seu CPF e senha estão corretos. ");
     adcFAQ("Qual o passo a passo da transferência? ", "Na ordem: CPF, PIN, Quantia a ser transferida, CPF do destinatário.");

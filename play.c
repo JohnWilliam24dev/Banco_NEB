@@ -3,6 +3,5 @@
 #include "Database.h"
 int main(){
 	listclientPJ();
-	//listclientPF();
-
+	listclientPF();
 }
