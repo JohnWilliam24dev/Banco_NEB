@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Database.c"
+#include "Database.h"
 int main(){
-	
+	listclientPJ();
+	listclientPF();
 }

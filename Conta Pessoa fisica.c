@@ -6,10 +6,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
-#include "Database.c"
 #include "transferenciaBancaria_PF.cpp"
-
-// Definição da estrutura Cliente
+// DefiniÃƒÂ§ÃƒÂ£o da estrutura Cliente
 typedef struct {
     char nome[50];
     char senha[9];
@@ -22,6 +20,37 @@ typedef struct {
     char data_de_nascimento[11];
     char profissao[50];
 } Cliente;
+
+//verificaCPF --> Buscar CPF no banco de dados;
+int verificaCPF(char * CPF) {
+	char cpfBuscado[13];
+	char *ptr = CPF;
+	int i = 0;
+	while(*ptr !='\0')
+	{
+		cpfBuscado[i] = *ptr;
+		ptr++;
+		i++;
+	}
+	
+	char path[100] = "./PF/userPF";
+	strcat(path, cpfBuscado);
+	char ext[15] = {".txt"};
+	strcat(path, ext);
+	FILE *arquivo;
+	arquivo = fopen(path, "r");
+	if(arquivo == NULL)
+	{
+		return 0;
+	}
+	fclose(arquivo);
+
+	return 1; // SE (verificaCPF) = 1, então o arquivo PATH "CPF" existe no banco de dados.
+}
+
+
+
+
 
 bool vericSenha(const char *usuarioSenha, const char *usuarioCpf){
 	if(request_PF(usuarioCpf,1)==usuarioSenha){
@@ -38,8 +67,8 @@ bool vericSenha(const char *usuarioSenha, const char *usuarioCpf){
 	
 	saldoAtual=atoi(request_PF(usuarioCpf,7));
 	
-	wprintf(L"O seu saldo atual é de %f R$", (usuarioCpf,7));
-	wprintf(L"O seu saldo atual é de %f R$", saldoAtual);
+	wprintf(L"O seu saldo atual ÃƒÂ© de %f R$", (usuarioCpf,7));
+	wprintf(L"O seu saldo atual ÃƒÂ© de %f R$", saldoAtual);
 	getchar();
 	
 }*/
@@ -49,7 +78,7 @@ bool vericSenha(const char *usuarioSenha, const char *usuarioCpf){
 	
 	system("cls");
 	
-	wprintf(L"Quanto você deseja adicionar? \n");
+	wprintf(L"Quanto vocÃƒÂª deseja adicionar? \n");
 	scanf("%f", &adicionarSaldo);
 	getchar();
 	
@@ -57,7 +86,7 @@ bool vericSenha(const char *usuarioSenha, const char *usuarioCpf){
 	
 	atualSaldo+=adicionarSaldo;
 	
-	wprintf("Seu saldo atual é de %f R$", atualSaldo);
+	wprintf("Seu saldo atual ÃƒÂ© de %f R$", atualSaldo);
 	
 }*/
 
@@ -70,8 +99,9 @@ void entradaCliente() {
     scanf("%12s",usuarioCpf);
     fflush(stdin);
 
-    // Procurar no banco de dados se há um CPF compatível, caso não exista, mostrar uma mensagem e retornar
-	
+    if(verificaCPF(&usuarioCpf[0]))
+    {
+    
 	do{
     printf("Senha: \n");
     scanf("%8s", usuarioSenha);
@@ -80,24 +110,33 @@ void entradaCliente() {
 
     system("cls");
     }while(!vericSenha);
-    // Procurar no banco de dados se a senha é compatível com o CPF, caso erre 3 vezes a conta é bloqueada
+    // Procurar no banco de dados se a senha ÃƒÂ© compatÃƒÂ­vel com o CPF, caso erre 3 vezes a conta ÃƒÂ© bloqueada
 
     // Caso o CPF e a senha estejam corretos, mostrar o menu do cliente
     //fazer um DO WHILE para volta para o menu de conta
+	}
+	
+	else //Se CPF não constar no banco de dados;
+	{
+		printf("CPF NÃO CONSTA COMO USUARIO!\n");
+		pausarExecucao();
+		return 0; //encerra execução voltando pro menu inicial;
+	}
+	
     wprintf(L"Bem-vindo(a)! Como podemos ajudar-lo?\n");
     wprintf(L"1. Verificar saldo\n");
-    wprintf(L"2. Transferência\n");
+    wprintf(L"2. TransferÃƒÂªncia\n");
     wprintf(L"3. Verificar extrato\n");
-    wprintf(L"4. Solicitar empréstimo\n");
-    wprintf(L"5. Fazer um depósito\n");
-    wprintf(L"6. Alterar informações pessoais\n");
-    wprintf(L"7. Finalizar sessão\n");
+    wprintf(L"4. Solicitar emprÃƒÂ©stimo\n");
+    wprintf(L"5. Fazer um depÃƒÂ³sito\n");
+    wprintf(L"6. Alterar informaÃƒÂ§ÃƒÂµes pessoais\n");
+    wprintf(L"7. Finalizar sessÃƒÂ£o\n");
     scanf("%d", &opcaoCliente);
     fflush(stdin);
 
     switch (opcaoCliente) {
         case 1:
-            //vericSaldo(usuarioCpf); Não está atualizando o saldo
+            //vericSaldo(usuarioCpf); NÃƒÂ£o estÃƒÂ¡ atualizando o saldo
             break;
         case 2:
             transferencia(&usuarioCpf[0]);
@@ -106,20 +145,20 @@ void entradaCliente() {
             // Verificar extrato
             break;
         case 4:
-            // Solicitar empréstimo
+            // Solicitar emprÃƒÂ©stimo
             break;
         case 5:
-            //deposito(usuarioCpf);Não está atualizando o saldo
+            //deposito(usuarioCpf);NÃƒÂ£o estÃƒÂ¡ atualizando o saldo
             break;
         case 6:
-            // Alterar informações pessoais
+            // Alterar informaÃƒÂ§ÃƒÂµes pessoais
             break;
         case 7:
-            wprintf(L"Obrigado por usar os serviços do Banco NEB!\n");
+            wprintf(L"Obrigado por usar os serviÃƒÂ§os do Banco NEB!\n");
             exit(0);
             break;
         default:
-            wprintf(L"Opção incorreta, por favor tente novamente!\n");
+            wprintf(L"OpÃƒÂ§ÃƒÂ£o incorreta, por favor tente novamente!\n");
             break;
     }
 }
@@ -145,7 +184,7 @@ bool verificarSenha(const char *senha) {
     if (temMinuscula && temMaiuscula && temNumero) {
         return true;
     } else {
-        printf("A senha deve conter pelo menos uma letra minúscula, uma letra maiúscula e um número.\n");
+        printf("A senha deve conter pelo menos uma letra minÃƒÂºscula, uma letra maiÃƒÂºscula e um nÃƒÂºmero.\n");
         getchar();
         system("cls");
         return false;
@@ -154,7 +193,7 @@ bool verificarSenha(const char *senha) {
 
 bool verifNumeroTelefone(const char *telefone) {
     if (strlen(telefone) != 13) {
-        printf("Número incorreto, lembre-se que o número 9 foi adicionado na frente dos números depois do DDD\n");
+        printf("NÃƒÂºmero incorreto, lembre-se que o nÃƒÂºmero 9 foi adicionado na frente dos nÃƒÂºmeros depois do DDD\n");
         fflush(stdin);
         getchar();
         system("cls");
@@ -163,7 +202,7 @@ bool verifNumeroTelefone(const char *telefone) {
 
     for (int i = 0; i < 13; i++) {
         if (!isdigit(telefone[i])) {
-            printf("Número de telefone inválido, deve conter apenas dígitos\n");
+            printf("NÃƒÂºmero de telefone invÃƒÂ¡lido, deve conter apenas dÃƒÂ­gitos\n");
             fflush(stdin);
             getchar();
             system("cls");
@@ -181,7 +220,7 @@ bool verifNumeroTelefone(const char *telefone) {
 
     int nonoDigitoTelefone = telefone[4] - '0';
     if (nonoDigitoTelefone != 9) {
-        printf("Lembre-se de adicionar o 9 antes do seu número, por favor tente novamente\n");
+        printf("Lembre-se de adicionar o 9 antes do seu nÃƒÂºmero, por favor tente novamente\n");
         getchar();
         system("cls");
         return false;
@@ -224,7 +263,7 @@ void cadastraCliente() {
     setlocale(LC_ALL, "Portuguese");
 
     do {
-        wprintf(L"Vamos começar com seu CPF.\n");
+        wprintf(L"Vamos comeÃƒÂ§ar com seu CPF.\n");
         scanf("%12s", cliente.cpf);
         fflush(stdin);
         system("cls");
@@ -241,38 +280,38 @@ void cadastraCliente() {
 
     system("cls");
 
-    wprintf(L"Nos fale um pouco sobre você!\n\n");
+    wprintf(L"Nos fale um pouco sobre vocÃƒÂª!\n\n");
 
     wprintf(L"Qual o seu nome?\n");
     fgets(cliente.nome, sizeof(cliente.nome), stdin);
     fflush(stdin);
 
     do {
-        wprintf(L"Qual é a sua data de nascimento?\n");
+        wprintf(L"Qual ÃƒÂ© a sua data de nascimento?\n");
         scanf("%10s", cliente.data_de_nascimento);
         fflush(stdin);
         system("cls");
 
         if (!verifData(cliente.data_de_nascimento)) {
-            printf("Formato de data errado, por favor coloque uma data válida seguindo esse modelo 01/12/2024\n");
+            printf("Formato de data errado, por favor coloque uma data vÃƒÂ¡lida seguindo esse modelo 01/12/2024\n");
             getchar();
         }
     } while (!verifData(cliente.data_de_nascimento));
 
-    wprintf(L"Qual é a sua profissão?\n");
+    wprintf(L"Qual ÃƒÂ© a sua profissÃƒÂ£o?\n");
     scanf("%49s", cliente.profissao);
     fflush(stdin);
 
     system("cls");
 
     do {
-        wprintf(L"Qual é seu telefone?\n");
+        wprintf(L"Qual ÃƒÂ© seu telefone?\n");
         scanf("%13s", cliente.telefone);
         fflush(stdin);
         system("cls");
     } while (!verifNumeroTelefone(cliente.telefone));
 
-    wprintf(L"Qual é o seu endereço?\n");
+    wprintf(L"Qual ÃƒÂ© o seu endereÃƒÂ§o?\n");
     scanf("%49s", cliente.endereco);
     fflush(stdin);
 
@@ -280,7 +319,7 @@ void cadastraCliente() {
 
     do {
         wprintf(L"Agora vamos criar a sua senha!\n");
-        wprintf(L"Por favor, crie uma senha com 8 caracteres que contenham números, letras e caracteres.\n");
+        wprintf(L"Por favor, crie uma senha com 8 caracteres que contenham nÃƒÂºmeros, letras e caracteres.\n");
         scanf("%8s", cliente.senha);
         fflush(stdin);
         system("cls");
@@ -288,8 +327,8 @@ void cadastraCliente() {
 
     system("cls");
 
-    wprintf(L"Conta criada com sucesso! Bem-vindo à família NEB!\n");
-    wprintf(L"Agora você já pode acessar a sua conta através do login!\n");
+    wprintf(L"Conta criada com sucesso! Bem-vindo ÃƒÂ  famÃƒÂ­lia NEB!\n");
+    wprintf(L"Agora vocÃƒÂª jÃƒÂ¡ pode acessar a sua conta atravÃƒÂ©s do login!\n");
     getchar();
     system("cls");
 
@@ -322,11 +361,11 @@ int menu() {
             cadastraCliente();
             break;
         case 3:
-            wprintf(L"Obrigado por usar os serviços do Banco NEB!\n");
+            wprintf(L"Obrigado por usar os serviÃƒÂ§os do Banco NEB!\n");
             exit(0);
             break;
         default:
-            wprintf(L"Opção incorreta, por favor tente novamente!\n");
+            wprintf(L"OpÃƒÂ§ÃƒÂ£o incorreta, por favor tente novamente!\n");
             break;
     }
     return 1;

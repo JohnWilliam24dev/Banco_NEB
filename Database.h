@@ -16,14 +16,13 @@ void clearchar(char *str) {
 
     *dest = '\0'; 
 }
+
 void keep_safePF(char CPF[]){
 	char authenticator[30][100];
-	char setCPF[50];
-	char ext[15]={"\n"};
+
 	int index=0,sizes=0;
 	bool verific=false;
-	strcat(setCPF,CPF);
-	strcat(setCPF,ext);
+	
 	int f=mkdir("./ADMIN");
     if (f==0){
         system("mkdir ADMIN");
@@ -33,7 +32,7 @@ void keep_safePF(char CPF[]){
 	FILE *fileADM=fopen("./ADMIN/CPF.txt","r");
 	fprintf(fileADM,".");
 	while(fgets(authenticator[index],30,fileADM)!=NULL){	
-		
+		clearchar(authenticator[index]);
 		index++;
 	}
 	sizes=index;
@@ -41,7 +40,7 @@ void keep_safePF(char CPF[]){
 	fclose(fileADM);
 	FILE *fileADMup=fopen("./ADMIN/CPF.txt","a");
     do{
-		if(strcmp(authenticator[index],setCPF)==0 ){
+		if(strcmp(authenticator[index],CPF)==0 ){
 			
 			verific=false;
 			break;
@@ -60,12 +59,9 @@ void keep_safePF(char CPF[]){
 
 void keep_safePJ(char CNPJ[]){
 	char authenticator[30][100];
-	char setCNPJ[50];
-	char ext[15]={"\n"};
 	int index=0,sizes=0;
 	bool verific=false;
-	strcat(setCNPJ,CNPJ);
-	strcat(setCNPJ,ext);
+	
 	int f=mkdir("./ADMIN");
     if (f==0){
         system("mkdir ADMIN");
@@ -75,7 +71,7 @@ void keep_safePJ(char CNPJ[]){
 	FILE *fileADM=fopen("./ADMIN/CNPJ.txt","r");
 	fprintf(fileADM,".");
 	while(fgets(authenticator[index],30,fileADM)!=NULL){	
-		
+		clearchar(authenticator[index]);
 		index++;
 	}
 	sizes=index;
@@ -83,12 +79,12 @@ void keep_safePJ(char CNPJ[]){
 	fclose(fileADM);
 	FILE *fileADMup=fopen("./ADMIN/CNPJ.txt","a");
     do{
-		if(strcmp(authenticator[index],setCNPJ)==0 ){
-			printf("debug 3\n");
+		if(strcmp(authenticator[index],CNPJ)==0 ){
+			
 			verific=false;
 			break;
 		}else{
-			printf("debug 4");
+			
 			verific=true;
 			index++;
 			
@@ -103,9 +99,6 @@ void keep_safePJ(char CNPJ[]){
 }
 void insert_client_legal_entire(char nome[],char senha[],char pin[],char data_de_nascimento[],char CNPJ[],char telefone[],char endereco[],float saldo,float credito){
 
-
-    
-    
     int f=mkdir("./PJ");
     if (f==0){
         system("mkdir PJ");
@@ -307,4 +300,58 @@ void edit_PJ(char CNPJ[],int option,char mod[]){
     fclose(filePJ);
     
 }
+void listclientPF(){
+		char authenticator[30][100];
+		int index=0;
+	FILE *fileADM=fopen("./ADMIN/CPF.txt","r");
+	while(fgets(authenticator[index],30,fileADM)!=NULL){	
+		clearchar(authenticator[index]);
+	
+		
+		index++;
+	}
+	int size=index;
+	index=0;
+	do{
+		
+		printf("%s\n",request_PF(authenticator[index],0));
+		printf("%s\n",request_PF(authenticator[index],1));
+		printf("%s\n",request_PF(authenticator[index],2));
+		printf("%s\n",request_PF(authenticator[index],3));
+		printf("%s\n",request_PF(authenticator[index],4));
+		printf("%s\n",request_PF(authenticator[index],5));
+		printf("%s\n",request_PF(authenticator[index],6));
+		printf("%s\n",request_PF(authenticator[index],7));
+		printf("%s\n\n",request_PF(authenticator[index],8));
+		index++;
+	}while(index<=size);
+	
+}
 
+void listclientPJ(){
+		char authenticator[30][100];
+		int index=0;
+	FILE *fileADM=fopen("./ADMIN/CNPJ.txt","r");
+	while(fgets(authenticator[index],30,fileADM)!=NULL){	
+		clearchar(authenticator[index]);
+	
+		
+		index++;
+	}
+	int size=index;
+	index=0;
+	do{
+		
+		printf("%s\n",request_PJ(authenticator[index],0));
+		printf("%s\n",request_PJ(authenticator[index],1));
+		printf("%s\n",request_PJ(authenticator[index],2));
+		printf("%s\n",request_PJ(authenticator[index],3));
+		printf("%s\n",request_PJ(authenticator[index],4));
+		printf("%s\n",request_PJ(authenticator[index],5));
+		printf("%s\n",request_PJ(authenticator[index],6));
+		printf("%s\n",request_PJ(authenticator[index],7));
+		printf("%s\n\n",request_PJ(authenticator[index],8));
+		index++;
+	}while(index<=size);
+	
+}

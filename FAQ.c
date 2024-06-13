@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <locale.h>
 #define MAX_FAQ_ENTRADA 100
 #define MAX_PERGUNTA_TAM 100
 #define MAX_RESPOSTA_TAM 500
@@ -26,7 +26,7 @@ void adcFAQ(char *pergunta, char *resposta) { //Função para adicionar faqs
     }
 }
 
-void listFAQs() { //função para listar faqs 
+void listFAQ() { //função para listar faqs 
     for (int i = 0; i < faqContador; i++) {
         printf("FAQ #%d\n", i + 1);
         printf("Pergunta: %s\n", faq[i].pergunta);
@@ -48,3 +48,19 @@ void procuraFAQ(char *palavraChave) {
         printf("Nenhuma FAQ encontrada contendo a palavra-chave! '%s'.\n", palavraChave);
     }
 }
+
+int main() {
+	setlocale(LC_ALL, "Portuguese");
+    adcFAQ("Não consigo criar a conta. E agora?", "Confira se a sua senha está dentro dos padrões exigidos.");
+    adcFAQ("Não consigo transferir. E agora? ", "Confira se o seu CPF e senha estão corretos. ");
+    adcFAQ("Qual o passo a passo da transferência? ", "Na ordem: CPF, PIN, Quantia a ser transferida, CPF do destinatário.");
+
+    printf("Listando todas as FAQs:\n");
+    listFAQ();
+
+    printf("Procurando por 'transferir':\n");
+    procuraFAQ("cadastro");
+
+    return 0;
+}
+
