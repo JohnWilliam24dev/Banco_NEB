@@ -89,7 +89,7 @@ int main(){
 	    printf("\t(4)Modificar informacoes sensiveis de clientes PJ\n");
 	    printf("\t(5)Sair\n");
 	    scanf("%i",&option);
-	    //fflush(stdin);
+	    
 	    switch (option){
 	    	case 1:
 	    		listclientPF();
