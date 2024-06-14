@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "Database.h"
-void editinfo(){
+void editinfoPF(){
 	system("cls");
 	char cpf[15];
 	char mod[200];
@@ -22,9 +22,35 @@ void editinfo(){
 	printf("Digite o indice que deseja modificar: ");
 	scanf("%i",&index);
 	fflush(stdin);
-	printf("Digite a modificação que deseja fazer: ");
+	printf("Digite a modificacao que deseja fazer: ");
 	scanf("%s",mod);
 	edit_PF(cpf,index,mod);
+	printf("A alteração foi feita com sucesso!");
+	system("pause");
+	
+}
+void editinfoPJ(){
+	system("cls");
+	char cnpj[15];
+	char mod[200];
+	int index;
+	printf("Digite o CNPJ do cliente titular: ");
+	scanf("%s",cnpj);
+		printf("0 %s\n",request_PJ(cnpj,0));
+		printf("1 %s\n",request_PJ(cnpj,1));
+		printf("2 %s\n",request_PJ(cnpj,2));
+		printf("3 %s\n",request_PJ(cnpj,3));
+		printf("4 %s\n",request_PJ(cnpj,4));
+		printf("5 %s\n",request_PJ(cnpj,5));
+		printf("6 %s\n",request_PJ(cnpj,6));
+		printf("7 %s\n",request_PJ(cnpj,7));
+		printf("8 %s\n\n",request_PJ(cnpj,8));
+	printf("Digite o indice que deseja modificar: ");
+	scanf("%i",&index);
+	fflush(stdin);
+	printf("Digite a modificacao que deseja fazer: ");
+	scanf("%s",mod);
+	edit_PJ(cnpj,index,mod);
 	printf("A alteração foi feita com sucesso!");
 	system("pause");
 	
@@ -59,8 +85,9 @@ int main(){
 	    printf("\tDashboard:\n");
 	    printf("\t(1)Listar clientes PF\n");
 	    printf("\t(2)Listar clientes PJ\n");
-	    printf("\t(3)Modificar informações sensiveis de clientes\n");
-	    printf("\t(4)Sair\n");
+	    printf("\t(3)Modificar informacoes sensiveis de clientes PF\n");
+	    printf("\t(4)Modificar informacoes sensiveis de clientes PJ\n");
+	    printf("\t(5)Sair\n");
 	    scanf("%i",&option);
 	    //fflush(stdin);
 	    switch (option){
@@ -77,12 +104,16 @@ int main(){
 	    		goto MENU;
 	    		break;
 	    	case 3:
-	    		editinfo();
+	    		editinfoPF();
 	    		goto MENU;
 	    		break;
 	    	case 4:
-	    	
-	    	break;
+	    		editinfoPJ();
+	    		goto MENU;
+	    		break;
+	    	case 5:
+	    		
+	    		break;
 	    	default:
 	    		system("cls");
 	    		printf("opcao invalida tente novamente");
