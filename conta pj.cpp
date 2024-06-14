@@ -3,8 +3,68 @@
 #include <locale.h>
 
 void conta(char cnpj[16]), menu();
+void transferir_pf(char cnpj[16]){
+	char tipo[4], cpf_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cpf, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20];
+	float quantia, saldo, destino_saldo;
+	
+	saldo = atof(p_saldo_c);
+	
+	do{	 
+	system("cls");
+		printf("\t\t\tBancoNeb\n");
+		printf("\t{Bem vindo à area de tranferencias }\n\n" );
+		printf("\t\t\tV Dados do destinatario V\n\n");
+		
 
-void transferir(char cnpj[16]){
+		
+		fflush(stdin);
+		printf("Cnpj da conta : ");
+		scanf("%s", cpf_destino);
+		
+		verifica_cpf = request_PF(cpf_destino, 4);
+		
+		fflush(stdin);
+		printf("Quantia a ser enviada");
+		scanf("%f", &quantia);
+		
+		
+		if(saldo < quantia){
+			printf("Valor invalido\nTente Novamente\n");
+		}
+		if(strcmp(cpf_destino,verifica_cpf ) !=0){
+			printf("CPF do destinatário inválido\n\n");
+		}
+		
+		
+		printf("Deseja continuar ? S/N\n ");
+		scanf("%c", &opt);
+		
+		if(opt=='N' or opt == 'n'){
+			conta(cnpj);
+			fflush(stdin);
+	}
+	} while(saldo < quantia and strcmp(cpf_destino,verifica_cpf ) !=0);
+	
+	fflush(stdin);
+	
+	saldo = saldo - quantia;
+	sprintf(saldo_c,"%.2f",saldo);
+	edit_PJ(cnpj,7 ,saldo_c);
+	
+	
+	p_destino_saldo_c = request_PJ(cpf_destino, 7);
+	destino_saldo = atof(p_destino_saldo_c);
+	
+	sprintf(destino_saldo_c, "%.2f", destino_saldo);
+	edit_PJ(cpf_destino,7 ,destino_saldo_c );
+	
+	printf("Transferencia concluida\n");
+	system("pause");
+	conta(cnpj);
+}
+
+
+void transferir_pj(char cnpj[16]){
 	char tipo[4], cnpj_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cnpj, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20];
 	float quantia, saldo, destino_saldo;
 	
@@ -16,20 +76,17 @@ void transferir(char cnpj[16]){
 		printf("\t{Bem vindo à area de tranferencias }\n\n" );
 		printf("\t\t\tV Dados do destinatario V\n\n");
 		
+
+		
 		fflush(stdin);
 		printf("Cnpj da conta : ");
 		scanf("%s", cnpj_destino);
 		
-		verifica_cnpj = request_PJ(cnpj, 4);
+		verifica_cnpj = request_PJ(cnpj_destino, 4);
 		
 		fflush(stdin);
 		printf("Quantia a ser enviada");
 		scanf("%f", &quantia);
-		
-		fflush(stdin);
-		printf("Tipo da conta PJ/PF");
-		scanf("%s", tipo);
-		fflush(stdin);
 		
 		
 		if(saldo < quantia){
@@ -66,6 +123,7 @@ void transferir(char cnpj[16]){
 	system("pause");
 	conta(cnpj);
 }
+
            
 void conta(char cnpj[16]){
 	char *saldo_c = request_PJ(cnpj,7);
@@ -80,17 +138,17 @@ void conta(char cnpj[16]){
 		printf("\t\t\tBancoNeb\n");
 		printf("\t{Bem vindo %s }\n\n" ,nome);
 		printf("\t\tSALDO : %.2f \n\n", saldo);
-		printf("--|PIX|------|TRANSFERENCIAS|-----|EXTRATO|-----|SAIR|\n");
-		printf("  | 1 |______|      2       |_____|   3   |_____| 4  |\n");
+		printf("--||TRANSFERENCIA PF|------|TRANSFERENCIA PJ|-----|EXTRATO|-----|SAIR|\n");
+		printf("  |        1        |______|       2        |_____|   3   |_____| 4  |\n");
 	
 		scanf("%d", &opt);
 		switch(opt){
 			case 1:
-				transferir(cnpj);
+				transferir_pf(cnpj);
 				system("cls");
 				break;
 			case 2:
-				transferir(cnpj);
+				transferir_pj(cnpj);
 				system("cls");
 				break;
 			case 3:
