@@ -8,7 +8,7 @@ arquivo = fopen(path, "w");
 
 //2 -> PESSOA JURÍDICA
 char path[100] = "./PJ/extrato";
-strcat(path, CPFuser);
+strcat(path, CNPJuser);
 char ext[15] = ".txt";
 strcat(path, ext);
 FILE *arquivo;
