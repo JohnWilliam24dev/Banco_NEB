@@ -35,7 +35,7 @@ void transferir_pf(char cnpj[16]){
 			printf("CPF do destinatário inválido\n\n");
 		}
 		
-		
+		fflush(stdin);
 		printf("Deseja continuar ? S/N\n ");
 		scanf("%c", &opt);
 		
@@ -56,7 +56,7 @@ void transferir_pf(char cnpj[16]){
 	destino_saldo = atof(p_destino_saldo_c);
 	
 	sprintf(destino_saldo_c, "%.2f", destino_saldo);
-	edit_PJ(cpf_destino,7 ,destino_saldo_c );
+	edit_PF(cpf_destino,7 ,destino_saldo_c );
 	
 	printf("Transferencia concluida\n");
 	system("pause");
