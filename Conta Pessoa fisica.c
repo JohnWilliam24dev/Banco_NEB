@@ -145,6 +145,7 @@ void entradaCliente() {
             goto DASHBOARD;
             break;
         case 2:
+        	system("cls");
             transferencia(&usuarioCpf[0]);
             system("cls");
             goto DASHBOARD;
