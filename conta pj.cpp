@@ -3,6 +3,7 @@
 #include <locale.h>
 
 void conta(char cnpj[16]), menu();
+
 void transferir_pf(char cnpj[16]){
 	char tipo[4], cpf_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cpf, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20];
 	float quantia, saldo, destino_saldo;
@@ -18,7 +19,7 @@ void transferir_pf(char cnpj[16]){
 
 		
 		fflush(stdin);
-		printf("Cnpj da conta : ");
+		printf("CPF da conta : ");
 		scanf("%s", cpf_destino);
 		
 		verifica_cpf = request_PF(cpf_destino, 4);
@@ -96,7 +97,7 @@ void transferir_pj(char cnpj[16]){
 			printf("CNPJ do destinat�rio inv�lido\n\n");
 		}
 		
-		
+		fflush(stdin);
 		printf("Deseja continuar ? S/N\n ");
 		scanf("%c", &opt);
 		
@@ -131,13 +132,13 @@ void conta(char cnpj[16]){
 	int opt;
 	float saldo;
 	saldo = atof(saldo_c);
-	printf("debug %f ",saldo);
+	
 	system("cls");
 	do{
-	
+	printf("debug %f ",saldo);
 		printf("\t\t\tBancoNeb\n");
 		printf("\t{Bem vindo %s }\n\n" ,nome);
-		printf("\t\tSALDO : %.2f \n\n", saldo);
+		printf("\t\tSALDO : %s \n\n", saldo_c);
 		printf("--||TRANSFERENCIA PF|------|TRANSFERENCIA PJ|-----|EXTRATO|-----|SAIR|\n");
 		printf("  |        1        |______|       2        |_____|   3   |_____| 4  |\n");
 	
@@ -186,15 +187,18 @@ void cadastro1() {
     char CEP[9];
     float saldo = 0;
     float credito = 0;
- 
+    
+ 	fflush(stdin);
     printf("\nPor favor, digite o nome da empresa: ");
     gets(nomeEmpresa);
 
     
     do {
+    	fflush(stdin);
         printf("\nPor favor, digite o CNPJ (14 dÃ­gitos): ");
         scanf("%s", CNPJ);
         gets(CNPJ);
+        fflush(stdin);
 
         if (strlen(CNPJ) == 14) {
             printf("CNPJ vÃ¡lido.\n");
@@ -206,38 +210,42 @@ void cadastro1() {
         }
     } while (1);
 
+	fflush(stdin);
     printf("\nPor favor, digite a idade da empresa: ");
     gets(idadeEmpresa);
 
 
     do {
-        printf("\nPor favor, digite o telefone (8 dÃ­gitos): ");
+    	fflush(stdin);
+        printf("\nPor favor, digite o telefone (8 digitos): ");
         gets(telefone);
 
         if (strlen(telefone) == 8) {
-            printf("Telefone vÃ¡lido.\n");
+            printf("Telefone valido.\n");
             pausarExecucao();
             break;
         } else {
-            printf("Telefone invÃ¡lido. Por favor, digite novamente.\n");
+            printf("Telefone inv�lido. Por favor, digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
 
     
     do {
-        printf("\nPor favor, crie uma senha (mÃ­nimo 8 caracteres): ");
+    	fflush(stdin);
+        printf("\nPor favor, crie uma senha (maximo 8 caracteres): ");
         gets(senha);
         if (strlen(senha) >= 8) {  
             printf("Senha validada!!\n");
             pausarExecucao();
             break;
         } else {
-            printf("Senha invÃ¡lida. Digite novamente.\n");
+            printf("Senha invalida. Digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
     do {
+    	fflush(stdin);
         printf("\nPor favor, coloquei o pin : ");
         gets(pin);
         if (strlen(pin) == 4) {  
@@ -245,11 +253,12 @@ void cadastro1() {
             pausarExecucao();
             break;
         } else {
-            printf("Pin invÃ¡lido. Digite novamente.\n");
+            printf("Pin invalido. Digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
     do {
+    	fflush(stdin);
         printf("\nPor favor, coloque o cep: ");
         gets(CEP);
         if (strlen(CEP) == 8) {  
@@ -257,7 +266,7 @@ void cadastro1() {
             pausarExecucao();
             break;
         } else {
-            printf("Cep invÃ¡lida. Digite novamente.\n");
+            printf("Cep inv�lida. Digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
