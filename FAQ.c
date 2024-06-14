@@ -51,9 +51,14 @@ void procuraFAQ(char *palavraChave) {
 
 int main() {
 	setlocale(LC_ALL, "Portuguese");
+    printf("FAQ PF\n");
     adcFAQ("Não consigo criar a conta. E agora?", "Confira se a sua senha está dentro dos padrões exigidos.");
     adcFAQ("Não consigo transferir. E agora? ", "Confira se o seu CPF e senha estão corretos. ");
-    adcFAQ("Qual o passo a passo da transferência? ", "Na ordem: CPF, PIN, Quantia a ser transferida, CPF do destinatário.");
+    adcFAQ("Qual o passo a passo da transferência? ", "Na ordem: CPF, PIN, Quantia a ser transferida, CPF/CNPJ do destinatário.");
+    printf("FAQ PJ\n");
+    adcFAQ("Não consigo criar a conta. E agora?", "Confira se a sua senha está dentro dos padrões exigidos.");
+    adcFAQ("Não consigo transferir. E agora? ", "Confira se o seu CNPJ e senha estão corretos. ");
+    adcFAQ("Qual o passo a passo da transferência? ", "Na ordem: CNPJ, PIN, Quantia a ser transferida, CPF/CNPJ do destinatário.");
 
     printf("Listando todas as FAQs:\n");
     listFAQ();
