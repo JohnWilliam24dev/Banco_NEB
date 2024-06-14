@@ -1,0 +1,15 @@
+//1 -> PESSOA FÍSICA
+char path[100] = "./PF/extrato";
+strcat(path, CPFuser);
+char ext[15] = ".txt";
+strcat(path, ext);
+FILE *arquivo;
+arquivo = fopen(path, "w");
+
+//2 -> PESSOA JURÍDICA
+char path[100] = "./PJ/extrato";
+strcat(path, CPFuser);
+char ext[15] = ".txt";
+strcat(path, ext);
+FILE *arquivo;
+arquivo = fopen(path, "w");
