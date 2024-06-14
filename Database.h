@@ -301,6 +301,7 @@ void edit_PJ(char CNPJ[],int option,char mod[]){
     
 }
 void listclientPF(){
+		system("cls");
 		char authenticator[30][100];
 		int index=0;
 	FILE *fileADM=fopen("./ADMIN/CPF.txt","r");
@@ -329,6 +330,7 @@ void listclientPF(){
 }
 
 void listclientPJ(){
+		system("cls");
 		char authenticator[30][100];
 		int index=0;
 	FILE *fileADM=fopen("./ADMIN/CNPJ.txt","r");

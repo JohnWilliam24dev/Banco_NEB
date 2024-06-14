@@ -127,7 +127,7 @@ void entradaCliente() {
 		pausarExecucao();
 		return 0; //encerra execuÃ§Ã£o voltando pro menu inicial;
 	}
-	
+	DASHBOARD:
     wprintf(L"Bem-vindo(a)! Como podemos ajudar-lo?\n");
     wprintf(L"1. Verificar saldo\n");
     wprintf(L"2. TransferÃƒÆ’Ã‚Âªncia\n");
@@ -141,21 +141,33 @@ void entradaCliente() {
     switch (opcaoCliente) {
         case 1:
             vericSaldo(usuarioCpf); 
+            system("cls");
+            goto DASHBOARD;
             break;
         case 2:
             transferencia(&usuarioCpf[0]);
+            system("cls");
+            goto DASHBOARD;
             break;
         case 3:
             // Verificar extrato
+            system("cls");
+            goto DASHBOARD;
             break;
         case 4:
             // Solicitar emprÃƒÆ’Ã‚Â©stimo
+            system("cls");
+            goto DASHBOARD;
             break;
         case 5:
             deposito(usuarioCpf);
+            system("cls");
+            goto DASHBOARD;
             break;
         case 6:
             // Alterar informaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes pessoais
+            system("cls");
+            goto DASHBOARD;
             break;
         case 7:
             wprintf(L"Obrigado por usar os serviÃƒÆ’Ã‚Â§os do Banco NEB!\n");
@@ -163,6 +175,8 @@ void entradaCliente() {
             break;
         default:
             wprintf(L"OpÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o incorreta, por favor tente novamente!\n");
+            system("pause");
+            system("cls");
             break;
     }
 }

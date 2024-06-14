@@ -5,5 +5,5 @@ Camila Azevedo
 01234567891
 (31) 20123-4567
 Avenida T, 1717, Palmas, TO
-20000
+19500,00
 100000
