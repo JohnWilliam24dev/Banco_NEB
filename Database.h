@@ -357,3 +357,25 @@ void listclientPJ(){
 	}while(index<=size);
 	
 }
+
+void extratoPF(char CPFuser[],char CPFdest[],char saldo[]){
+//-> PESSOA FÍSICA
+char pathPF[100] = "./PF/extrato";
+strcat(pathPF, CPFuser);
+char ext[15] = ".txt";
+strcat(pathPF, ext);
+FILE *arquivo;
+arquivo = fopen(pathPF, "w");
+
+
+
+//REGION VARIABLES
+
+//LOGIC
+FILE *file=fopen(pathPF,"a");
+	fprintf(file,"Destino: %s\n",CPFdest);
+	fprintf(file,"Saldo Gasto: %s\n",saldo);
+	
+}
+
+
