@@ -3,6 +3,7 @@
 #include <locale.h>
 
 void conta(char cnpj[16]), menu();
+
 void transferir_pf(char cnpj[16]){
 	char tipo[4], cpf_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cpf, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20];
 	float quantia, saldo, destino_saldo;
@@ -24,7 +25,7 @@ void transferir_pf(char cnpj[16]){
 		verifica_cpf = request_PF(cpf_destino, 4);
 		
 		fflush(stdin);
-		printf("Quantia a ser enviada");
+		printf("Quantia a ser enviada: ");
 		scanf("%f", &quantia);
 		
 		
@@ -35,7 +36,7 @@ void transferir_pf(char cnpj[16]){
 			printf("CPF do destinatário inválido\n\n");
 		}
 		
-		
+		fflush(stdin);
 		printf("Deseja continuar ? S/N\n ");
 		scanf("%c", &opt);
 		
@@ -85,7 +86,7 @@ void transferir_pj(char cnpj[16]){
 		verifica_cnpj = request_PJ(cnpj_destino, 4);
 		
 		fflush(stdin);
-		printf("Quantia a ser enviada");
+		printf("Quantia a ser enviada: ");
 		scanf("%f", &quantia);
 		
 		
@@ -96,7 +97,7 @@ void transferir_pj(char cnpj[16]){
 			printf("CNPJ do destinatário inválido\n\n");
 		}
 		
-		
+		fflush(stdin);
 		printf("Deseja continuar ? S/N\n ");
 		scanf("%c", &opt);
 		
