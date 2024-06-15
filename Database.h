@@ -373,6 +373,7 @@ arquivo = fopen(pathPF, "w");
 
 //LOGIC
 FILE *file=fopen(pathPF,"a");
+	fprintf(file,"Tipo: Transferencia para Pessoa Fisica\n");
 	fprintf(file,"Destino: %s\n",CPFdest);
 	fprintf(file,"Saldo Gasto: %s\n",saldo);
 	
