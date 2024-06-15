@@ -2,30 +2,32 @@
 #include <stdlib.h>
 #include "Database.h"
 int main(){
-insert_client_legal_entire("Tech Solutions Ltda", "QwErTy123", "1234", "01/01/2000", "12345678000101", "(11) 31234-5678", "Avenida das Empresas, 123", 100000.00, 500000.00);
-insert_client_legal_entire("Innovatech SA", "PaSsWoRd456", "5678", "02/02/1995", "23456789000102", "(21) 42345-6789", "Rua das Inovacoes, 456", 250000.00, 1000000.00);
-insert_client_legal_entire("EcoEnergy Corp", "AbCdEf789", "9101", "03/03/2005", "34567890000103", "(31) 53456-7890", "Praca da Sustentabilidade, 789", 320000.00, 750000.00);
-insert_client_legal_entire("HealthCare Ltda", "XyZaBc123", "1122", "04/04/2010", "45678901000104", "(41) 64567-8901", "Rua da Saude, 101", 410000.00, 800000.00);
-insert_client_legal_entire("EducaTech SA", "NoPaSsWoRd", "3344", "05/05/2008", "56789012000105", "(51) 75678-9012", "Avenida do Conhecimento, 202", 530000.00, 1200000.00);
-insert_client_legal_entire("AgroBusiness Ltda", "SeNhA321", "5566", "06/06/2012", "67890123000106", "(61) 86789-0123", "Estrada do Agronegocio, 303", 625000.00, 950000.00);
-insert_client_legal_entire("FoodTech Corp", "MyPaSsWoRd", "7788", "07/07/2003", "78901234000107", "(71) 97890-1234", "Rua da Alimentacao, 404", 750000.00, 1100000.00);
-insert_client_legal_entire("GreenSolutions SA", "LoGiN123", "9900", "08/08/1998", "89012345000108", "(81) 08901-2345", "Avenida Verde, 505", 890000.00, 650000.00);
-insert_client_legal_entire("BuildCon Ltda", "123PaSs", "1010", "09/09/2001", "90123456000109", "(91) 19012-3456", "Rua da Construcao, 606", 930000.00, 720000.00);
-insert_client_legal_entire("TechPlus SA", "PaSs999", "1111", "10/10/1997", "01234567000110", "(92) 29123-4567", "Avenida da Tecnologia, 707", 1000000.00, 480000.00);
-insert_client_legal_entire("FashionStyle Ltda", "PaSsWoRd321", "1212", "11/11/2006", "12345678000111", "(93) 39234-5678", "Rua da Moda, 808", 1150000.00, 590000.00);
-insert_client_legal_entire("AutoMotive SA", "1PaSs1", "1313", "12/12/1999", "23456789000112", "(94) 49345-6789", "Avenida dos Automoveis, 909", 1230000.00, 600000.00);
-insert_client_legal_entire("BioLife Ltda", "SeNhA456", "1414", "13/01/2002", "34567890000113", "(95) 59456-7890", "Rua da Biotecnologia, 1010", 1370000.00, 730000.00);
-insert_client_legal_entire("MediaWorks SA", "2PaSs2", "1515", "14/02/2007", "45678901000114", "(96) 69567-8901", "Praca da Midia, 1111", 1400000.00, 810000.00);
-insert_client_legal_entire("FinTech Corp", "MyLoGiN", "1616", "15/03/2000", "56789012000115", "(97) 79678-9012", "Avenida Financeira, 1212", 1550000.00, 900000.00);
-insert_client_legal_entire("AeroSpace Ltda", "3PaSs3", "1717", "16/04/2011", "67890123000116", "(98) 89789-0123", "Rua Espacial, 1313", 1620000.00, 1050000.00);
-insert_client_legal_entire("NanoTech SA", "SenHa789", "1818", "17/05/2004", "78901234000117", "(99) 99890-1234", "Avenida da Nanotecnologia, 1414", 1730000.00, 1270000.00);
-insert_client_legal_entire("CleanEnergy Ltda", "4PaSs4", "1919", "18/06/2009", "89012345000118", "(11) 09901-2345", "Estrada da Energia, 1515", 1840000.00, 1420000.00);
-insert_client_legal_entire("SmartHome SA", "MyPaSs456", "2020", "19/07/1996", "90123456000119", "(21) 10012-3456", "Rua das Casas Inteligentes, 1616", 1950000.00, 1600000.00);
-insert_client_legal_entire("EduPlay Ltda", "5PaSs5", "2121", "20/08/2013", "01234567000120", "(31) 20123-4567", "Avenida da Educacao, 1717", 2060000.00, 1730000.00);
-insert_client_legal_entire("TechVision SA", "PaSs000", "2222", "21/09/1998", "12345678000121", "(41) 30234-5678", "Rua da Visao Tecnologica, 1818", 2170000.00, 1950000.00);
-insert_client_legal_entire("LogiTrans Ltda", "6PaSs6", "2323", "22/10/2001", "23456789000122", "(51) 40345-6789", "Estrada da Logistica, 1919", 2280000.00, 2080000.00);
-insert_client_legal_entire("CloudNet SA", "PaSsWoRd001", "2424", "23/11/2008", "34567890000123", "(61) 50456-7890", "Avenida das Nuvens, 2020", 2390000.00, 2210000.00);
-insert_client_legal_entire("SmartAgro Ltda", "7PaSs7", "2525", "24/12/2014", "45678901000124", "(71) 60567-8901", "Rua da Agricultura, 2121", 2400000.00, 2340000.00);
-insert_client_legal_entire("CyberSecure SA", "8PaSs8", "2626", "25/01/1997", "56789012000125", "(81) 70678-9012", "Avenida da Ciberseguranca, 2222", 2510000.00, 2470000.00);
-insert_client_legal_entire("MedTech Ltda", "MyPaSs123", "2727", "26/02/2006", "67890123000126", "(91) 80789-0123", "Rua da Tecnologia Medica, 2323", 2620000.00, 2600000.00);
+insert_client_natural_person("Joao Silva", "SeNhA123", "1234", "01/01/1980", "12345678901", "(11) 91234-5678", "Rua A, 123", 1000.00, 5000.00);
+insert_client_natural_person("Maria Oliveira", "PaSsWoRd456", "5678", "02/02/1990", "23456789012", "(21) 92345-6789", "Avenida B, 456", 2000.00, 10000.00);
+insert_client_natural_person("Carlos Pereira", "AbCdEf789", "9101", "03/03/1975", "34567890123", "(31) 93456-7890", "Praca C, 789", 3000.00, 15000.00);
+insert_client_natural_person("Ana Costa", "XyZaBc123", "1122", "04/04/1985", "45678901234", "(41) 94567-8901", "Rua D, 101", 4000.00, 20000.00);
+insert_client_natural_person("Paulo Santos", "NoPaSsWoRd", "3344", "05/05/1995", "56789012345", "(51) 95678-9012", "Avenida E, 202", 5000.00, 25000.00);
+insert_client_natural_person("Fernanda Lima", "SeNhA321", "5566", "06/06/2000", "67890123456", "(61) 96789-0123", "Estrada F, 303", 6000.00, 30000.00);
+insert_client_natural_person("Lucas Rocha", "MyPaSsWoRd", "7788", "07/07/1987", "78901234567", "(71) 97890-1234", "Rua G, 404", 7000.00, 35000.00);
+insert_client_natural_person("Juliana Almeida", "LoGiN123", "9900", "08/08/1992", "89012345678", "(81) 08901-2345", "Avenida H, 505", 8000.00, 40000.00);
+insert_client_natural_person("Marcos Fernandes", "123PaSs", "1010", "09/09/1983", "90123456789", "(91) 19012-3456", "Rua I, 606", 9000.00, 45000.00);
+insert_client_natural_person("Sofia Castro", "PaSs999", "1111", "10/10/1978", "01234567890", "(92) 29123-4567", "Avenida J, 707", 10000.00, 50000.00);
+insert_client_natural_person("Rafael Moreira", "PaSsWoRd321", "1212", "11/11/1991", "12345678011", "(93) 39234-5678", "Rua K, 808", 11000.00, 55000.00);
+insert_client_natural_person("Larissa Martins", "1PaSs1", "1313", "12/12/1984", "23456789013", "(94) 49345-6789", "Avenida L, 909", 12000.00, 60000.00);
+insert_client_natural_person("Gustavo Barbosa", "SeNhA456", "1414", "13/01/1993", "34567890124", "(95) 59456-7890", "Rua M, 1010", 13000.00, 65000.00);
+insert_client_natural_person("Mariana Ribeiro", "2PaSs2", "1515", "14/02/1986", "45678901235", "(96) 69567-8901", "Praca N, 1111", 14000.00, 70000.00);
+insert_client_natural_person("Fabio Mendes", "MyLoGiN", "1616", "15/03/1979", "56789012346", "(97) 79678-9012", "Avenida O, 1212", 15000.00, 75000.00);
+insert_client_natural_person("Beatriz Carvalho", "3PaSs3", "1717", "16/04/1988", "67890123457", "(98) 89789-0123", "Rua P, 1313", 16000.00, 80000.00);
+insert_client_natural_person("Diego Teixeira", "SenHa789", "1818", "17/05/1990", "78901234568", "(99) 99890-1234", "Avenida Q, 1414", 17000.00, 85000.00);
+insert_client_natural_person("Alice Correia", "4PaSs4", "1919", "18/06/1982", "89012345679", "(11) 09901-2345", "Estrada R, 1515", 18000.00, 90000.00);
+insert_client_natural_person("Rodrigo Nunes", "MyPaSs456", "2020", "19/07/1994", "90123456780", "(21) 10012-3456", "Rua S, 1616", 19000.00, 95000.00);
+insert_client_natural_person("Camila Azevedo", "5PaSs5", "2121", "20/08/1981", "01234567891", "(31) 20123-4567", "Avenida T, 1717", 20000.00, 100000.00);
+insert_client_natural_person("Eduardo Lima", "PaSs000", "2222", "21/09/1989", "12345678912", "(41) 30234-5678", "Rua U, 1818", 21000.00, 105000.00);
+insert_client_natural_person("Aline Souza", "6PaSs6", "2323", "22/10/1992", "23456789014", "(51) 40345-6789", "Estrada V, 1919", 22000.00, 110000.00);
+insert_client_natural_person("Bruno Carvalho", "PaSsWoRd001", "2424", "23/11/1985", "34567890125", "(61) 50456-7890", "Avenida W, 2020", 23000.00, 115000.00);
+insert_client_natural_person("Patricia Gomes", "7PaSs7", "2525", "24/12/1993", "45678901236", "(71) 60567-8901", "Rua X, 2121", 24000.00, 120000.00);
+insert_client_natural_person("Renato Oliveira", "8PaSs8", "2626", "25/01/1987", "56789012347", "(81) 70678-9012", "Avenida Y, 2222", 25000.00, 125000.00);
+insert_client_natural_person("Leticia Rodrigues", "MyPaSs123", "2727", "26/02/1983", "67890123458", "(91) 80789-0123", "Rua Z, 2323", 26000.00, 130000.00);
+insert_client_natural_person("Thiago Martins", "9PaSs9", "2828", "27/03/1991", "78901234569", "(92) 90890-1234", "Avenida AA, 2424", 27000.00, 135000.00);
+insert_client_natural_person("Isabela Alves", "0PaSs0", "2929", "28/04/1984", "89012345680", "(93) 01901-2345", "Rua BB, 2525", 28000.00, 140000.00);
 	}
