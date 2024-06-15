@@ -29,7 +29,7 @@ void transferir_pf(char cnpj[16]){
 		scanf("%f", &quantia);
 		
 		fflush(stdin);
-		printf("Digite sua senha");
+		printf("Digite sua senha: ");
 		scanf("%s", senha);
 		
 		senha_c = request_PJ(cnpj, 1);
@@ -76,7 +76,7 @@ void transferir_pf(char cnpj[16]){
 
 
 void transferir_pj(char cnpj[16]){
-	char tipo[4], cnpj_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cnpj, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20], senha, *senha_c;
+	char tipo[4], cnpj_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cnpj, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20], senha[20], *senha_c;
 	float quantia, saldo, destino_saldo;
 	
 	saldo = atof(p_saldo_c);
@@ -98,9 +98,9 @@ void transferir_pj(char cnpj[16]){
 		fflush(stdin);
 		printf("Quantia a ser enviada: ");
 		scanf("%f", &quantia);
-		
-			fflush(stdin);
-		printf("Digite sua senha");
+
+		fflush(stdin);
+		printf("Digite sua senha: ");
 		scanf("%s", senha);
 		
 		senha_c = request_PJ(cnpj, 1);
