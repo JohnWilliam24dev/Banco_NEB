@@ -5,7 +5,7 @@
 void conta(char cnpj[16]), menu();
 
 void transferir_pf(char cnpj[16]){
-	char tipo[4], cpf_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cpf, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20];
+	char tipo[4], cpf_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cpf, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20], senha[20], *senha_c;
 	float quantia, saldo, destino_saldo;
 	
 	saldo = atof(p_saldo_c);
@@ -28,6 +28,15 @@ void transferir_pf(char cnpj[16]){
 		printf("Quantia a ser enviada: ");
 		scanf("%f", &quantia);
 		
+		fflush(stdin);
+		printf("Digite sua senha");
+		scanf("%s", senha);
+		
+		senha_c = request_PJ(cnpj, 1);
+		
+		if(strcmp(senha,senha_c) != 0) {
+			printf("senha incorreta !\n\n");
+		}
 		
 		if(saldo < quantia){
 			printf("Valor invalido\nTente Novamente\n");
@@ -44,7 +53,7 @@ void transferir_pf(char cnpj[16]){
 			conta(cnpj);
 			fflush(stdin);
 	}
-	} while(saldo < quantia and strcmp(cpf_destino,verifica_cpf ) !=0);
+	} while(saldo < quantia and strcmp(cpf_destino,verifica_cpf ) !=0 and strcmp(senha,senha_c) != 0);
 	
 	fflush(stdin);
 	
@@ -55,6 +64,7 @@ void transferir_pf(char cnpj[16]){
 	
 	p_destino_saldo_c = request_PJ(cpf_destino, 7);
 	destino_saldo = atof(p_destino_saldo_c);
+	destino_saldo = destino_saldo + quantia;
 	
 	sprintf(destino_saldo_c, "%.2f", destino_saldo);
 	edit_PJ(cpf_destino,7 ,destino_saldo_c );
@@ -66,7 +76,7 @@ void transferir_pf(char cnpj[16]){
 
 
 void transferir_pj(char cnpj[16]){
-	char tipo[4], cnpj_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cnpj, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20];
+	char tipo[4], cnpj_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cnpj, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20], senha, *senha_c;
 	float quantia, saldo, destino_saldo;
 	
 	saldo = atof(p_saldo_c);
@@ -89,6 +99,15 @@ void transferir_pj(char cnpj[16]){
 		printf("Quantia a ser enviada: ");
 		scanf("%f", &quantia);
 		
+			fflush(stdin);
+		printf("Digite sua senha");
+		scanf("%s", senha);
+		
+		senha_c = request_PJ(cnpj, 1);
+		
+		if(strcmp(senha,senha_c) != 0) {
+			printf("senha incorreta !\n\n");
+		}
 		
 		if(saldo < quantia){
 			printf("Valor invalido\nTente Novamente\n");
@@ -105,7 +124,7 @@ void transferir_pj(char cnpj[16]){
 			conta(cnpj);
 			fflush(stdin);
 	}
-	} while(saldo < quantia and strcmp(cnpj_destino,verifica_cnpj ) !=0);
+	} while(saldo < quantia and strcmp(cnpj_destino,verifica_cnpj ) !=0 and strcmp(senha,senha_c) != 0);
 	
 	fflush(stdin);
 	
@@ -116,6 +135,7 @@ void transferir_pj(char cnpj[16]){
 	
 	p_destino_saldo_c = request_PJ(cnpj_destino, 7);
 	destino_saldo = atof(p_destino_saldo_c);
+	destino_saldo = destino_saldo + quantia;
 	
 	sprintf(destino_saldo_c, "%.2f", destino_saldo);
 	edit_PJ(cnpj_destino,7 ,destino_saldo_c );
@@ -278,7 +298,7 @@ void cadastro1() {
 }
 
 void entrar(){
-   char cnpj[15], senha[20],*senha_c, senha_tt, opt;
+   char cnpj[15], senha[20],*senha_c, senha_tt, opt = 'n';
 
    
    
@@ -302,9 +322,11 @@ void entrar(){
 		
 		if(strcmp(senha,senha_c) != 0) {
 			printf("senha incorreta !\n\n");
-			printf("Deseja sair ? S/N \n");
-			scanf("%c", &opt);
 		}
+		
+		printf("Deseja sair ? S/N \n");
+		scanf("%c", &opt);
+		
 		if(opt == 'S' or opt == 's'){
 			system("pause");
 			system("cls");
