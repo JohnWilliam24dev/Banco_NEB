@@ -53,7 +53,7 @@ void transferir_pf(char cnpj[16]){
 	edit_PJ(cnpj,7 ,saldo_c);
 	
 	
-	p_destino_saldo_c = request_PJ(cpf_destino, 7);
+	p_destino_saldo_c = request_PF(cpf_destino, 7);
 	destino_saldo = atof(p_destino_saldo_c);
 	
 	sprintf(destino_saldo_c, "%.2f", destino_saldo);
@@ -135,7 +135,7 @@ void conta(char cnpj[16]){
 	
 	system("cls");
 	do{
-	printf("debug %f ",saldo);
+
 		printf("\t\t\tBancoNeb\n");
 		printf("\t{Bem vindo %s }\n\n" ,nome);
 		printf("\t\tSALDO : %s \n\n", saldo_c);
