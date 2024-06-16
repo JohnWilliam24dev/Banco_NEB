@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include "transferenciaBancaria.cpp"
+#include "FAQ.c"
 // DefiniÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o da estrutura Cliente
 typedef struct {
     char nome[50];
@@ -393,7 +394,8 @@ int menu() {
     wprintf(L"Bem-vindo ao Banco NEB!\n");
     wprintf(L"1. Acessar sua conta\n");
     wprintf(L"2. Quero ser cliente\n");
-    wprintf(L"3. Sair do aplicativo\n");
+    wprintf(L"3. Suporte Banco NEB");
+    wprintf(L"4. Sair do aplicativo\n");
 
     scanf("%d", &opcaoInicial);
     fflush(stdin);
@@ -408,10 +410,14 @@ int menu() {
             cadastraCliente();
             break;
         case 3:
+			FAQPF();    
+            break;
+        case 4:
             wprintf(L"Obrigado por usar os servicos do Banco NEB!\n");
             exit(0);
             break;
         default:
+        	
             wprintf(L"Opcao incorreta, por favor tente novamente!\n");
             break;
     }
