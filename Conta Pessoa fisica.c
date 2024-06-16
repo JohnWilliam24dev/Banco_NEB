@@ -7,7 +7,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include "transferenciaBancaria.cpp"
-// DefiniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o da estrutura Cliente
+// DefiniÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o da estrutura Cliente
 typedef struct {
     char nome[50];
     char senha[9];
@@ -45,7 +45,7 @@ int verificaCPF(char * CPF) {
 	}
 	fclose(arquivo);
 
-	return 1; // SE (verificaCPF) = 1, entÃ£o o arquivo PATH "CPF" existe no banco de dados.
+	return 1; // SE (verificaCPF) = 1, entÃƒÂ£o o arquivo PATH "CPF" existe no banco de dados.
 }
 
 
@@ -76,6 +76,7 @@ void deposito(const char *usuarioCpf){
 	double atualSaldo_double;
 	float atualSaldo;
 	char atualSaldo_string[20];
+	char valor_movimentado[20];
 	
 	system("cls");
 	
@@ -87,8 +88,12 @@ void deposito(const char *usuarioCpf){
 	atualSaldo = (float) atualSaldo_double;
 	
 	atualSaldo += adicionarSaldo;
+	
 	sprintf(atualSaldo_string, "%.2f", atualSaldo);
+	sprintf(valor_movimentado, "%.2f", adicionarSaldo);
+	
 	edit_PF(&usuarioCpf[0], 7, &atualSaldo_string[0]);
+	insert_extract_PF(&usuarioCpf[0], &usuarioCpf[0], &valor_movimentado[0], &atualSaldo_string[0]);
 	
 	wprintf("Seu saldo atual e de %f R$", atualSaldo);
 	pausarExecucao();
@@ -115,17 +120,17 @@ void entradaCliente() {
 
     system("cls");
     }while(!vericSenha);
-    // Procurar no banco de dados se a senha ÃƒÆ’Ã‚Â© compatÃƒÆ’Ã‚Â­vel com o CPF, caso erre 3 vezes a conta ÃƒÆ’Ã‚Â© bloqueada
+    // Procurar no banco de dados se a senha ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© compatÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­vel com o CPF, caso erre 3 vezes a conta ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© bloqueada
 
     // Caso o CPF e a senha estejam corretos, mostrar o menu do cliente
     //fazer um DO WHILE para volta para o menu de conta
 	}
 	
-	else //Se CPF nÃ£o constar no banco de dados;
+	else //Se CPF nÃƒÂ£o constar no banco de dados;
 	{
-		printf("CPF NÃƒO CONSTA COMO USUARIO!\n");
+		printf("CPF NÃƒÆ’O CONSTA COMO USUARIO!\n");
 		pausarExecucao();
-		return 0; //encerra execuÃ§Ã£o voltando pro menu inicial;
+		return 0; //encerra execuÃƒÂ§ÃƒÂ£o voltando pro menu inicial;
 	}
 	DASHBOARD:
 		
@@ -154,7 +159,8 @@ void entradaCliente() {
             	goto DASHBOARD;
             	break;
        	 	case 3:
-            // Verificar extrato
+            	system("cls");
+            	printExtrato_PF(&usuarioCpf[0]);
             	system("cls");
             	goto DASHBOARD;
             	break;
@@ -177,13 +183,13 @@ void entradaCliente() {
             	system("pause");
             	system("cls");
             	break;
-    	}while(opcaoCliente)!=6);
-    }
+        }
+    }while(opcaoCliente!=6);
 }
 
 
 bool vericPin(const char *pin){
-	if (strlen(senha) =4) {
+	if (strlen(pin) == 4) {
         printf("Formato incorreto! O PIN deve ter pelo menos 4 digitos. Por favor, tente novamente.\n");
         return false;
     }
@@ -364,14 +370,14 @@ void cadastraCliente() {
     system("cls");
     
     do{
-    wprintf(L"Estamos quase acabando! Por favor crie o seu PIN.\n O seu PIN é utilizado para acessar algumas funções de sua conta.");
-    wprintf(L"O seu PIN é utilizado para acessar algumas funções de sua conta\n");
+    wprintf(L"Estamos quase acabando! Por favor crie o seu PIN.\n O seu PIN Ã© utilizado para acessar algumas funÃ§Ãµes de sua conta.");
+    wprintf(L"O seu PIN Ã© utilizado para acessar algumas funÃ§Ãµes de sua conta\n");
     wprintf(L"O seu PIN deve conter 4 digitos");
     scanf("%5s", cliente.pin);
     vericPin(cliente.pin);
     fflush(stdin);
     system("cls");
-	}while(!vericPin(cliente.pin);
+	}while(!vericPin(cliente.pin));
     
     
 
