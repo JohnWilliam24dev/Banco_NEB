@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include"Conta Pessoa fisica.c"
+
 
 void clearScreen() {
     printf("\nPressione Enter para continuar...");
     system("pause"); // Pausa o programa e aguarda o usuário pressionar Enter
-    system("cls || clear"); // Limpa a tela (compatível com Windows e Linux)
+    system("cls "); // Limpa a tela (compatível com Windows e Linux)
 }
 
 void FAQPF() {
@@ -59,5 +59,7 @@ void FAQPF() {
         }
     } while (choice != 0);
 }
-
+int main(){
+	FAQPF();
+}
 

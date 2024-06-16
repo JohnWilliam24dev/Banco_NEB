@@ -157,6 +157,7 @@ char* request_PF(char CPF[],int option){
     strcat(path,CPF);
     char ext[15]={".txt"};
     strcat(path,ext);
+    char comp[3]={"\0"};
     
     char *chPF = (char *) malloc(sizeof(char)*30);
 
@@ -172,6 +173,7 @@ char* request_PF(char CPF[],int option){
 
     fclose(filePF);
     clearchar(chPF);
+    strcat(chPF,comp);
     return chPF;
 }
 
@@ -181,6 +183,7 @@ char* request_PJ(char CNPJ[],int option){
     strcat(path,CNPJ);
     char ext[15]={".txt"};
     strcat(path,ext);
+    char comp[3]={"\0"};
 
     char *chPJ = (char *) malloc(sizeof(char)*30);
 
@@ -196,6 +199,7 @@ char* request_PJ(char CNPJ[],int option){
     
     fclose(filePJ);
     clearchar(chPJ);
+    strcat(chPJ,comp);
     return chPJ;
 
 }

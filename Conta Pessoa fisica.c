@@ -413,7 +413,7 @@ int menu() {
             cadastraCliente();
             break;
         case 3:
-			FAQPF();    
+			//FAQPF();    
             break;
         case 4:
             wprintf(L"Obrigado por usar os servicos do Banco NEB!\n");
