@@ -7,7 +7,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include "transferenciaBancaria.cpp"
-#include "FAQ.c"
+
 // DefiniÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o da estrutura Cliente
 typedef struct {
 	
@@ -23,11 +23,12 @@ typedef struct {
     char profissao[50];
 } Cliente;
 
-
-void recuperarSenha(){
-	wprintf(L"Por favor, informe seu CPF");
-	scanf
+/* Fazer uma função para recuperar a senha
+void recupSenha(){
+	printf("Por favor, informe seu CPF:");
+	scanf()
 }
+*/
 int verificaCPF(char * CPF) {
 	char cpfBuscado[13];
 	char *ptr = CPF;
