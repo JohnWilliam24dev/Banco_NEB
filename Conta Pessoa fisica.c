@@ -130,11 +130,11 @@ void entradaCliente() {
 	DASHBOARD:
     wprintf(L"Bem-vindo(a)! Como podemos ajudar-lo?\n");
     wprintf(L"1. Verificar saldo\n");
-    wprintf(L"2. TransferÃƒÆ’Ã‚Âªncia\n");
+    wprintf(L"2. Transferencia\n");
     wprintf(L"3. Verificar extrato\n");
-    wprintf(L"4. Fazer um depÃƒÆ’Ã‚Â³sito\n");
-    wprintf(L"5. Alterar informaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes pessoais\n");
-    wprintf(L"6. Finalizar sessÃƒÆ’Ã‚Â£o\n");
+    wprintf(L"4. Fazer um deposito\n");
+    wprintf(L"5. Alterar informacoes pessoais\n");
+    wprintf(L"6. Finalizar sessao\n");
     scanf("%d", &opcaoCliente);
     fflush(stdin);
 
@@ -166,16 +166,16 @@ void entradaCliente() {
             goto DASHBOARD;
             break;
         case 6:
-            // Alterar informaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes pessoais
+            editinfo_clientPF(usuarioCpf);
             system("cls");
             goto DASHBOARD;
             break;
         case 7:
-            wprintf(L"Obrigado por usar os serviÃƒÆ’Ã‚Â§os do Banco NEB!\n");
+            wprintf(L"Obrigado por usar os servicos do Banco NEB!\n");
             exit(0);
             break;
         default:
-            wprintf(L"OpÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o incorreta, por favor tente novamente!\n");
+            wprintf(L"Opcao incorreta, por favor tente novamente!\n");
             system("pause");
             system("cls");
             break;

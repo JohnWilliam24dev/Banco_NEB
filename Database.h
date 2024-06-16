@@ -358,25 +358,71 @@ void listclientPJ(){
 	
 }
 
-void extratoPF(char CPFuser[],char CPFdest[],char saldo[]){
-//-> PESSOA FÍSICA
-char pathPF[100] = "./PF/extrato";
-strcat(pathPF, CPFuser);
-char ext[15] = ".txt";
-strcat(pathPF, ext);
-FILE *arquivo;
-arquivo = fopen(pathPF, "w");
-
-
-
-//REGION VARIABLES
-
-//LOGIC
-FILE *file=fopen(pathPF,"a");
-	fprintf(file,"Tipo: Transferencia para Pessoa Fisica\n");
-	fprintf(file,"Destino: %s\n",CPFdest);
-	fprintf(file,"Saldo Gasto: %s\n",saldo);
-	
+void editinfo_clientPJ(char cnpj[]){
+	innit_function:
+	system("cls");
+	char mod[200];
+	int index;
+		printf("0 %s\n",request_PJ(cnpj,0));
+		printf("1 %s\n",request_PJ(cnpj,1));
+		printf("3 %s\n",request_PJ(cnpj,3));
+		printf("5 %s\n",request_PJ(cnpj,5));
+		printf("6 %s\n\n",request_PJ(cnpj,6));
+	printf("Digite o indice que deseja modificar: ");
+	scanf("%i",&index);
+	fflush(stdin);
+	if(index>6){
+		
+		printf("Opcao invalida, por favor tente novamente.");
+		system("pause");
+		index=NULL;
+		goto innit_function;
+		
+	}else if(index==4){
+		printf("Opcao invalida, por favor tente novamente.");
+		system("pause");
+		index=NULL;
+		goto innit_function;
+	}else{
+			
+	printf("Digite a modificacao que deseja fazer: ");
+	scanf("%s",mod);
+	edit_PJ(cnpj,index,mod);
+	printf("A alteracao foi feita com sucesso!\n");
+	system("pause");
+	}
 }
-
-
+	void editinfo_clientPF(char cpf[]){
+	innit_function:
+	system("cls");
+	char mod[200];
+	int index;
+		printf("0 %s\n",request_PF(cpf,0));
+		printf("1 %s\n",request_PF(cpf,1));
+		printf("3 %s\n",request_PF(cpf,3));
+		printf("5 %s\n",request_PF(cpf,5));
+		printf("6 %s\n\n",request_PF(cpf,6));
+	printf("Digite o indice que deseja modificar: ");
+	scanf("%i",&index);
+	fflush(stdin);
+	if(index>6){
+		
+		printf("Opcao invalida, por favor tente novamente.");
+		system("pause");
+		index=NULL;
+		goto innit_function;
+		
+	}else if(index==4){
+		printf("Opcao invalida, por favor tente novamente.");
+		system("pause");
+		index=NULL;
+		goto innit_function;
+	}else{
+			
+	printf("Digite a modificacao que deseja fazer: ");
+	scanf("%s",mod);
+	edit_PF(cpf,index,mod);
+	printf("A alteracao foi feita com sucesso!\n");
+	system("pause");
+	}
+}
