@@ -24,7 +24,7 @@ void pausarExecucao(){
 	fflush(stdin);
 	system("cls");
 }
-/* AS FUNÃ‡Ã•ES COMENTADAS ABAIXO POSSIVELMENTE SERÃƒO APAGADAS;
+/* AS FUNÃƒâ€¡Ãƒâ€¢ES COMENTADAS ABAIXO POSSIVELMENTE SERÃƒÆ’O APAGADAS;
 
 int menuTransferencia() {
 	char digitoOperacao;
@@ -36,7 +36,7 @@ int menuTransferencia() {
 	return digitoOperacao;
 }
 
-void processarOperacao(int digito) { //"digito" ÃƒÂ© uma variÃƒÂ¡vel retorno obtida por menuTransferencia;
+void processarOperacao(int digito) { //"digito" ÃƒÆ’Ã‚Â© uma variÃƒÆ’Ã‚Â¡vel retorno obtida por menuTransferencia;
 	switch(digito)
 	{
 		case 0:
@@ -99,10 +99,10 @@ void transferencia(char *CPF_usuarioPF) {
 }
 
 
-/*OBS 1: A funÃƒÂ§ÃƒÂ£o buscarCPF retorna 1 se o CPF existir;
-retorna 0 se o CPF ÃƒÂ© inexistente;
-OBS 2: A funÃƒÂ§ÃƒÂ£o "retorna" como parÃƒÂ¢metro o saldo
-da Conta BeneficiÃƒÂ¡ria;*/
+/*OBS 1: A funÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o buscarCPF retorna 1 se o CPF existir;
+retorna 0 se o CPF ÃƒÆ’Ã‚Â© inexistente;
+OBS 2: A funÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o "retorna" como parÃƒÆ’Ã‚Â¢metro o saldo
+da Conta BeneficiÃƒÆ’Ã‚Â¡ria;*/
 
 int buscarCPF(char * CPF, float saldoBeneficiario) {
 	char cpfBuscado[13];
@@ -177,14 +177,14 @@ int transferenciaPF() {
 		printf("PIN DA CONTA: ");
 		gets(PIN_usuario);
 		fflush(stdin);
-		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provÃƒÂ©m de funÃƒÂ§ÃƒÂµes anteriores;
+		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provÃƒÆ’Ã‚Â©m de funÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes anteriores;
 		
 		if(pinCorreto) 
 		{
 			int saldoValido = verificaSaldo(&CPF_usuario[0], valor);
 			if(saldoValido)
 			{
-				//ModificaÃƒÂ§ÃƒÂµes no saldo do USUÃƒÂRIO;
+				//ModificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes no saldo do USUÃƒÆ’Ã‚ÂRIO;
 				double saldo_usuario_double;
 				float saldo_usuario;
 				
@@ -198,7 +198,7 @@ int transferenciaPF() {
 				edit_PF(&CPF_usuario[0], 7, &novo_saldo_usuario[0]);
 				
 				
-				//ModificaÃƒÂ§ÃƒÂµes no saldo do BENEFICIÃƒÂRIO;
+				//ModificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes no saldo do BENEFICIÃƒÆ’Ã‚ÂRIO;
 				double saldo_beneficiario_double;
 				float saldo_beneficiario;
 				
@@ -294,14 +294,14 @@ int transferenciaPJ() {
 		printf("PIN DA CONTA: ");
 		gets(PIN_usuario);
 		fflush(stdin);
-		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provÃƒÆ’Ã‚Â©m de funÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes anteriores;
+		int pinCorreto = verificaPIN(&PIN_usuario[0], &CPF_usuario[0]); //CPF_usuario provÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©m de funÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âµes anteriores;
 		
 		if(pinCorreto) 
 		{
 			int saldoValido = verificaSaldo(&CPF_usuario[0], valor);
 			if(saldoValido)
 			{
-				//ModificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes no saldo do USUÃƒÆ’Ã‚ÂRIO;
+				//ModificaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âµes no saldo do USUÃƒÆ’Ã†â€™Ãƒâ€šÃ‚ÂRIO;
 				double saldo_usuario_double;
 				float saldo_usuario;
 				
@@ -315,7 +315,7 @@ int transferenciaPJ() {
 				edit_PF(&CPF_usuario[0], 7, &novo_saldo_usuario[0]);
 				
 				
-				//ModificaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Âµes no saldo do BENEFICIÃƒÆ’Ã‚ÂRIO;
+				//ModificaÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âµes no saldo do BENEFICIÃƒÆ’Ã†â€™Ãƒâ€šÃ‚ÂRIO;
 				double saldo_beneficiario_double;
 				float saldo_beneficiario;
 				
@@ -377,18 +377,17 @@ int printExtrato_PF(char *CPF_user) {
 		printf("EXTRATO VAZIO!\n");
 		pausarExecucao();
 		return 0;
-	}
-		
+	}	
+	
+	char CPF_CNPJ_destino[15];
+	char nome_conta_destino[100];
+	char saldo_atual[50];
+	char valor_movimentado[50];
+	int count; //variÃ¡vel utilizada para saber se o DESTINO da trasnferÃªncia/depÃ³sito Ã© um CPF ou CNPJ;
+	
 	printf("\tEXTRATO DE TRANSFERENCIAS E DEPOSITOS\n\n");
 	while(fscanf(arquivo, "%s %s %s", CPF_CNPJ_destino, valor_movimentado, saldo_atual)==3)
 	{
-	
-		char CPF_CNPJ_destino[15];
-		char nome_conta_destino[100];
-		char saldo_atual[50];
-		char valor_movimentado[50];
-		int count; //variável utilizada para saber se o DESTINO da trasnferência/depósito é um CPF ou CNPJ;
-			
 		count = strlen(CPF_CNPJ_destino);
 		
 		if(count == 12)
@@ -429,16 +428,15 @@ int printExtrato_PJ(char *CNPJ_user) {
 		return 0;
 	}
 		
-	printf("\tEXTRATO DE TRANSFERENCIAS E DEPOSITOS\n\n");
-	while(fscanf(arquivo, "%s %s %s", CPF_CNPJ_destino, valor_movimentado, saldo_atual)==3)
-	{
-	
 		char CPF_CNPJ_destino[15];
 		char nome_conta_destino[100];
 		char saldo_atual[50];
 		char valor_movimentado[50];
-		int count; //variável utilizada para saber se o DESTINO da trasnferência/depósito é um CPF ou CNPJ;
+		int count; //variÃ¡vel utilizada para saber se o DESTINO da trasnferÃªncia/depÃ³sito Ã© um CPF ou CNPJ;
 			
+	printf("\tEXTRATO DE TRANSFERENCIAS E DEPOSITOS\n\n");
+	while(fscanf(arquivo, "%s %s %s", CPF_CNPJ_destino, valor_movimentado, saldo_atual)==3)
+	{
 		count = strlen(CPF_CNPJ_destino);
 		
 		if(count == 12)
