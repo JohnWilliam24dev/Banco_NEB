@@ -13,6 +13,8 @@ int verificaSaldo(char *CPF_user, float valorTransferido);
 int transferenciaPF();
 int buscarCNPJ(char *CNPJ, float saldoBeneficiario);
 int transferenciaPJ();
+int printExtrato_PF(char *CPF_user);
+int printExtrato_PJ(char *CNPJ_user)
 
 char CPF_usuario[13]; //STRING global;
 
@@ -360,4 +362,104 @@ int transferenciaPJ() {
 		fflush(stdin);
 		return 0;
 	}
+}
+
+int printExtrato_PF(char *CPF_user) {
+	char path[100] = "./PF/extratos";
+	strcat(path, CPF_user);
+	char ext[15] = ".txt";
+	strcat(path, ext);
+	
+	FILE *arquivo;
+	arquivo = fopen(path, "r");
+	
+	if(arquivo == NULL)
+	{
+		printf("EXTRATO VAZIO!\n");
+		pausarExecucao();
+		return 0;
+	}
+		
+	printf("\tEXTRATO DE TRANSFERENCIAS E DEPOSITOS\n\n");
+	while(fscanf(arquivo, "%s %s %s", CPF_CNPJ_destino, valor_movimentado, saldo_atual)==3)
+	{
+	
+		char CPF_CNPJ_destino[15];
+		char nome_conta_destino[100];
+		char saldo_atual[50];
+		char valor_movimentado[50];
+		int count; //variável utilizada para saber se o DESTINO da trasnferência/depósito é um CPF ou CNPJ;
+			
+		count = strlen(CPF_CNPJ_destino);
+		
+		if(count == 12)
+		{
+			strcpy(nome_conta_destino, request_PF(CPF_CNPJ_destino, 0));
+		}
+		else
+		{
+			strcpy(nome_conta_destino, request_PJ(CPF_CNPJ_destino, 0));
+		}
+		
+		printf("NOME CONTA DESTINO: %s\n", nome_conta_destino);
+		printf("VALOR MOVIMENTADO: R$ %s\n", valor_movimentado);
+		printf("SALDO ATUAL: R$ %s\n\n", saldo_atual);
+	}
+	
+	fclose(arquivo);
+	printf("PRESSIONE QUALQUER TECLA PARA SAIR DO EXTRATO");
+	getchar();
+	fflush(stdin);
+	system("cls");
+	return 1;
+}
+
+int printExtrato_PJ(char *CNPJ_user) {
+	char path[100] = "./PJ/extratos";
+	strcat(path, CNPJ_user);
+	char ext[15] = ".txt";
+	strcat(path, ext);
+	
+	FILE *arquivo;
+	arquivo = fopen(path, "r");
+	
+	if(arquivo == NULL)
+	{
+		printf("EXTRATO VAZIO!\n");
+		pausarExecucao();
+		return 0;
+	}
+		
+	printf("\tEXTRATO DE TRANSFERENCIAS E DEPOSITOS\n\n");
+	while(fscanf(arquivo, "%s %s %s", CPF_CNPJ_destino, valor_movimentado, saldo_atual)==3)
+	{
+	
+		char CPF_CNPJ_destino[15];
+		char nome_conta_destino[100];
+		char saldo_atual[50];
+		char valor_movimentado[50];
+		int count; //variável utilizada para saber se o DESTINO da trasnferência/depósito é um CPF ou CNPJ;
+			
+		count = strlen(CPF_CNPJ_destino);
+		
+		if(count == 12)
+		{
+			strcpy(nome_conta_destino, request_PF(CPF_CNPJ_destino, 0));
+		}
+		else
+		{
+			strcpy(nome_conta_destino, request_PJ(CPF_CNPJ_destino, 0));
+		}
+		
+		printf("NOME CONTA DESTINO: %s\n", nome_conta_destino);
+		printf("VALOR MOVIMENTADO: R$ %s\n", valor_movimentado);
+		printf("SALDO ATUAL: R$ %s\n\n", saldo_atual);
+	}
+	
+	fclose(arquivo);
+	printf("PRESSIONE QUALQUER TECLA PARA SAIR DO EXTRATO");
+	getchar();
+	fflush(stdin);
+	system("cls");
+	return 1;
 }
