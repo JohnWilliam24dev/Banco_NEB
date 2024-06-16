@@ -128,57 +128,61 @@ void entradaCliente() {
 		return 0; //encerra execuÃ§Ã£o voltando pro menu inicial;
 	}
 	DASHBOARD:
-    wprintf(L"Bem-vindo(a)! Como podemos ajudar-lo?\n");
-    wprintf(L"1. Verificar saldo\n");
-    wprintf(L"2. Transferencia\n");
-    wprintf(L"3. Verificar extrato\n");
-    wprintf(L"4. Fazer um deposito\n");
-    wprintf(L"5. Alterar informacoes pessoais\n");
-    wprintf(L"6. Finalizar sessao\n");
-    scanf("%d", &opcaoCliente);
-    fflush(stdin);
-
-    switch (opcaoCliente) {
-        case 1:
-            vericSaldo(usuarioCpf); 
-            system("cls");
-            goto DASHBOARD;
-            break;
-        case 2:
-        	system("cls");
-            transferencia(&usuarioCpf[0]);
-            system("cls");
-            goto DASHBOARD;
-            break;
-        case 3:
+		
+	do{
+	
+    	wprintf(L"Bem-vindo(a)! Como podemos ajudar-lo?\n");
+    	wprintf(L"1. Verificar saldo\n");
+    	wprintf(L"2. Transferencia\n");
+    	wprintf(L"3. Verificar extrato\n");
+    	wprintf(L"4. Fazer um deposito\n");
+    	wprintf(L"5. Alterar informacoes pessoais\n");
+    	wprintf(L"6. Finalizar sessao\n");
+    	scanf("%d", &opcaoCliente);
+    	fflush(stdin);
+    
+    	switch (opcaoCliente) {
+        	case 1:
+            	vericSaldo(usuarioCpf); 
+            	system("cls");
+            	goto DASHBOARD;
+            	break;
+        	case 2:
+        		system("cls");
+            	transferencia(&usuarioCpf[0]);
+            	system("cls");
+            	goto DASHBOARD;
+            	break;
+       	 	case 3:
             // Verificar extrato
-            system("cls");
-            goto DASHBOARD;
-            break;
-        case 4:
+            	system("cls");
+            	goto DASHBOARD;
+            	break;
+        	case 4:
             // Solicitar emprÃƒÆ’Ã‚Â©stimo
-            system("cls");
-            goto DASHBOARD;
-            break;
-        case 5:
-            deposito(usuarioCpf);
-            system("cls");
-            goto DASHBOARD;
-            break;
-        case 6:
-            editinfo_clientPF(usuarioCpf);
-            system("cls");
-            goto DASHBOARD;
-            break;
-        case 7:
-            wprintf(L"Obrigado por usar os servicos do Banco NEB!\n");
-            exit(0);
-            break;
-        default:
-            wprintf(L"Opcao incorreta, por favor tente novamente!\n");
-            system("pause");
-            system("cls");
-            break;
+            	system("cls");
+            	goto DASHBOARD;
+            	break;
+        	case 5:
+            	deposito(usuarioCpf);
+            	system("cls");
+            	goto DASHBOARD;
+            	break;
+        	case 6:
+            	editinfo_clientPF(usuarioCpf);
+            	system("cls");
+            	goto DASHBOARD;
+            	break;
+        	case 7:
+            	wprintf(L"Obrigado por usar os servicos do Banco NEB!\n");
+            	exit(0);
+            	break;
+        	default:
+            	wprintf(L"Opcao incorreta, por favor tente novamente!\n");
+            	system("pause");
+            	system("cls");
+            	break;
+    	}while(opcaoCliente)1=7);
     }
 }
 
