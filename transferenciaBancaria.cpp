@@ -15,6 +15,10 @@ int buscarCNPJ(char *CNPJ, float saldoBeneficiario);
 int transferenciaPJ();
 int printExtrato_PF(char *CPF_user);
 int printExtrato_PJ(char *CNPJ_user);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 char CPF_usuario[13]; //STRING global;
 
 

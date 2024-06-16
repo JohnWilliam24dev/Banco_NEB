@@ -458,4 +458,31 @@ void insert_extract_PJ(char *CNPJ_user, char *CPF_CNPJ_dest, char *valor_movimen
 	
 	fclose(arquivo);
 }
-
+void del_PF(char CPF[]){
+	char path[100]="./PF/userPF";
+    strcat(path,CPF);
+    char ext[15]={".txt"};
+    strcat(path,ext);
+    
+    int verificador;
+    verificador=remove(path);
+    if(verificador == 0) {
+      printf("deletado");
+   } else {
+      printf("nao deletado");
+   }
+}
+void del_PJ(char CNPJ[]){
+	char path[100]="./PJ/userPJ";
+    strcat(path,CNPJ);
+    char ext[15]={".txt"};
+    strcat(path,ext);
+    
+    int verificador;
+    verificador=remove(path);
+    if(verificador == 0) {
+      printf("deletado");
+   } else {
+      printf("nao deletado");
+   }
+}
