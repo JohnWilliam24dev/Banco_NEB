@@ -50,9 +50,6 @@ int verificaCPF(char * CPF) {
 }
 
 
-
-
-
 bool vericSenha(const char *usuarioSenha, const char *usuarioCpf){
 	if(request_PF(usuarioCpf,1)==usuarioSenha){
 		return 1;
@@ -394,7 +391,7 @@ int menu() {
     wprintf(L"Bem-vindo ao Banco NEB!\n");
     wprintf(L"1. Acessar sua conta\n");
     wprintf(L"2. Quero ser cliente\n");
-    wprintf(L"3. Suporte Banco NEB");
+    wprintf(L"3. Suporte Banco NEB\n");
     wprintf(L"4. Sair do aplicativo\n");
 
     scanf("%d", &opcaoInicial);
