@@ -11,7 +11,7 @@
 typedef struct {
     char nome[50];
     char senha[9];
-    int pin;
+    char pin;
     char cpf[13];
     float credito;
     char telefone[14];
@@ -159,21 +159,16 @@ void entradaCliente() {
             	goto DASHBOARD;
             	break;
         	case 4:
-            // Solicitar emprÃƒÆ’Ã‚Â©stimo
-            	system("cls");
-            	goto DASHBOARD;
-            	break;
-        	case 5:
             	deposito(usuarioCpf);
             	system("cls");
             	goto DASHBOARD;
             	break;
-        	case 6:
+        	case 5:
             	editinfo_clientPF(usuarioCpf);
             	system("cls");
             	goto DASHBOARD;
             	break;
-        	case 7:
+        	case 6:
             	wprintf(L"Obrigado por usar os servicos do Banco NEB!\n");
             	exit(0);
             	break;
@@ -182,16 +177,34 @@ void entradaCliente() {
             	system("pause");
             	system("cls");
             	break;
-    	}while(opcaoCliente)1=7);
+    	}while(opcaoCliente)!=6);
     }
 }
 
+
+bool vericPin(const char *pin){
+	if (strlen(senha) =4) {
+        printf("Formato incorreto! O PIN deve ter pelo menos 4 digitos. Por favor, tente novamente.\n");
+        return false;
+    }
+    
+    for (int i = 0; i < 4; i++) {
+        if (!isdigit(pin[i])) {
+            printf("Numero de PIN invalido, o mesmo deve conter apenas digitos\n");
+            fflush(stdin);
+            getchar();
+            system("cls");
+            return false;
+        }
+    }
+    return true;
+}
 
 bool verificarSenha(const char *senha) {
     bool temMinuscula = false, temMaiuscula = false, temNumero = false;
 
     // Verifica se a senha possui pelo menos 8 caracteres
-    if (strlen(senha) < 8) {
+    if (strlen(senha) <= 8) {
         printf("Formato incorreto! A senha deve ter pelo menos 8 caracteres. Por favor, tente novamente.\n");
         return false;
     }
@@ -342,20 +355,31 @@ void cadastraCliente() {
 
     do {
         wprintf(L"Agora vamos criar a sua senha!\n");
-        wprintf(L"Por favor, crie uma senha com 8 caracteres que contenham numeros, letras e caracteres.\n");
+        wprintf(L"Por favor, crie uma senha com no minimo 8 caracteres que contenham numeros, letras e caracteres.\n");
         scanf("%8s", cliente.senha);
         fflush(stdin);
         system("cls");
     } while (!verificarSenha(cliente.senha));
 
     system("cls");
+    
+    do{
+    wprintf(L"Estamos quase acabando! Por favor crie o seu PIN.\n O seu PIN é utilizado para acessar algumas funções de sua conta.");
+    wprintf(L"O seu PIN é utilizado para acessar algumas funções de sua conta\n");
+    wprintf(L"O seu PIN deve conter 4 digitos");
+    scanf("%5s", cliente.pin);
+    vericPin(cliente.pin);
+    fflush(stdin);
+    system("cls");
+	}while(!vericPin(cliente.pin);
+    
+    
 
     wprintf(L"Conta criada com sucesso! Bem-vindo a familia NEB!\n");
     wprintf(L"Agora voce ja pode acessar a sua conta atraves do login!\n");
     getchar();
     system("cls");
 
-    cliente.pin=0; 
     cliente.saldo=0;
     cliente.credito=0;
 
