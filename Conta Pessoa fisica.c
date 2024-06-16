@@ -10,6 +10,7 @@
 #include "FAQ.c"
 // DefiniÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o da estrutura Cliente
 typedef struct {
+	
     char nome[50];
     char senha[9];
     char pin [5];
@@ -22,7 +23,11 @@ typedef struct {
     char profissao[50];
 } Cliente;
 
-//verificaCPF --> Buscar CPF no banco de dados;
+
+void recuperarSenha(){
+	wprintf(L"Por favor, informe seu CPF");
+	scanf
+}
 int verificaCPF(char * CPF) {
 	char cpfBuscado[13];
 	char *ptr = CPF;
