@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include"Conta Pessoa fisica.c"
 
 void clearScreen() {
     printf("\nPressione Enter para continuar...");
@@ -43,7 +42,8 @@ void FAQPF() {
                 clearScreen();
                 break;
             case 5:
-                //recuperarSenha();
+                printf("\n Para recuperar a senha acesse a opçao Esqueci a senha, No menu de entrada.\n");
+                clearScreen();
                 break;
             case 6:
                 printf("\nPara contatar o suporte, envie um email para suporte@banco.com ou ligue para 0800-123-456.\n");
