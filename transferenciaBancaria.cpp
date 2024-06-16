@@ -397,7 +397,7 @@ int printExtrato_PF(char *CPF_user) {
 	{
 		count = strlen(CPF_CNPJ_destino);
 		
-		if(count == 12)
+		if(count == 11)
 		{
 			strcpy(nome_conta_destino, request_PF(CPF_CNPJ_destino, 0));
 		}
@@ -446,7 +446,7 @@ int printExtrato_PJ(char *CNPJ_user) {
 	{
 		count = strlen(CPF_CNPJ_destino);
 		
-		if(count == 12)
+		if(count == 11)
 		{
 			strcpy(nome_conta_destino, request_PF(CPF_CNPJ_destino, 0));
 		}
