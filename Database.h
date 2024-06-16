@@ -426,3 +426,36 @@ void editinfo_clientPJ(char cnpj[]){
 	system("pause");
 	}
 }
+
+void insert_extract_PF(char *CPF_user, char *CPF_CNPJ_dest, char *valor_movimentado, char *saldo_atual) {
+	char path[100] = "./PF/extratos";
+	strcat(path, CPF_user);
+	char ext[15] = ".txt";
+	strcat(path, ext);
+	
+	FILE *arquivo;
+	arquivo = fopen(path, "a+");
+	
+	fprintf(arquivo, "%s\n", CPF_CNPJ_dest);
+	fprintf(arquivo, "%s\n", valor_movimentado);
+	fprintf(arquivo, "%s\n", saldo_atual);
+	
+	fclose(arquivo);
+}
+
+void insert_extract_PJ(char *CNPJ_user, char *CPF_CNPJ_dest, char *valor_movimentado, char *saldo_atual) {
+	char path[100] = "./PJ/extratos";
+	strcat(path, CNPJ_user);
+	char ext[15] = ".txt";
+	strcat(path, ext);
+	
+	FILE *arquivo;
+	arquivo = fopen(path, "a+");
+	
+	fprintf(arquivo, "%s\n", CPF_CNPJ_dest);
+	fprintf(arquivo, "%s\n", valor_movimentado);
+	fprintf(arquivo, "%s\n", saldo_atual);
+	
+	fclose(arquivo);
+}
+
