@@ -11,7 +11,7 @@
 typedef struct {
     char nome[50];
     char senha[9];
-    char pin;
+    char pin [5];
     char cpf[13];
     float credito;
     char telefone[14];
@@ -183,50 +183,46 @@ void entradaCliente() {
             	system("pause");
             	system("cls");
             	break;
+
         }
     }while(opcaoCliente!=6);
 }
 
+
+
 bool vericPin(const char *pin) {
-    
     if (strlen(pin) != 4) {
-        printf("Formato incorreto! O PIN deve ter exatamente 4 digitos. Por favor, tente novamente.\n");
+        printf("O PIN deve ter 4 dígitos. Por favor, tente novamente.\n");
         return false;
     }
-
     for (int i = 0; i < 4; i++) {
         if (!isdigit(pin[i])) {
-            printf("Numero de PIN invalido, o mesmo deve conter apenas digitos\n");
+            printf("PIN inválido, deve conter apenas dígitos\n");
             return false;
         }
     }
-    
     return true;
 }
 
 bool verificarSenha(const char *senha) {
     bool temMinuscula = false, temMaiuscula = false, temNumero = false;
 
-    // Verifica se a senha possui pelo menos 8 caracteres
-    if (strlen(senha) <= 8) {
-        printf("Formato incorreto! A senha deve ter pelo menos 8 caracteres. Por favor, tente novamente.\n");
+    if (strlen(senha) < 8) {
+        printf("A senha deve ter pelo menos 8 caracteres. Por favor, tente novamente.\n");
         return false;
     }
 
-    // Percorre os caracteres da senha
     for (int cont = 0; cont < strlen(senha); cont++) {
         if (islower(senha[cont])) temMinuscula = true;
         if (isupper(senha[cont])) temMaiuscula = true;
         if (isdigit(senha[cont])) temNumero = true;
     }
 
-    // Verifica se possui pelo menos um de cada tipo de caractere
     if (temMinuscula && temMaiuscula && temNumero) {
         return true;
     } else {
-        printf("A senha deve conter pelo menos uma letra minuscula, uma letra maiuscula e um numero.\n");
+        printf("A senha deve conter pelo menos uma letra minúscula, uma letra maiúscula e um número.\n");
         getchar();
-        system("cls");
         return false;
     }
 }
@@ -368,11 +364,11 @@ void cadastraCliente() {
     system("cls");
     
     do{
-    wprintf(L"Estamos quase acabando! Por favor crie o seu PIN.\n O seu PIN Ã© utilizado para acessar algumas funÃ§Ãµes de sua conta.");
-    wprintf(L"O seu PIN Ã© utilizado para acessar algumas funÃ§Ãµes de sua conta\n");
-    wprintf(L"O seu PIN deve conter 4 digitos");
-    scanf("%5s", cliente.pin);
-    vericPin(cliente.pin);
+    wprintf(L"Estamos quase acabando! Por favor crie o seu PIN.\n O seu PIN é utilizado para acessar algumas funções de sua conta.");
+    wprintf(L"O seu PIN é utilizado para acessar algumas funções de sua conta\n");
+    wprintf(L"O seu PIN deve conter 4 digitos\n");
+
+    scanf("%4s", cliente.pin);
     fflush(stdin);
     system("cls");
 	}while(!vericPin(cliente.pin));
