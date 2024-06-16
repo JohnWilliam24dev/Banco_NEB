@@ -6,7 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdbool.h>
-#include "transferenciaBancaria_PF.cpp"
+#include "transferenciaBancaria.cpp"
 // DefiniÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o da estrutura Cliente
 typedef struct {
     char nome[50];
