@@ -187,22 +187,20 @@ void entradaCliente() {
     }while(opcaoCliente!=6);
 }
 
-
-bool vericPin(const char *pin){
-	if (strlen(pin) == 4) {
-        printf("Formato incorreto! O PIN deve ter pelo menos 4 digitos. Por favor, tente novamente.\n");
+bool vericPin(const char *pin) {
+    
+    if (strlen(pin) != 4) {
+        printf("Formato incorreto! O PIN deve ter exatamente 4 digitos. Por favor, tente novamente.\n");
         return false;
     }
-    
+
     for (int i = 0; i < 4; i++) {
         if (!isdigit(pin[i])) {
             printf("Numero de PIN invalido, o mesmo deve conter apenas digitos\n");
-            fflush(stdin);
-            getchar();
-            system("cls");
             return false;
         }
     }
+    
     return true;
 }
 
@@ -362,7 +360,7 @@ void cadastraCliente() {
     do {
         wprintf(L"Agora vamos criar a sua senha!\n");
         wprintf(L"Por favor, crie uma senha com no minimo 8 caracteres que contenham numeros, letras e caracteres.\n");
-        scanf("%8s", cliente.senha);
+        scanf("%20s", cliente.senha);
         fflush(stdin);
         system("cls");
     } while (!verificarSenha(cliente.senha));
