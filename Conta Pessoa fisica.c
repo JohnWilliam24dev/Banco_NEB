@@ -95,7 +95,7 @@ void deposito(const char *usuarioCpf){
 
 void entradaCliente() {
     char usuarioCpf[12];
-    char usuarioSenha[9];
+    char usuarioSenha[20];
     int opcaoCliente;
 
     printf("Por favor insira seu CPF: \n");
@@ -107,7 +107,8 @@ void entradaCliente() {
     
 	do{
     	printf("Senha: \n");
-    	scanf("%8s", usuarioSenha);
+    	scanf("%20s", usuarioSenha);
+    	fflush(stdin);
     	
 		system("cls");
     
@@ -453,7 +454,7 @@ void recupSenha() {
             }
         } while (strcmp(novaSenha, vericNovaSenha) != 0);
 
-        edit_PF(verificaCPF, 1, novaSenha);
+        edit_PF(usuarioCpf, 1, novaSenha);
 		
 		system("cls");
 		  
