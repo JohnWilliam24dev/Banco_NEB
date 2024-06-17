@@ -19,7 +19,7 @@ void transferir_pf(char cnpj[16]){
 
 		
 		fflush(stdin);
-		printf("Cnpj da conta : ");
+		printf("CPF da conta : ");
 		scanf("%s", cpf_destino);
 		
 		verifica_cpf = request_PF(cpf_destino, 4);
