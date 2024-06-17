@@ -1,12 +1,14 @@
-#include "Database.h"
 #include <string.h>
 #include <locale.h>
-
+#include <stdio.h>
+#include <stdlib.h>
+#include "transferenciaBancaria.cpp"
 void conta(char cnpj[16]), menu();
 
-void transferir_pf(char cnpj[16]){
+int transferir_pf(char cnpj[16]){
 	char tipo[4], cpf_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cpf, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20], senha[20], *senha_c;
 	float quantia, saldo, destino_saldo;
+	char quantia_string[20];
 	
 	saldo = atof(p_saldo_c);
 	
@@ -31,18 +33,25 @@ void transferir_pf(char cnpj[16]){
 		fflush(stdin);
 		printf("Digite sua senha: ");
 		scanf("%s", senha);
+		fflush(stdin);
 		
 		senha_c = request_PJ(cnpj, 1);
 		
 		if(strcmp(senha,senha_c) != 0) {
 			printf("senha incorreta !\n\n");
+			pausarExecucao();
+			return 0;
 		}
 		
 		if(saldo < quantia){
 			printf("Valor invalido\nTente Novamente\n");
+			pausarExecucao();
+			return 0;
 		}
 		if(strcmp(cpf_destino,verifica_cpf ) !=0){
 			printf("CPF do destinatário inválido\n\n");
+			pausarExecucao();
+			return 0;
 		}
 		
 	fflush(stdin);
@@ -63,7 +72,9 @@ void transferir_pf(char cnpj[16]){
 	
 		saldo = saldo - quantia;
 		sprintf(saldo_c,"%.2f",saldo);
+		sprintf(quantia_string, "%.2f", quantia);
 		edit_PJ(cnpj,7 ,saldo_c);
+		insert_extract_PJ(&cnpj[0], &cpf_destino[0], &quantia_string[0], &saldo_c[0]);
 	
 	
 		p_destino_saldo_c = request_PJ(cpf_destino, 7);
@@ -80,9 +91,10 @@ void transferir_pf(char cnpj[16]){
 }
 
 
-void transferir_pj(char cnpj[16]){
+int transferir_pj(char cnpj[16]){
 	char tipo[4], cnpj_destino[16],destino_saldo_c[20], *p_destino_saldo_c, opt, *verifica_cnpj, *p_saldo_c = request_PJ(cnpj, 7), saldo_c[20], senha[20], *senha_c;
 	float quantia, saldo, destino_saldo;
+	char quantia_string[20];
 	
 	saldo = atof(p_saldo_c);
 	
@@ -107,23 +119,31 @@ void transferir_pj(char cnpj[16]){
 		fflush(stdin);
 		printf("Digite sua senha: ");
 		scanf("%s", senha);
+		fflush(stdin);
 		
 		senha_c = request_PJ(cnpj, 1);
 		
 		if(strcmp(senha,senha_c) !=0) {
 			printf("senha incorreta !\n\n");
+			pausarExecucao();
+			return 0;
 		}
 		
 		if(saldo < quantia){
 			printf("Valor invalido\nTente Novamente\n");
+			pausarExecucao();
+			return 0;
 		}
 		if(strcmp(cnpj_destino,verifica_cnpj ) !=0){
 			printf("CNPJ do destinatário inválido\n\n");
+			pausarExecucao();
+			return 0;
 		}
 		
 		fflush(stdin);
 		printf("Deseja continuar ? S/N\n ");
 		scanf("%c", &opt);
+		fflush(stdin);
 		
 		if(opt=='N' or opt == 'n'){
 			conta(cnpj);
@@ -136,7 +156,9 @@ void transferir_pj(char cnpj[16]){
 	
 	saldo = saldo - quantia;
 	sprintf(saldo_c,"%.2f",saldo);
+	sprintf(quantia_string, "%.2f", quantia);
 	edit_PJ(cnpj,7 ,saldo_c);
+	insert_extract_PJ(&cnpj[0], &cnpj_destino[0], &quantia_string[0], &saldo_c[0]);
 	
 	
 	p_destino_saldo_c = request_PJ(cnpj_destino, 7);
@@ -170,6 +192,8 @@ void conta(char cnpj[16]){
 		printf("  |        1        |______|       2        |_____|   3   |_____| 4  |\n");
 	
 		scanf("%d", &opt);
+		fflush(stdin);
+		system("cls");
 		switch(opt){
 			case 1:
 				transferir_pf(cnpj);
@@ -180,7 +204,7 @@ void conta(char cnpj[16]){
 				system("cls");
 				break;
 			case 3:
-				//funçao extrato
+				printExtrato_PJ(&cnpj[0]);
 				system("cls");
 				break;
 			case 4:
@@ -197,12 +221,12 @@ void conta(char cnpj[16]){
 	}while(opt > 4);
 }
 
-void pausarExecucao() {
+/*void pausarExecucao() {
 	printf("pressione <ENTER> para continuar");
 	getchar();
 	fflush(stdin);
 	system("cls");
-}
+}*/
 
 void cadastro1() {
     char CNPJ[15];
