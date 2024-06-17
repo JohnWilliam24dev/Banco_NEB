@@ -52,14 +52,6 @@ int verificaCPF(char * CPF) {
 	return 1; // SE (verificaCPF) = 1, entÃƒÂ£o o arquivo PATH "CPF" existe no banco de dados.
 }
 
-
-bool vericSenha(const char *usuarioSenha, const char *usuarioCpf){
-	if(request_PF(usuarioCpf,1)==usuarioSenha){
-		return 1;
-	}else{
-	 return 0;
-	}
-}
 void vericSaldo(const char *usuarioCpf){
 	float saldoAtual;
 	
@@ -114,20 +106,26 @@ void entradaCliente() {
     {
     
 	do{
-    printf("Senha: \n");
-    scanf("%8s", usuarioSenha);
-    vericSenha(usuarioSenha,usuarioCpf);
-    fflush(stdin);
+    	printf("Senha: \n");
+    	scanf("%8s", usuarioSenha);
+    	
+		system("cls");
+    
+    	if (strcmp(request_PF(usuarioCpf,1),usuarioSenha) != 0) {
+                printf("Senha incorreta! Por favor tente novamente.\n\n");
+                return 0;
+            }
+    } while (strcmp(request_PF(usuarioCpf, 1),usuarioSenha) != 0);
+    	
+	fflush(stdin);
 
     system("cls");
-    }while(!vericSenha);
     // Procurar no banco de dados se a senha ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© compatÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­vel com o CPF, caso erre 3 vezes a conta ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© bloqueada
 
     // Caso o CPF e a senha estejam corretos, mostrar o menu do cliente
     //fazer um DO WHILE para volta para o menu de conta
 	}
-	
-	else //Se CPF nÃƒÂ£o constar no banco de dados;
+	else 
 	{
 		printf("CPF NÃƒÆ’O CONSTA COMO USUARIO!\n");
 		pausarExecucao();
