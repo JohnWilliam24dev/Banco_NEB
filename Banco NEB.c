@@ -7,9 +7,8 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include "transferenciaBancaria.cpp"
-#include "FAQ.c"
 
-
+// DefiniÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o da estrutura Cliente
 typedef struct {
 	
     char nome[50];
@@ -24,8 +23,12 @@ typedef struct {
     char profissao[50];
 } Cliente;
 
-
-
+/* Fazer uma função para recuperar a senha
+void recupSenha(){
+	printf("Por favor, informe seu CPF:");
+	scanf()
+}
+*/
 int verificaCPF(char * CPF) {
 	char cpfBuscado[13];
 	char *ptr = CPF;
@@ -52,6 +55,14 @@ int verificaCPF(char * CPF) {
 	return 1; // SE (verificaCPF) = 1, entÃƒÂ£o o arquivo PATH "CPF" existe no banco de dados.
 }
 
+
+bool vericSenha(const char *usuarioSenha, const char *usuarioCpf){
+	if(request_PF(usuarioCpf,1)==usuarioSenha){
+		return 1;
+	}else{
+	 return 0;
+	}
+}
 void vericSaldo(const char *usuarioCpf){
 	float saldoAtual;
 	
@@ -95,7 +106,7 @@ void deposito(const char *usuarioCpf){
 
 void entradaCliente() {
     char usuarioCpf[12];
-    char usuarioSenha[20];
+    char usuarioSenha[9];
     int opcaoCliente;
 
     printf("Por favor insira seu CPF: \n");
@@ -106,28 +117,24 @@ void entradaCliente() {
     {
     
 	do{
-    	printf("Senha: \n");
-    	scanf("%20s", usuarioSenha);
-    	fflush(stdin);
-    	
-		system("cls");
-    
-    	if (strcmp(request_PF(usuarioCpf,1),usuarioSenha) != 0) {
-                printf("Senha incorreta! Por favor tente novamente.\n\n");
-                return 0;
-            }
-    } while (strcmp(request_PF(usuarioCpf, 1),usuarioSenha) != 0);
-    	
-	fflush(stdin);
+    printf("Senha: \n");
+    scanf("%8s", usuarioSenha);
+    vericSenha(usuarioSenha,usuarioCpf);
+    fflush(stdin);
 
     system("cls");
-    
+    }while(!vericSenha);
+    // Procurar no banco de dados se a senha ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© compatÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­vel com o CPF, caso erre 3 vezes a conta ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© bloqueada
+
+    // Caso o CPF e a senha estejam corretos, mostrar o menu do cliente
+    //fazer um DO WHILE para volta para o menu de conta
 	}
-	else 
+	
+	else //Se CPF nÃƒÂ£o constar no banco de dados;
 	{
-		printf("CPF NAO CONSTA COMO USUARIO!\n");
+		printf("CPF NÃƒÆ’O CONSTA COMO USUARIO!\n");
 		pausarExecucao();
-		return 0; 
+		return 0; //encerra execuÃƒÂ§ÃƒÂ£o voltando pro menu inicial;
 	}
 	DASHBOARD:
 		
@@ -241,6 +248,14 @@ bool verifNumeroTelefone(const char *telefone) {
             system("cls");
             return false;
         }
+    }
+
+    int ddd = (telefone[0] - '0') * 10 + (telefone[1] - '0');
+    if (ddd != 55) {
+        printf("DDD incorreto, por favor tente novamente.\n");
+        getchar();
+        system("cls");
+        return false;
     }
 
     int nonoDigitoTelefone = telefone[4] - '0';
@@ -375,85 +390,6 @@ void cadastraCliente() {
     insert_client_legal_entire(cliente.nome,cliente.senha,cliente.pin,cliente.data_de_nascimento,cliente.cpf,cliente.telefone,cliente.endereco,cliente.saldo,cliente.credito);
 }
 
-void recupSenha() {
-    char usuarioCpf[12];
-    char vericPin[5];
-    char vericData[11];
-    char novaSenha[21], vericNovaSenha[21];
-
-    printf("Por favor, informe seu CPF: ");
-    scanf("%12s", usuarioCpf);
-    fflush(stdin);
-    
-    system("cls");
-
-    if (verificaCPF(&usuarioCpf[0])) {
-        do {
-            printf("Agora vamos fazer algumas perguntas de segurança:\n");
-            printf("Qual a sua data de nascimento? (Use o seguinte formato: 01/12/2001): ");
-            scanf("%10s", vericData);
-            fflush(stdin);
-            system("cls");
-
-            if (strcmp(request_PF(usuarioCpf,3),vericData) != 0) {
-                printf("Data de nascimento incorreta! Por favor tente novamente.\n\n");
-            }
-        } while (strcmp(request_PF(usuarioCpf, 3),vericData) != 0);
-
-        do {
-            printf("Agora nos informe o seu atual PIN: ");
-            scanf("%4s", vericPin);
-            fflush(stdin);
-            system("cls");
-
-            if (strcmp(request_PF(usuarioCpf, 2), vericPin) != 0) {
-                printf("PIN incorreto! Por favor tente novamente.\n");
-            }
-        } while (strcmp(request_PF(usuarioCpf, 2), vericPin) != 0);
-
-        do {
-            do {
-            	
-            	system("cls");
-            	
-                printf("As informacaes solicitadas estao todas corretas, agora por favor digite a sua nova senha:\n");
-                printf("Lembre-se que a senha deve conter no minimo 8 digitos e deve possuir pelo menos uma letra minuscula, uma letra maiuscula e um numero: ");
-                scanf("%20s", novaSenha);
-                fflush(stdin);
-                
-                system("cls");
-                
-                if (!verificarSenha(novaSenha)){
-                printf("Senha incorreta! Por favor tente novamente.\n");
-            	}
-                
-            } while (!verificarSenha(novaSenha));
-            
-            system("cls");
-
-            printf("Agora digite a sua nova senha novamente: ");
-            scanf("%20s", vericNovaSenha);
-            fflush(stdin);
-				
-            if (strcmp(novaSenha, vericNovaSenha) != 0) {
-            	
-				system("cls");
-            	
-                printf("As senhas não coincidem. Por favor tente novamente.\n\n");
-            }
-        } while (strcmp(novaSenha, vericNovaSenha) != 0);
-
-        edit_PF(usuarioCpf, 1, novaSenha);
-		
-		system("cls");
-		  
-        printf("Senha alterada com sucesso!\n");
-        getchar();
-    } else {
-        printf("CPF nao consta como usuário!\n");
-    }
-}
-
 int menu() {
     int opcaoInicial;
 
@@ -462,8 +398,7 @@ int menu() {
     wprintf(L"1. Acessar sua conta\n");
     wprintf(L"2. Quero ser cliente\n");
     wprintf(L"3. Suporte Banco NEB\n");
-    wprintf(L"4. Recuperar a senha\n");
-    wprintf(L"5. Sair do aplicativo\n");
+    wprintf(L"4. Sair do aplicativo\n");
 
     scanf("%d", &opcaoInicial);
     fflush(stdin);
@@ -478,12 +413,9 @@ int menu() {
             cadastraCliente();
             break;
         case 3:
-			FAQPF();    
+			//FAQPF();    
             break;
         case 4:
-        	recupSenha();
-        	break;
-        case 5:
             wprintf(L"Obrigado por usar os servicos do Banco NEB!\n");
             exit(0);
             break;
