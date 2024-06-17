@@ -13,7 +13,7 @@ void transferir_pf(char cnpj[16]){
 	do{	 
 	system("cls");
 		printf("\t\t\tBancoNeb\n");
-		printf("\t{Bem vindo �area de tranferencias }\n\n" );
+		printf("\t{Bem vindo à area de tranferencias }\n\n" );
 		printf("\t\t\tV Dados do destinatario V\n\n");
 		
 
@@ -42,7 +42,7 @@ void transferir_pf(char cnpj[16]){
 			printf("Valor invalido\nTente Novamente\n");
 		}
 		if(strcmp(cpf_destino,verifica_cpf ) !=0){
-			printf("CPF do destinat�rio inv�lido\n\n");
+			printf("CPF do destinatário inválido\n\n");
 		}
 		
 		fflush(stdin);
@@ -84,7 +84,7 @@ void transferir_pj(char cnpj[16]){
 	do{	 
 	system("cls");
 		printf("\t\t\tBancoNeb\n");
-		printf("\t{Bem vindo �area de tranferencias }\n\n" );
+		printf("\t{Bem vindo à area de tranferencias }\n\n" );
 		printf("\t\t\tV Dados do destinatario V\n\n");
 		
 
@@ -105,7 +105,7 @@ void transferir_pj(char cnpj[16]){
 		
 		senha_c = request_PJ(cnpj, 1);
 		
-		if(strcmp(senha,senha_c) != 0) {
+		if(senha!=senha_c) {
 			printf("senha incorreta !\n\n");
 		}
 		
@@ -113,7 +113,7 @@ void transferir_pj(char cnpj[16]){
 			printf("Valor invalido\nTente Novamente\n");
 		}
 		if(strcmp(cnpj_destino,verifica_cnpj ) !=0){
-			printf("CNPJ do destinat�rio inv�lido\n\n");
+			printf("CNPJ do destinatário inválido\n\n");
 		}
 		
 		fflush(stdin);
@@ -173,7 +173,7 @@ void conta(char cnpj[16]){
 				system("cls");
 				break;
 			case 3:
-				//fun�ao extrato
+				//funçao extrato
 				system("cls");
 				break;
 			case 4:
@@ -182,7 +182,7 @@ void conta(char cnpj[16]){
 				system("cls");
 				break;
 			default:
-				printf("Op��o invalida\n");
+				printf("Opção invalida\n");
 				system("pause");
 				system("cls");
 				break;
@@ -213,16 +213,16 @@ void cadastro1() {
 
     
     do {
-        printf("\nPor favor, digite o CNPJ (14 dÃ­gitos): ");
+        printf("\nPor favor, digite o CNPJ (14 dÃƒÂ­gitos): ");
         scanf("%s", CNPJ);
         gets(CNPJ);
 
         if (strlen(CNPJ) == 14) {
-            printf("CNPJ vÃ¡lido.\n");
+            printf("CNPJ vÃƒÂ¡lido.\n");
             pausarExecucao();
             break;
         } else {
-            printf("CNPJ invÃ¡lido. Por favor, digite novamente.\n");
+            printf("CNPJ invÃƒÂ¡lido. Por favor, digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
@@ -232,29 +232,29 @@ void cadastro1() {
 
 
     do {
-        printf("\nPor favor, digite o telefone (8 dÃ­gitos): ");
+        printf("\nPor favor, digite o telefone (8 dÃƒÂ­gitos): ");
         gets(telefone);
 
         if (strlen(telefone) == 8) {
-            printf("Telefone vÃ¡lido.\n");
+            printf("Telefone vÃƒÂ¡lido.\n");
             pausarExecucao();
             break;
         } else {
-            printf("Telefone invÃ¡lido. Por favor, digite novamente.\n");
+            printf("Telefone invÃƒÂ¡lido. Por favor, digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
 
     
     do {
-        printf("\nPor favor, crie uma senha (mÃ­nimo 8 caracteres): ");
+        printf("\nPor favor, crie uma senha (mÃƒÂ­nimo 8 caracteres): ");
         gets(senha);
         if (strlen(senha) >= 8) {  
             printf("Senha validada!!\n");
             pausarExecucao();
             break;
         } else {
-            printf("Senha invÃ¡lida. Digite novamente.\n");
+            printf("Senha invÃƒÂ¡lida. Digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
@@ -266,7 +266,7 @@ void cadastro1() {
             pausarExecucao();
             break;
         } else {
-            printf("Pin invÃ¡lido. Digite novamente.\n");
+            printf("Pin invÃƒÂ¡lido. Digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
@@ -278,7 +278,7 @@ void cadastro1() {
             pausarExecucao();
             break;
         } else {
-            printf("Cep invÃ¡lida. Digite novamente.\n");
+            printf("Cep invÃƒÂ¡lida. Digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
@@ -290,8 +290,8 @@ void cadastro1() {
 	
 	   
     system("cls");
-    printf("\nO seu saldo Ã©: %.2f\n", saldo);
-    printf("O seu crÃ©dito Ã©: %.2f\n", credito);  
+    printf("\nO seu saldo ÃƒÂ©: %.2f\n", saldo);
+    printf("O seu crÃƒÂ©dito ÃƒÂ©: %.2f\n", credito);  
     pausarExecucao();
 	
 	insert_client_legal_entire(nomeEmpresa, senha, pin, idadeEmpresa, CNPJ, telefone, CEP, saldo, credito); 
@@ -361,7 +361,7 @@ void menu(){
 				printf("saindo");
 				abort();
 			default:
-				printf("Op��o invalida\n\n");
+				printf("Opção invalida\n\n");
 				system("pause");
 				system("cls");
 				break;

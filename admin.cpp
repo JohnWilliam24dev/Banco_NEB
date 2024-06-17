@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include "Database.h"
+
+
 void editinfoPF(){
 	system("cls");
 	char cpf[15];
@@ -25,7 +27,7 @@ void editinfoPF(){
 	printf("Digite a modificacao que deseja fazer: ");
 	scanf("%s",mod);
 	edit_PF(cpf,index,mod);
-	printf("A alteração foi feita com sucesso!");
+	printf("A alteracao foi feita com sucesso!");
 	system("pause");
 	
 }
@@ -51,10 +53,11 @@ void editinfoPJ(){
 	printf("Digite a modificacao que deseja fazer: ");
 	scanf("%s",mod);
 	edit_PJ(cnpj,index,mod);
-	printf("A alteração foi feita com sucesso!");
+	printf("A alteracao foi feita com sucesso!");
 	system("pause");
 	
 }
+
 int main(){
     char access_name[10];
     int tentativa=0;

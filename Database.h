@@ -157,6 +157,7 @@ char* request_PF(char CPF[],int option){
     strcat(path,CPF);
     char ext[15]={".txt"};
     strcat(path,ext);
+    char comp[3]={"\0"};
     
     char *chPF = (char *) malloc(sizeof(char)*30);
 
@@ -172,6 +173,7 @@ char* request_PF(char CPF[],int option){
 
     fclose(filePF);
     clearchar(chPF);
+    strcat(chPF,comp);
     return chPF;
 }
 
@@ -181,6 +183,7 @@ char* request_PJ(char CNPJ[],int option){
     strcat(path,CNPJ);
     char ext[15]={".txt"};
     strcat(path,ext);
+    char comp[3]={"\0"};
 
     char *chPJ = (char *) malloc(sizeof(char)*30);
 
@@ -196,6 +199,7 @@ char* request_PJ(char CNPJ[],int option){
     
     fclose(filePJ);
     clearchar(chPJ);
+    strcat(chPJ,comp);
     return chPJ;
 
 }
@@ -358,24 +362,131 @@ void listclientPJ(){
 	
 }
 
-void extratoPF(char CPFuser[],char CPFdest[],char saldo[]){
-//-> PESSOA FÍSICA
-char pathPF[100] = "./PF/extrato";
-strcat(pathPF, CPFuser);
-char ext[15] = ".txt";
-strcat(pathPF, ext);
-FILE *arquivo;
-arquivo = fopen(pathPF, "w");
-
-
-
-//REGION VARIABLES
-
-//LOGIC
-FILE *file=fopen(pathPF,"a");
-	fprintf(file,"Destino: %s\n",CPFdest);
-	fprintf(file,"Saldo Gasto: %s\n",saldo);
-	
+void editinfo_clientPJ(char cnpj[]){
+	innit_function:
+	system("cls");
+	char mod[200];
+	int index;
+		printf("0 %s\n",request_PJ(cnpj,0));
+		printf("1 %s\n",request_PJ(cnpj,1));
+		printf("3 %s\n",request_PJ(cnpj,3));
+		printf("5 %s\n",request_PJ(cnpj,5));
+		printf("6 %s\n\n",request_PJ(cnpj,6));
+	printf("Digite o indice que deseja modificar: ");
+	scanf("%i",&index);
+	fflush(stdin);
+	if(index>6){
+		
+		printf("Opcao invalida, por favor tente novamente.");
+		system("pause");
+		index=NULL;
+		goto innit_function;
+		
+	}else if(index==4){
+		printf("Opcao invalida, por favor tente novamente.");
+		system("pause");
+		index=NULL;
+		goto innit_function;
+	}else{
+			
+	printf("Digite a modificacao que deseja fazer: ");
+	scanf("%s",mod);
+	edit_PJ(cnpj,index,mod);
+	printf("A alteracao foi feita com sucesso!\n");
+	system("pause");
+	}
+}
+	void editinfo_clientPF(char cpf[]){
+	innit_function:
+	system("cls");
+	char mod[200];
+	int index;
+		printf("0 %s\n",request_PF(cpf,0));
+		printf("1 %s\n",request_PF(cpf,1));
+		printf("3 %s\n",request_PF(cpf,3));
+		printf("5 %s\n",request_PF(cpf,5));
+		printf("6 %s\n\n",request_PF(cpf,6));
+	printf("Digite o indice que deseja modificar: ");
+	scanf("%i",&index);
+	fflush(stdin);
+	if(index>6){
+		
+		printf("Opcao invalida, por favor tente novamente.");
+		system("pause");
+		index=NULL;
+		goto innit_function;
+		
+	}else if(index==4){
+		printf("Opcao invalida, por favor tente novamente.");
+		system("pause");
+		index=NULL;
+		goto innit_function;
+	}else{
+			
+	printf("Digite a modificacao que deseja fazer: ");
+	scanf("%s",mod);
+	edit_PF(cpf,index,mod);
+	printf("A alteracao foi feita com sucesso!\n");
+	system("pause");
+	}
 }
 
+void insert_extract_PF(char *CPF_user, char *CPF_CNPJ_dest, char *valor_movimentado, char *saldo_atual) {
+	char path[100] = "./PF/extratos";
+	strcat(path, CPF_user);
+	char ext[15] = ".txt";
+	strcat(path, ext);
+	
+	FILE *arquivo;
+	arquivo = fopen(path, "a+");
+	
+	fprintf(arquivo, "%s\n", CPF_CNPJ_dest);
+	fprintf(arquivo, "%s\n", valor_movimentado);
+	fprintf(arquivo, "%s\n", saldo_atual);
+	
+	fclose(arquivo);
+}
 
+void insert_extract_PJ(char *CNPJ_user, char *CPF_CNPJ_dest, char *valor_movimentado, char *saldo_atual) {
+	char path[100] = "./PJ/extratos";
+	strcat(path, CNPJ_user);
+	char ext[15] = ".txt";
+	strcat(path, ext);
+	
+	FILE *arquivo;
+	arquivo = fopen(path, "a+");
+	
+	fprintf(arquivo, "%s\n", CPF_CNPJ_dest);
+	fprintf(arquivo, "%s\n", valor_movimentado);
+	fprintf(arquivo, "%s\n", saldo_atual);
+	
+	fclose(arquivo);
+}
+void del_PF(char CPF[]){
+	char path[100]="./PF/userPF";
+    strcat(path,CPF);
+    char ext[15]={".txt"};
+    strcat(path,ext);
+    
+    int verificador;
+    verificador=remove(path);
+    if(verificador == 0) {
+      printf("deletado");
+   } else {
+      printf("nao deletado");
+   }
+}
+void del_PJ(char CNPJ[]){
+	char path[100]="./PJ/userPJ";
+    strcat(path,CNPJ);
+    char ext[15]={".txt"};
+    strcat(path,ext);
+    
+    int verificador;
+    verificador=remove(path);
+    if(verificador == 0) {
+      printf("deletado");
+   } else {
+      printf("nao deletado");
+   }
+}
