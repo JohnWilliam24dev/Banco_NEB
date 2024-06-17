@@ -285,7 +285,7 @@ void conta(char cnpj[16]){
 				system("cls");
 				break;
 		}
-	}while(opt > 4);
+	}while(opt != 4);
 }
 
 /*void pausarExecucao() {
