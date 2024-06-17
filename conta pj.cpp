@@ -214,22 +214,21 @@ void cadastro1() {
     char CEP[9];
     float saldo = 0;
     float credito = 0;
- 
+ 	fflush(stdin);
     printf("\nPor favor, digite o nome da empresa: ");
     gets(nomeEmpresa);
 
     
     do {
-        printf("\nPor favor, digite o CNPJ (14 dÃƒÂ­gitos): ");
+        printf("\nPor favor, digite o CNPJ (14 digitos): ");
         scanf("%s", CNPJ);
-        gets(CNPJ);
 
         if (strlen(CNPJ) == 14) {
-            printf("CNPJ vÃƒÂ¡lido.\n");
+            printf("CNPJ valido.\n");
             pausarExecucao();
             break;
         } else {
-            printf("CNPJ invÃƒÂ¡lido. Por favor, digite novamente.\n");
+            printf("CNPJ invalido. Por favor, digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
@@ -239,29 +238,29 @@ void cadastro1() {
 
 
     do {
-        printf("\nPor favor, digite o telefone (8 dÃƒÂ­gitos): ");
+        printf("\nPor favor, digite o telefone (8 digitos): ");
         gets(telefone);
 
         if (strlen(telefone) == 8) {
-            printf("Telefone vÃƒÂ¡lido.\n");
+            printf("Telefone valido.\n");
             pausarExecucao();
             break;
         } else {
-            printf("Telefone invÃƒÂ¡lido. Por favor, digite novamente.\n");
+            printf("Telefone invalido. Por favor, digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
 
     
     do {
-        printf("\nPor favor, crie uma senha (mÃƒÂ­nimo 8 caracteres): ");
+        printf("\nPor favor, crie uma senha (minimo 8 caracteres): ");
         gets(senha);
         if (strlen(senha) >= 8) {  
             printf("Senha validada!!\n");
             pausarExecucao();
             break;
         } else {
-            printf("Senha invÃƒÂ¡lida. Digite novamente.\n");
+            printf("Senha invalida. Digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
@@ -273,7 +272,7 @@ void cadastro1() {
             pausarExecucao();
             break;
         } else {
-            printf("Pin invÃƒÂ¡lido. Digite novamente.\n");
+            printf("Pin invalido. Digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
@@ -285,7 +284,7 @@ void cadastro1() {
             pausarExecucao();
             break;
         } else {
-            printf("Cep invÃƒÂ¡lida. Digite novamente.\n");
+            printf("Cep invalida. Digite novamente.\n");
             pausarExecucao();
         }
     } while (1);
@@ -297,8 +296,7 @@ void cadastro1() {
 	
 	   
     system("cls");
-    printf("\nO seu saldo ÃƒÂ©: %.2f\n", saldo);
-    printf("O seu crÃƒÂ©dito ÃƒÂ©: %.2f\n", credito);  
+    printf("\nO seu saldo e: %.2f\n", saldo);  
     pausarExecucao();
 	
 	insert_client_legal_entire(nomeEmpresa, senha, pin, idadeEmpresa, CNPJ, telefone, CEP, saldo, credito); 
