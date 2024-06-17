@@ -23,12 +23,6 @@ typedef struct {
     char profissao[50];
 } Cliente;
 
-/* Fazer uma função para recuperar a senha
-void recupSenha(){
-	printf("Por favor, informe seu CPF:");
-	scanf()
-}
-*/
 int verificaCPF(char * CPF) {
 	char cpfBuscado[13];
 	char *ptr = CPF;
@@ -52,17 +46,9 @@ int verificaCPF(char * CPF) {
 	}
 	fclose(arquivo);
 
-	return 1; // SE (verificaCPF) = 1, entÃƒÂ£o o arquivo PATH "CPF" existe no banco de dados.
+	return 1; 
 }
 
-
-bool vericSenha(const char *usuarioSenha, const char *usuarioCpf){
-	if(request_PF(usuarioCpf,1)==usuarioSenha){
-		return 1;
-	}else{
-	 return 0;
-	}
-}
 void vericSaldo(const char *usuarioCpf){
 	float saldoAtual;
 	
@@ -108,6 +94,7 @@ void entradaCliente() {
     char usuarioCpf[12];
     char usuarioSenha[9];
     int opcaoCliente;
+    char *senha_correta;
 
     printf("Por favor insira seu CPF: \n");
     scanf("%12s",usuarioCpf);
@@ -116,25 +103,25 @@ void entradaCliente() {
     if(verificaCPF(&usuarioCpf[0]))
     {
     
-	do{
-    printf("Senha: \n");
-    scanf("%8s", usuarioSenha);
-    vericSenha(usuarioSenha,usuarioCpf);
-    fflush(stdin);
-
-    system("cls");
-    }while(!vericSenha);
-    // Procurar no banco de dados se a senha ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© compatÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­vel com o CPF, caso erre 3 vezes a conta ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© bloqueada
-
-    // Caso o CPF e a senha estejam corretos, mostrar o menu do cliente
-    //fazer um DO WHILE para volta para o menu de conta
+	    printf("Senha: \n");
+	    scanf("%8s", usuarioSenha);
+	    fflush(stdin);
+	    senha_correta = request_PF(usuarioCpf, 1);
+			
+			if(strcmp(usuarioSenha, senha_correta) != 0) {
+				printf("SENHA INCORRETA!\n\n");
+				pausarExecucao();
+				return 0;
+			}
+	    fflush(stdin);
+	    system("cls");
 	}
 	
-	else //Se CPF nÃƒÂ£o constar no banco de dados;
+	else 
 	{
-		printf("CPF NÃƒÆ’O CONSTA COMO USUARIO!\n");
+		printf("CPF NAO CONSTA COMO USUARIO!\n");
 		pausarExecucao();
-		return 0; //encerra execuÃƒÂ§ÃƒÂ£o voltando pro menu inicial;
+		return 0;
 	}
 	DASHBOARD:
 		
