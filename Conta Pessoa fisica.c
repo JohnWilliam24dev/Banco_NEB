@@ -9,7 +9,7 @@
 #include "transferenciaBancaria.cpp"
 #include "FAQ.c"
 
-// DefiniÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â§ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o da estrutura Cliente
+
 typedef struct {
 	
     char nome[50];
@@ -121,16 +121,13 @@ void entradaCliente() {
 	fflush(stdin);
 
     system("cls");
-    // Procurar no banco de dados se a senha ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© compatÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­vel com o CPF, caso erre 3 vezes a conta ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© bloqueada
-
-    // Caso o CPF e a senha estejam corretos, mostrar o menu do cliente
-    //fazer um DO WHILE para volta para o menu de conta
+    
 	}
 	else 
 	{
-		printf("CPF NÃƒÆ’O CONSTA COMO USUARIO!\n");
+		printf("CPF NAO CONSTA COMO USUARIO!\n");
 		pausarExecucao();
-		return 0; //encerra execuÃƒÂ§ÃƒÂ£o voltando pro menu inicial;
+		return 0; 
 	}
 	DASHBOARD:
 		
@@ -244,14 +241,6 @@ bool verifNumeroTelefone(const char *telefone) {
             system("cls");
             return false;
         }
-    }
-
-    int ddd = (telefone[0] - '0') * 10 + (telefone[1] - '0');
-    if (ddd != 55) {
-        printf("DDD incorreto, por favor tente novamente.\n");
-        getchar();
-        system("cls");
-        return false;
     }
 
     int nonoDigitoTelefone = telefone[4] - '0';
