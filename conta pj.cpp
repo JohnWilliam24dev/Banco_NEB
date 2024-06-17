@@ -45,33 +45,38 @@ void transferir_pf(char cnpj[16]){
 			printf("CPF do destinatário inválido\n\n");
 		}
 		
-		fflush(stdin);
-		printf("Deseja continuar ? S/N\n ");
-		scanf("%c", &opt);
-		
-		if(opt=='N' or opt == 'n'){
+	fflush(stdin);
+	printf("Deseja continuar ? S/N\n ");
+	scanf("%c", &opt);
+	
+	if(opt=='N' or opt == 'n'){
 			conta(cnpj);
 			fflush(stdin);
 	}
+		
+	fflush(stdin);
 	} while(saldo < quantia and strcmp(cpf_destino,verifica_cpf ) !=0 and strcmp(senha,senha_c) != 0);
 	
-	fflush(stdin);
+	if(opt=='s' or opt == 'S'){
 	
-	saldo = saldo - quantia;
-	sprintf(saldo_c,"%.2f",saldo);
-	edit_PJ(cnpj,7 ,saldo_c);
+		fflush(stdin);
+	
+		saldo = saldo - quantia;
+		sprintf(saldo_c,"%.2f",saldo);
+		edit_PJ(cnpj,7 ,saldo_c);
 	
 	
-	p_destino_saldo_c = request_PJ(cpf_destino, 7);
-	destino_saldo = atof(p_destino_saldo_c);
-	destino_saldo = destino_saldo + quantia;
+		p_destino_saldo_c = request_PJ(cpf_destino, 7);
+		destino_saldo = atof(p_destino_saldo_c);
+		destino_saldo = destino_saldo + quantia;
 	
-	sprintf(destino_saldo_c, "%.2f", destino_saldo);
-	edit_PJ(cpf_destino,7 ,destino_saldo_c );
+		sprintf(destino_saldo_c, "%.2f", destino_saldo);
+		edit_PJ(cpf_destino,7 ,destino_saldo_c );
 	
-	printf("Transferencia concluida\n");
-	system("pause");
-	conta(cnpj);
+		printf("Transferencia concluida\n");
+		system("pause");
+		conta(cnpj);
+	}
 }
 
 
@@ -105,7 +110,7 @@ void transferir_pj(char cnpj[16]){
 		
 		senha_c = request_PJ(cnpj, 1);
 		
-		if(senha!=senha_c) {
+		if(strcmp(senha,senha_c) !=0) {
 			printf("senha incorreta !\n\n");
 		}
 		
@@ -126,6 +131,7 @@ void transferir_pj(char cnpj[16]){
 	}
 	} while(saldo < quantia and strcmp(cnpj_destino,verifica_cnpj ) !=0 and strcmp(senha,senha_c) != 0);
 	
+	if(opt=='s' or opt == 'S'){
 	fflush(stdin);
 	
 	saldo = saldo - quantia;
@@ -143,6 +149,7 @@ void transferir_pj(char cnpj[16]){
 	printf("Transferencia concluida\n");
 	system("pause");
 	conta(cnpj);
+	}
 }
 
            
